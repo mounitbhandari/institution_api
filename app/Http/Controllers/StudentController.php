@@ -51,7 +51,32 @@ class StudentController extends Controller
        $state->qualification= $request->input('qualification');
         $state->save();
 
+        return response()->json(['success'=>1,'data'=>$state], 200,[],JSON_NUMERIC_CHECK);
     }
+
+    public function edit(Request $request)
+    {
+        // $tudent = new Student();
+        // $student = $student::find($request->input('id'));
+        // $student->student_name = $request->input('student_name');
+        // $student->father_name = $request->input('father_name');
+        // $student->mother_name = $request->input('mother_name');
+        // $student->guardian_name = $request->input('guardian_name');
+        // $student->relation_to_gurdian = $request->input('relation_to_gurdian');
+        // $student->dob = $request->input('dob');
+        // $student->sex = $request->input('sex');
+        // $student->address = $request->input('address');
+        // $student->city = $request->input('city');
+        // $student->district = $request->input('district');
+        // $student->state = $request->input('state');
+        // $student->pin= $request->input('relation_');
+        // $state->relation_to_gurdian = $request->input('relation_to_gurdian');
+        // $state->relation_to_gurdian = $request->input('relation_to_gurdian');
+        // $state->relation_to_gurdian = $request->input('relation_to_gurdian');        
+        // $state->save();
+        // return response()->json(['success'=>1,'data'=>$state], 200,[],JSON_NUMERIC_CHECK);
+    }
+
 
     /**
      * Store a newly created resource in storage.
