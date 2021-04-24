@@ -14,14 +14,20 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function getallStudent()
-    { 
+    {
       $students= Student::get();
-      return response()->json(['success'=>1,'data'=> StudentResource::collection($students)], 200,[],JSON_NUMERIC_CHECK); 
+      return response()->json(['success'=>1,'data'=> StudentResource::collection($students)], 200,[],JSON_NUMERIC_CHECK);
     }
     public function getStudentByID($id){
-        $student = Student::findOrFail($id);
+        try {
+            $student = Student::findOrFail($id);
+            return response()->json(['success'=>true,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
+        } catch (\Exception $e) {
+            return response()->json(['success'=>false,'data'=>null], 404,[],JSON_NUMERIC_CHECK);
+        }
+
         // return new StudentResource($student);
-        return response()->json(['success'=>1,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
+
 
     }
 
