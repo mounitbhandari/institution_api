@@ -45,9 +45,7 @@ class StudentController extends Controller
             'student_name' => 'required|max:255'
         ]);
         if ($validator->fails()) {
-
-            return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 200,[],JSON_NUMERIC_CHECK);
-
+            return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
         }
        try{
             $student= new Student();
@@ -70,12 +68,12 @@ class StudentController extends Controller
             $student->qualification= $request->input('qualification');
             $student->save();
             DB::commit();
-  
+
         }catch(\Exception $e){
             DB::rollBack();
             return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
         }
-    
+
         return response()->json(['success'=>1,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
     }
 
@@ -97,7 +95,7 @@ class StudentController extends Controller
         // $student->pin= $request->input('relation_');
         // $state->relation_to_gurdian = $request->input('relation_to_gurdian');
         // $state->relation_to_gurdian = $request->input('relation_to_gurdian');
-        // $state->relation_to_gurdian = $request->input('relation_to_gurdian');        
+        // $state->relation_to_gurdian = $request->input('relation_to_gurdian');
         // $state->save();
         // return response()->json(['success'=>1,'data'=>$state], 200,[],JSON_NUMERIC_CHECK);
     }
@@ -132,7 +130,7 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     //
-   
+
 
     /**
      * Update the specified resource in storage.
