@@ -41,8 +41,8 @@ class StudentController extends Controller
     public function save(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'episode_id' => 'required|unique:students,episode_id',
-            'student_name' => 'required|max:255'
+            'episodeId' => 'required|unique:students,episode_id',
+            'studentName' => 'required|max:255'
         ]);
         if ($validator->fails()) {
             return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);

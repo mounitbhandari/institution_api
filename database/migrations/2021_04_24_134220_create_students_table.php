@@ -22,18 +22,21 @@ class CreateStudentsTable extends Migration
             $table->string('guardian_name')->nullable(true);
             $table->string('relation_to_gurdian')->nullable(true);
             $table->date('dob')->nullable(true);
-//             $table->string('sex', 1)->nulable(false);
             $table->enum('sex', array('M', 'F', 'O'))->default('O');
             $table->string('address')->nullable(true);
-            $table->string('city')->nullable(true);
-            $table->string('distric')->nullable(true);
+            $table->string('city',50)->nullable(true);
+            $table->string('distric',50)->nullable(true);
+
+            $table->unsignedBigInteger('state_id');
+            $table ->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
+
+
             $table->string('state')->nullable(true);
-            $table->string('pin')->nullable(true);
-            $table->string('gurdian_contact_number')->nullable(true);
-            $table->string('whatsapp_number')->nullable(true);
-            $table->string('email_id')->nullable(true);
-            $table->string('qualification')->nullable(true);
-//            $table->tinyInteger('inforce')->default(1);
+            $table->string('pin',8)->nullable(true);
+            $table->string('gurdian_contact_number',15)->nullable(true);
+            $table->string('whatsapp_number',15)->nullable(true);
+            $table->string('email_id',255)->nullable(true);
+            $table->string('qualification',50)->nullable(true);
             $table->enum('inforce', array(0, 1))->default(1);
             $table->timestamps();
         });
