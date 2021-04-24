@@ -13,15 +13,18 @@ class CreateStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
+        try{
+            Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('student_name');
+            $table->string('episode_id',20)->nullable(false)->unique();
+            $table->string('student_name',255)->nullable(false);
             $table->string('father_name')->nullable(true);
             $table->string('mother_name')->nullable(true);
             $table->string('guardian_name')->nullable(true);
             $table->string('relation_to_gurdian')->nullable(true);
             $table->date('dob')->nullable(true);
-            $table->string('sex')->nullable(true);
+            // $table->string('sex', 1)->nulable(false);
+            $table->enum('sex', array('M','F','O'))->default('O')->change();
             $table->string('address')->nullable(true);
             $table->string('city')->nullable(true);
             $table->string('distric')->nullable(true);
@@ -33,8 +36,7 @@ class CreateStudentsTable extends Migration
             $table->string('qualification')->nullable(true);
             $table->tinyInteger('inforce')->default(1);
             $table->timestamps();
-
-        });
+         
     }
 
     /**

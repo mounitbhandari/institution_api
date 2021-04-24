@@ -39,13 +39,14 @@ class DatabaseSeeder extends Seeder
         User::create(['user_name'=>'Arindam Biswas','mobile1'=>'9836444999','mobile2'=>'100','email'=>'arindam','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'user_type_id'=>1]);
 
         Student::create([
+            'episode_id' =>'a1',
             'student_name' => 'Bimal Paul',
             'father_name' => 'Atanu Paul',
             'mother_name' => 'Aroti Paul',
             'guardian_name' => 'Atanu Paul',
             'relation_to_gurdian' => 'Father',
             'dob' => '1999-08-14',
-            'sex' => 'Male',
+            'sex' => 'M',
             'address' => '56/7,Rabindrapally',
             'city' => 'Barrackpore',
             'distric' => 'North 24 Parganas',
@@ -58,13 +59,14 @@ class DatabaseSeeder extends Seeder
 
         ]);
         Student::create([
+            'episode_id' =>'a2',
             'student_name' => 'Riya Das',
             'father_name' => 'Sourav Das',
             'mother_name' => 'Kakali Das',
             'guardian_name' => 'Kakali Das',
             'relation_to_gurdian' => 'mother',
             'dob' => '2000-05-15',
-            'sex' => 'female',
+            'sex' => 'F',
             'address' => '13/c,R.N.Tagore Road',
             'city' => 'Kolkata',
             'distric' => 'Kolkata',
@@ -77,13 +79,14 @@ class DatabaseSeeder extends Seeder
 
         ]);
         Student::create([
+            'episode_id'=> 'a3',
             'student_name' => 'Suchismita Das',
             'father_name' => 'Sujan Das',
             'mother_name' => 'Kakali Das',
             'guardian_name' => 'piya Das',
             'relation_to_gurdian' => 'mother',
             'dob' => '2000-08-09',
-            'sex' => 'female',
+            'sex' => 'F',
             'address' => '39/b,G.T.Road',
             'city' => 'Kolkata',
             'distric' => 'Howrah',
@@ -96,13 +99,14 @@ class DatabaseSeeder extends Seeder
 
         ]);
         Student::create([
+            'episode_id'=> 'a4',
             'student_name' => 'Raj Ghosh',
             'father_name' => 'Ratan Ghosh',
             'mother_name' => 'Mita Ghosh',
             'guardian_name' => 'Mita Ghosh',
             'relation_to_gurdian' => 'mother',
             'dob' => '2001-11-21',
-            'sex' => 'female',
+            'sex' => 'M',
             'address' => '10/b R.Sen Road',
             'city' => 'Siliguri',
             'distric' => 'Siliguri',
@@ -115,13 +119,14 @@ class DatabaseSeeder extends Seeder
 
         ]);
         Student::create([
+            'episode_id'=> 'a5',
             'student_name' => 'Piyali Sen',
             'father_name' => 'Raju Sen',
             'mother_name' => 'Putul Sen',
             'guardian_name' => 'Putul Sen',
             'relation_to_gurdian' => 'mother',
             'dob' => '2000-08-27',
-            'sex' => 'female',
+            'sex' => 'o',
             'address' => '13/c,Rabindra Sarani',
             'city' => 'Kolkata',
             'distric' => 'Kolkata',

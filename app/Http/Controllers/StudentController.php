@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Resources\StudentResource;
+use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
@@ -38,26 +40,43 @@ class StudentController extends Controller
      */
     public function save(Request $request)
     {
-       $student= new Student();
-       $student ->student_name = $request->input('studentName');
-       $state->father_name= $request->input('fatherName');
-       $state->mother_name= $request->input('motherName');
-       $state->guardian_name= $request->input('guardianName');
-       $state->relation_to_gurdian= $request->input('relationToGurdian');
-       $state->dob= $request->input('dob');
-       $state->sex= $request->input('sex');
-       $state->address= $request->input('address');
-       $state->city= $request->input('city');
-       $state->distric= $request->input('distric');
-       $state->state= $request->input('state');
-       $state->pin= $request->input('pin');
-       $state->gurdian_contact_number= $request->input('gurdianContactNumber');
-       $state->whatsapp_number= $request->input('whatsappNumber');
-       $state->email_id= $request->input('email');
-       $state->qualification= $request->input('qualification');
-        $state->save();
+        $validator = Validator::make($request->all(), [
+            'episode_id' => 'required|unique:students,episode_id',
+            'student_name' => 'required|max:255'
+        ]);
+        if ($validator->fails()) {
 
-        return response()->json(['success'=>1,'data'=>$state], 200,[],JSON_NUMERIC_CHECK);
+            return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 200,[],JSON_NUMERIC_CHECK);
+
+        }
+       try{
+            $student= new Student();
+            $student->episode_id =$request->input('episodeId');
+            $student ->student_name = $request->input('studentName');
+            $student->father_name= $request->input('fatherName');
+            $student->mother_name= $request->input('motherName');
+            $student->guardian_name= $request->input('guardianName');
+            $student->relation_to_gurdian= $request->input('relationToGurdian');
+            $student->dob= $request->input('dob');
+            $student->sex= $request->input('sex');
+            $student->address= $request->input('address');
+            $student->city= $request->input('city');
+            $student->distric= $request->input('distric');
+            $student->state= $request->input('state');
+            $student->pin= $request->input('pin');
+            $student->gurdian_contact_number= $request->input('gurdianContactNumber');
+            $student->whatsapp_number= $request->input('whatsappNumber');
+            $student->email_id= $request->input('email');
+            $student->qualification= $request->input('qualification');
+            $student->save();
+            DB::commit();
+  
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
+        }
+    
+        return response()->json(['success'=>1,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function edit(Request $request)
@@ -112,10 +131,8 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
-    {
-        //
-    }
+    //
+   
 
     /**
      * Update the specified resource in storage.
