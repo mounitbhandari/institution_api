@@ -19,7 +19,7 @@ class StudentController extends Controller
       return response()->json(['success'=>1,'data'=> StudentResource::collection($students)], 200,[],JSON_NUMERIC_CHECK); 
     }
     public function getStudentByID($id){
-        $student = Student::find($id);
+        $student = Student::findOrFail($id);
         // return new StudentResource($student);
         return response()->json(['success'=>1,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
 
@@ -33,7 +33,24 @@ class StudentController extends Controller
     public function save(Request $request)
     {
        $student= new Student();
-       
+       $student ->student_name = $request->input('studentName');
+       $state->father_name= $request->input('fatherName');
+       $state->mother_name= $request->input('motherName');
+       $state->guardian_name= $request->input('guardianName');
+       $state->relation_to_gurdian= $request->input('relationToGurdian');
+       $state->dob= $request->input('dob');
+       $state->sex= $request->input('sex');
+       $state->address= $request->input('address');
+       $state->city= $request->input('city');
+       $state->distric= $request->input('distric');
+       $state->state= $request->input('state');
+       $state->pin= $request->input('pin');
+       $state->gurdian_contact_number= $request->input('gurdianContactNumber');
+       $state->whatsapp_number= $request->input('whatsappNumber');
+       $state->email_id= $request->input('email');
+       $state->qualification= $request->input('qualification');
+        $state->save();
+
     }
 
     /**
