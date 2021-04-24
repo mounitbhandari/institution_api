@@ -12,4 +12,15 @@ This is a sample code
 [difftool]
 	prompt = false
 
+composer require vkovic/laravel-commando
+
+// laravel command created by me
+//command created using
+php artisan make:command mysql
+//this will create database from here
+php artisan mysql:createdb schema_name
+
+//below command will create database from .env file
+php artisan db:create <[database_name]>
+
 
