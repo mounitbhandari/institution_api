@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Vkovic\LaravelCommando\Handlers\Console\WithConsoleHandler;
 use Vkovic\LaravelCommando\Handlers\Database\WithDbHandler;
+use Carbon\Carbon;
 
 class DbDumpCommand extends Command
 {
@@ -60,8 +61,8 @@ class DbDumpCommand extends Command
         $user = env('DB_USERNAME');
         $password = env('DB_PASSWORD');
         $host = env('DB_HOST');
-//        $destination = $dir . DIRECTORY_SEPARATOR . "$database-" . Carbon::now()->format('Y-m-d-H-i-s') . '.sql';
-        $destination = $dir . DIRECTORY_SEPARATOR . "$database-" . '.sql';
+        $destination = $dir . DIRECTORY_SEPARATOR . "$database-" . Carbon::now()->format('Y-m-d-H-i-s') . '.sql';
+//        $destination = $dir . DIRECTORY_SEPARATOR . "$database-" . '.sql';
 
         // Omit view definer so we do not come across missing user on another system
 //        $removeDefiner = "| sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'";
