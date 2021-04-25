@@ -25,7 +25,7 @@ class CreateStudentsTable extends Migration
             $table->enum('sex', array('M', 'F', 'O'))->default('O');
             $table->string('address')->nullable(true);
             $table->string('city',50)->nullable(true);
-            $table->string('distric',50)->nullable(true);
+            $table->string('district',50)->nullable(true);
 
             $table->unsignedBigInteger('state_id');
             $table ->foreign('state_id')->references('id')->on('states')->onDelete('cascade');

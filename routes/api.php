@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     //get all users
     Route::get("users",[UserController::class,'getAllUsers']);
 
-    
+
 });
 
 
@@ -53,8 +53,8 @@ Route::group(array('prefix' => 'dev'), function() {
     Route::get("students/{id}",[StudentController::class, 'getStudentByID']);
     Route::get("students",[StudentController::class, 'getallStudent']);
     Route::post("students",[StudentController::class, 'save']);
-    // Route::patch("students",[StudentController::class, 'edit']);
+    Route::patch("students",[StudentController::class, 'update']);
 
-    
+
 });
 

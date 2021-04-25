@@ -59,7 +59,7 @@ class StudentController extends Controller
             $student->sex= $request->input('sex');
             $student->address= $request->input('address');
             $student->city= $request->input('city');
-            $student->distric= $request->input('distric');
+            $student->district= $request->input('district');
             $student->state_id= $request->input('stateId');
             $student->pin= $request->input('pin');
             $student->gurdian_contact_number= $request->input('gurdianContactNumber');
@@ -77,27 +77,29 @@ class StudentController extends Controller
         return response()->json(['success'=>1,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function edit(Request $request)
+    public function update(Request $request)
     {
-        // $tudent = new Student();
-        // $student = $student::find($request->input('id'));
-        // $student->student_name = $request->input('student_name');
-        // $student->father_name = $request->input('father_name');
-        // $student->mother_name = $request->input('mother_name');
-        // $student->guardian_name = $request->input('guardian_name');
-        // $student->relation_to_gurdian = $request->input('relation_to_gurdian');
-        // $student->dob = $request->input('dob');
-        // $student->sex = $request->input('sex');
-        // $student->address = $request->input('address');
-        // $student->city = $request->input('city');
-        // $student->district = $request->input('district');
-        // $student->state = $request->input('state');
-        // $student->pin= $request->input('relation_');
-        // $state->relation_to_gurdian = $request->input('relation_to_gurdian');
-        // $state->relation_to_gurdian = $request->input('relation_to_gurdian');
-        // $state->relation_to_gurdian = $request->input('relation_to_gurdian');
-        // $state->save();
-        // return response()->json(['success'=>1,'data'=>$state], 200,[],JSON_NUMERIC_CHECK);
+        $student = new Student();
+
+        $student = Student::find($request->input('studentId'));
+        $student->episode_id = $request->input('episodeId');
+        $student->student_name = $request->input('studentName');
+        $student->father_name = $request->input('fatherName');
+        $student->mother_name = $request->input('motherName');
+        $student->guardian_name = $request->input('guardianName');
+        $student->relation_to_gurdian = $request->input('relationTogGurdian');
+        $student->dob = $request->input('dob');
+        $student->sex = $request->input('sex');
+        $student->address = $request->input('address');
+        $student->city = $request->input('city');
+        $student->district = $request->input('district');
+        $student->state_id= $request->input('stateId');
+        $student->pin= $request->input('pin');
+        $student->gurdian_contact_number = $request->input('gurdianContactNumber');
+        $student->whatsapp_number = $request->input('whatsappNumber');
+        $student->email_id = $request->input('email');
+        $student->qualification= $request->input('qualification');
+        return response()->json(['success'=>1,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
     }
 
 
@@ -139,10 +141,8 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
-    {
-        //
-    }
+
+
 
     /**
      * Remove the specified resource from storage.
