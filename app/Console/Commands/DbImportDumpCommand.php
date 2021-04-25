@@ -48,13 +48,13 @@ class DbImportDumpCommand extends Command
         // Also add easy gzip fn
 
         // Check if requirements are met
-        if (!$this->consoleHandler()->commandExists('mysql')) {
+        /*if (!$this->consoleHandler()->commandExists('mysql')) {
             $this->output->warning('`mysql` program required');
             $this->output->note('e.g. on Ubuntu you can install `mysql` by running `apt install mysql-client`');
             $this->output->newLine();
 
             return 1;
-        }
+        }*/
 
         //
         // Choose dump to load
