@@ -14,7 +14,7 @@ class DbSummonCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'db:summon';
+    protected $signature = 'db:bouma';
 
     /**
      * The console command description.
