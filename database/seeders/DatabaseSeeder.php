@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\UserType;
 use App\Models\Student;
 use App\Models\State;
+use App\Models\Course;
 
 
 
@@ -80,7 +81,8 @@ class DatabaseSeeder extends Seeder
             ['state_code'=>35,'state_name'=>'Andaman & Nicobar Islands'],
             ['state_code'=>36,'state_name'=>'Telangana']
         ]);
-
+        
+        //storing student
 
         Student::create([
             'episode_id' =>'a1',
@@ -180,6 +182,46 @@ class DatabaseSeeder extends Seeder
             'qualification' => 'HS'
         ]);
 
+    //storing course
+        Course::create([
+           'course_code' => 'ab',
+           'short_name' => 'Tally',
+           'full_name' => 'Tally',
+           'course_duration' => '1 year',
+           'subject' => 'Tally'
+        ]); 
+        
+        Course::create([
+            'course_code' => 'az',
+            'short_name' => 'Ms word',
+            'full_name' => 'Micro soft office word',
+            'course_duration' => '4 week ',
+            'subject' => 'Ms word'
+         ]);
+         
+         Course::create([
+            'course_code' => 'bc',
+            'short_name' => 'Excel',
+            'full_name' => 'Micro soft excel',
+            'course_duration' => '1 year',
+            'subject' => 'Ms excel'
+         ]);
+
+         Course::create([
+            'course_code' => 'cd',
+            'short_name' => 'Web Based Software Devolopment',
+            'full_name' => 'Tally',
+            'course_duration' => '2 year',
+            'subject' => 'Software Devolopment'
+         ]);
+
+         Course::create([
+            'course_code' => 'gh',
+            'short_name' => 'Powerpoint',
+            'full_name' => 'Powerpoint',
+            'course_duration' => '1 week',
+            'subject' => 'Powerpoint'
+         ]);
 
 
     }
