@@ -60,7 +60,7 @@ class StudentController extends Controller
             $student->address= $request->input('address');
             $student->city= $request->input('city');
             $student->distric= $request->input('distric');
-            $student->state= $request->input('state');
+            $student->state_id= $request->input('stateId');
             $student->pin= $request->input('pin');
             $student->gurdian_contact_number= $request->input('gurdianContactNumber');
             $student->whatsapp_number= $request->input('whatsappNumber');

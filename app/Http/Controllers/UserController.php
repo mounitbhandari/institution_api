@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -39,18 +40,26 @@ class UserController extends Controller
         return response($response, 201);
     }
 
+
+    /*
+        format of json for login
+        {
+            "loginId": "arindam",
+            "loginPassword": "81dc9bdb52d04dc20036dbd8313ed055"
+        }
+    */
     function login(Request $request)
     {
-        $user= User::where('email', $request->email)->first();
+        $user= User::where('email', $request->loginId)->first();
         // print_r($data);
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->loginPassword, $user->password)) {
             return response()->json(['success'=>0,'data'=>null, 'message'=>'Credential does not matched'], 200,[],JSON_NUMERIC_CHECK);
         }
 
         $token = $user->createToken('my-app-token')->plainTextToken;
 
         $response = [
-            'user' => $user,
+            'user' => new UserResource($user),
             'token' => $token
         ];
         return response()->json(['success'=>1,'data'=>$response, 'message'=>'Welcome'], 200,[],JSON_NUMERIC_CHECK);
