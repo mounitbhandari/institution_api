@@ -57,7 +57,7 @@ class Student extends Model
     /**
      * @var mixed
      */
-    private $distric;
+    private $district;
     /**
      * @var mixed
      */
