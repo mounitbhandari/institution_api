@@ -20,7 +20,7 @@ class CreateStudentsTable extends Migration
             $table->string('father_name')->nullable(true);
             $table->string('mother_name')->nullable(true);
             $table->string('guardian_name')->nullable(true);
-            $table->string('relation_to_gurdian')->nullable(true);
+            $table->string('relation_to_guardian')->nullable(true);
             $table->date('dob')->nullable(true);
             $table->enum('sex', array('M', 'F', 'O'))->default('O');
             $table->string('address')->nullable(true);
@@ -32,7 +32,7 @@ class CreateStudentsTable extends Migration
 
 
             $table->string('pin',8)->nullable(true);
-            $table->string('gurdian_contact_number',15)->nullable(true);
+            $table->string('guardian_contact_number',15)->nullable(true);
             $table->string('whatsapp_number',15)->nullable(true);
             $table->string('email_id',255)->nullable(true);
             $table->string('qualification',50)->nullable(true);
