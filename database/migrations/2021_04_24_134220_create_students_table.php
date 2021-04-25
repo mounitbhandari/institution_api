@@ -31,7 +31,6 @@ class CreateStudentsTable extends Migration
             $table ->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
 
 
-            $table->string('state')->nullable(true);
             $table->string('pin',8)->nullable(true);
             $table->string('gurdian_contact_number',15)->nullable(true);
             $table->string('whatsapp_number',15)->nullable(true);
