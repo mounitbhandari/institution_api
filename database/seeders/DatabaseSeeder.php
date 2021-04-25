@@ -5,6 +5,8 @@ namespace Database\Seeders;
 
 
 
+use App\Models\LedgerGroup;
+use App\Models\TransactionType;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\UserType;
@@ -80,7 +82,39 @@ class DatabaseSeeder extends Seeder
             ['state_code'=>35,'state_name'=>'Andaman & Nicobar Islands'],
             ['state_code'=>36,'state_name'=>'Telangana']
         ]);
+        $this->command->info('All States are added');
+        //Transaction types
+        TransactionType::create(['transaction_name'=>'Dr.','formal_name'=>'Debit','transaction_type_value'=>1]);
+        TransactionType::create(['transaction_name'=>'Cr.','formal_name'=>'Credit','transaction_type_value'=>-1]);
+        $this->command->info('Transaction Type Created');
 
+        LedgerGroup::insert([
+            ['group_name'=>'Current Assets'],           //1
+            ['group_name'=>'Indirect Expenses'],        //2
+            ['group_name'=>'Current Liabilities'],      //3
+            ['group_name'=>'Fixed Assets'],             //4
+            ['group_name'=>'Direct Incomes'],           //5
+            ['group_name'=>'Indirect Incomes'],         //6
+            ['group_name'=>'Bank Account'],             //7
+            ['group_name'=>'Loans & Liabilities'],      //8
+            ['group_name'=>'Bank OD'],                  //9
+            ['group_name'=>'Branch & Division'],        //10
+            ['group_name'=>'Capital Account'],          //11
+            ['group_name'=>'Direct Expenses'],          //12
+            ['group_name'=>'Cash in Hand'],             //13
+            ['group_name'=>'Stock in Hand'],            //14
+            ['group_name'=>'Sundry Creditors'],         //15
+            ['group_name'=>'Sundry Debtors'],           //16
+            ['group_name'=>'Suspense Account'],         //17
+            ['group_name'=>'Indirect Income'],          //18
+            ['group_name'=>'Sales Account'],            //19
+            ['group_name'=>'Duties & Taxes'],           //20
+            ['group_name'=>'Investment'],               //21
+            ['group_name'=>'Purchase Account'],         //22
+            ['group_name'=>'Investments']               //23
+        ]);
+
+        $this->command->info('Ledger groups are added');
 
         Student::create([
             'episode_id' =>'a1',
