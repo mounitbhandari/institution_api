@@ -48,17 +48,18 @@ class StudentController extends Controller
             return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
         }
        try{
-           //$temp_date = explode("-",$inputTransactionMaster->transaction_date);
+           $temp_date = explode("-",$request->input('entryDate'));
            $accounting_year="";
-//           if($temp_date[1]>3){
-//               $x = $temp_date[0]%100;
-//               $accounting_year = $x*100 + ($x+1);
-//           }else{
-//               $x = $temp_date[0]%100;
-//               $accounting_year =($x-1)*100+$x;
-//           }
-           $accounting_year=2021;
-           $customVoucher=CustomVoucher::where('voucher_name','=',"student")->where('accounting_year',"=",$accounting_year)->first();
+           if($temp_date[1]>3){
+               $x = $temp_date[0]%100;
+               $accounting_year = $x*100 + ($x+1);
+           }else{
+               $x = $temp_date[0]%100;
+               $accounting_year =($x-1)*100+$x;
+           }
+           //$accounting_year=2021;
+           $voucher="student";
+           $customVoucher=CustomVoucher::where('voucher_name','=',$voucher)->where('accounting_year',"=",$accounting_year)->first();
            if($customVoucher) {
                //already exist
                $customVoucher->last_counter = $customVoucher->last_counter + 1;
@@ -66,7 +67,7 @@ class StudentController extends Controller
            }else{
                //fresh entry
                $customVoucher= new CustomVoucher();
-               $customVoucher->voucher_name="student";
+               $customVoucher->voucher_name=$voucher;
                $customVoucher->accounting_year= $accounting_year;
                $customVoucher->last_counter=1;
                $customVoucher->delimiter='-';
@@ -98,6 +99,7 @@ class StudentController extends Controller
             $student->whatsapp_number= $request->input('whatsappNumber');
             $student->email_id= $request->input('email');
             $student->qualification= $request->input('qualification');
+            $student->entry_date= $request->input('entryDate');
             $student->save();
             DB::commit();
 

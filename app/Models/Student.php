@@ -82,4 +82,12 @@ class Student extends Model
      * @var mixed
      */
     private $qualification;
+    /**
+     * @var mixed
+     */
+    private $entry_date;
+    /**
+     * @var mixed
+     */
+    private $state_id;
 }
