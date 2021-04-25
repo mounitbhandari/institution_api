@@ -17,6 +17,11 @@ class User extends Authenticatable
      *
      * @var array
      */
+    private $id;
+    private $user_name;
+    private $email;
+    private $password;
+
     protected $guarded = ['id'];
     protected $hidden = [
         "inforce","created_at","updated_at",'password', 'remember_token',

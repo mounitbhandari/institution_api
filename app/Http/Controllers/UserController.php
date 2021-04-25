@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Event\UserRegistered;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,9 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
+    public function index(){
+        event(new UserRegistered("This is a testing for event"));
+    }
     public function register(Request $request)
     {
 
@@ -19,7 +23,7 @@ class UserController extends Controller
         $user = User::create([
             'email'    => $request->email,
             'password' => $request->password,
-            'user_name' => $request->name,
+            'user_name' => $request->user_name,
             'user_type_id' => $request->user_type_id
         ]);
 
@@ -31,6 +35,7 @@ class UserController extends Controller
             'user' => $user,
             'token' => $token
         ];
+
         return response($response, 201);
     }
 
