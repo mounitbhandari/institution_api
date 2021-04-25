@@ -42,7 +42,6 @@ class StudentController extends Controller
     public function save(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'episodeId' => 'required|unique:students,episode_id',
             'studentName' => 'required|max:255'
         ]);
         if ($validator->fails()) {
