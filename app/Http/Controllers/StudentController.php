@@ -54,7 +54,7 @@ class StudentController extends Controller
             $student->father_name= $request->input('fatherName');
             $student->mother_name= $request->input('motherName');
             $student->guardian_name= $request->input('guardianName');
-            $student->relation_to_gurdian= $request->input('relationToGurdian');
+            $student->relation_to_guardian= $request->input('relationTgGuardian');
             $student->dob= $request->input('dob');
             $student->sex= $request->input('sex');
             $student->address= $request->input('address');
@@ -62,7 +62,7 @@ class StudentController extends Controller
             $student->district= $request->input('district');
             $student->state_id= $request->input('stateId');
             $student->pin= $request->input('pin');
-            $student->gurdian_contact_number= $request->input('gurdianContactNumber');
+            $student->guardian_contact_number= $request->input('guardianContactNumber');
             $student->whatsapp_number= $request->input('whatsappNumber');
             $student->email_id= $request->input('email');
             $student->qualification= $request->input('qualification');
@@ -87,7 +87,7 @@ class StudentController extends Controller
         $student->father_name = $request->input('fatherName');
         $student->mother_name = $request->input('motherName');
         $student->guardian_name = $request->input('guardianName');
-        $student->relation_to_gurdian = $request->input('relationTogGurdian');
+        $student->relation_to_guardian = $request->input('relationTgGuardian');
         $student->dob = $request->input('dob');
         $student->sex = $request->input('sex');
         $student->address = $request->input('address');
@@ -95,7 +95,7 @@ class StudentController extends Controller
         $student->district = $request->input('district');
         $student->state_id= $request->input('stateId');
         $student->pin= $request->input('pin');
-        $student->gurdian_contact_number = $request->input('gurdianContactNumber');
+        $student->guardian_contact_number = $request->input('guardianContactNumber');
         $student->whatsapp_number = $request->input('whatsappNumber');
         $student->email_id = $request->input('email');
         $student->qualification= $request->input('qualification');

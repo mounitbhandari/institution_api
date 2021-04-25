@@ -20,7 +20,7 @@ class StudentResource extends JsonResource
             'fatherName' => $this->father_name,
             'motherName' => $this->mother_name,
             'guardianName' => $this->guardian_name,
-            'relationTogGurdian' => $this->relation_to_gurdiane,
+            'relationTogGuardian' => $this->relation_to_guardiane,
             'dob' => $this->dob,
             'sex' => $this->sex,
             'address' => $this->address,
@@ -28,7 +28,7 @@ class StudentResource extends JsonResource
             'district' => $this->district,
             'stateId' => $this->state_id,
             'pin' => $this->pin,
-            'gurdianContactNumber' => $this->gurdian_contact_number,
+            'guardianContactNumber' => $this->guardian_contact_number,
             'whatsappNumber' => $this->whatsapp_number,
             'email' => $this->email_id,
             'qualification' => $this->qualification

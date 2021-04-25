@@ -37,7 +37,7 @@ class Student extends Model
     /**
      * @var mixed
      */
-    private $relation_to_gurdian;
+    private $relation_to_guardian;
     /**
      * @var mixed
      */
@@ -69,7 +69,7 @@ class Student extends Model
     /**
      * @var mixed
      */
-    private $gurdian_contact_number;
+    private $guardian_contact_number;
     /**
      * @var mixed
      */
