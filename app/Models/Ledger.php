@@ -5,17 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Ledger extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
-    protected $hidden = [
-        "inforce","created_at","updated_at"
-    ];
-
     /**
-     * @var mixed
+     * @var mixed|string
      */
     private $episode_id;
     /**
@@ -37,7 +32,7 @@ class Student extends Model
     /**
      * @var mixed
      */
-    private $relation_to_gurdian;
+    private $relation_to_guardian;
     /**
      * @var mixed
      */
@@ -57,11 +52,27 @@ class Student extends Model
     /**
      * @var mixed
      */
+    private $ledger_name;
+    /**
+     * @var mixed
+     */
+    private $billing_name;
+    /**
+     * @var int|mixed
+     */
+    private $ledger_group_id;
+    /**
+     * @var mixed
+     */
+    private $entry_date;
+    /**
+     * @var mixed
+     */
     private $district;
     /**
      * @var mixed
      */
-    private $state;
+    private $state_id;
     /**
      * @var mixed
      */
@@ -69,7 +80,7 @@ class Student extends Model
     /**
      * @var mixed
      */
-    private $gurdian_contact_number;
+    private $guardian_contact_number;
     /**
      * @var mixed
      */

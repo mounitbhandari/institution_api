@@ -5,10 +5,13 @@ namespace Database\Seeders;
 
 
 
+use App\Models\Ledger;
+use App\Models\LedgerGroup;
+use App\Models\TransactionType;
+use App\Models\VoucherType;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\UserType;
-use App\Models\Student;
 use App\Models\State;
 use App\Models\Course;
 
@@ -81,16 +84,65 @@ class DatabaseSeeder extends Seeder
             ['state_code'=>35,'state_name'=>'Andaman & Nicobar Islands'],
             ['state_code'=>36,'state_name'=>'Telangana']
         ]);
+<<<<<<< HEAD
         
         //storing student
+=======
+        $this->command->info('All States are added');
+        //Transaction types
+        TransactionType::create(['transaction_name'=>'Dr.','formal_name'=>'Debit','transaction_type_value'=>1]);
+        TransactionType::create(['transaction_name'=>'Cr.','formal_name'=>'Credit','transaction_type_value'=>-1]);
+        $this->command->info('Transaction Type Created');
 
-        Student::create([
+        LedgerGroup::insert([
+            ['group_name'=>'Current Assets'],           //1
+            ['group_name'=>'Indirect Expenses'],        //2
+            ['group_name'=>'Current Liabilities'],      //3
+            ['group_name'=>'Fixed Assets'],             //4
+            ['group_name'=>'Direct Incomes'],           //5
+            ['group_name'=>'Indirect Incomes'],         //6
+            ['group_name'=>'Bank Account'],             //7
+            ['group_name'=>'Loans & Liabilities'],      //8
+            ['group_name'=>'Bank OD'],                  //9
+            ['group_name'=>'Branch & Division'],        //10
+            ['group_name'=>'Capital Account'],          //11
+            ['group_name'=>'Direct Expenses'],          //12
+            ['group_name'=>'Cash in Hand'],             //13
+            ['group_name'=>'Stock in Hand'],            //14
+            ['group_name'=>'Sundry Creditors'],         //15
+            ['group_name'=>'Sundry Debtors'],           //16
+            ['group_name'=>'Suspense Account'],         //17
+            ['group_name'=>'Indirect Income'],          //18
+            ['group_name'=>'Sales Account'],            //19
+            ['group_name'=>'Duties & Taxes'],           //20
+            ['group_name'=>'Investment'],               //21
+            ['group_name'=>'Purchase Account'],         //22
+            ['group_name'=>'Investments']               //23
+        ]);
+
+        $this->command->info('Ledger groups are added');
+        VoucherType::insert([
+            ['voucher_type_name'=>'Sales Voucher'],              //1
+            ['voucher_type_name'=>'Purchase Voucher'],           //2
+            ['voucher_type_name'=>'Payment Voucher'],            //3
+            ['voucher_type_name'=>'Receipt Voucher'],            //4
+            ['voucher_type_name'=>'Contra Voucher'],             //5
+            ['voucher_type_name'=>'Journal Voucher'],            //6
+            ['voucher_type_name'=>'Credit Note Voucher'],        //7
+            ['voucher_type_name'=>'Debit Note Voucher']          //8
+        ]);
+        $this->command->info('Voucher type created');
+>>>>>>> 4f1c1947e00eecf543e4ca0519777f7d20258d2b
+
+        Ledger::create([
             'episode_id' =>'a1',
-            'student_name' => 'Bimal Paul',
+            'ledger_name' => 'Bimal Paul',
+            'billing_name' => 'Mr. Bimal Paul',
+            'ledger_group_id' => 16,
             'father_name' => 'Atanu Paul',
             'mother_name' => 'Aroti Paul',
             'guardian_name' => 'Atanu Paul',
-            'relation_to_gurdian' => 'Father',
+            'relation_to_guardian' => 'Father',
             'dob' => '1999-08-14',
             'sex' => 'M',
             'address' => '56/7,Rabindrapally',
@@ -98,18 +150,20 @@ class DatabaseSeeder extends Seeder
             'district' => 'North 24 Parganas',
             'state_id' => 22,
             'pin' => '700122',
-            'gurdian_contact_number' => '9832700122',
+            'guardian_contact_number' => '9832700122',
             'whatsapp_number' => '7985241065',
             'email_id' => 'bimalpaul@gmail.com',
             'qualification' => 'HS'
         ]);
-        Student::create([
+        Ledger::create([
             'episode_id' =>'a2',
-            'student_name' => 'Riya Das',
+            'ledger_name' => 'Ramen Paul',
+            'billing_name' => 'Mr. Ramen Paul',
+            'ledger_group_id' => 16,
             'father_name' => 'Sourav Das',
             'mother_name' => 'Kakali Das',
             'guardian_name' => 'Kakali Das',
-            'relation_to_gurdian' => 'mother',
+            'relation_to_guardian' => 'mother',
             'dob' => '2000-05-15',
             'sex' => 'F',
             'address' => '13/c,R.N.Tagore Road',
@@ -117,12 +171,13 @@ class DatabaseSeeder extends Seeder
             'district' => 'Kolkata',
             'state_id' => 22,
             'pin' => '70010',
-            'gurdian_contact_number' => '9835700182',
+            'guardian_contact_number' => '9835700182',
             'whatsapp_number' => '9903652417',
             'email_id' => 'riya99@gmail.com',
             'qualification' => 'HS'
 
         ]);
+<<<<<<< HEAD
         Student::create([
             'episode_id'=> 'a3',
             'student_name' => 'Suchismita Das',
@@ -224,5 +279,7 @@ class DatabaseSeeder extends Seeder
          ]);
 
 
+=======
+>>>>>>> 4f1c1947e00eecf543e4ca0519777f7d20258d2b
     }
 }
