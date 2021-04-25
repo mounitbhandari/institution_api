@@ -99,7 +99,6 @@ class DatabaseSeeder extends Seeder
             'whatsapp_number' => '7985241065',
             'email_id' => 'bimalpaul@gmail.com',
             'qualification' => 'HS'
-
         ]);
         Student::create([
             'episode_id' =>'a2',
@@ -159,7 +158,6 @@ class DatabaseSeeder extends Seeder
             'whatsapp_number' => '9903652417',
             'email_id' => 'rajghosh@gmail.com',
             'qualification' => 'HS'
-
         ]);
         Student::create([
             'episode_id'=> 'a5',
@@ -179,7 +177,6 @@ class DatabaseSeeder extends Seeder
             'whatsapp_number' => '9732568412',
             'email_id' => 'piyali45@gmail.com',
             'qualification' => 'HS'
-
         ]);
 
 

@@ -111,7 +111,7 @@ class DbImportDumpCommand extends Command
 
             // If choice is 1 we'll do nothing
         } else {
-            $message = "Database '$database' not exist. What should we do:";
+            $message = "Database '$database' not exist. What should we do: you can call the vendor Sukanta Hui 7003756860";
             $choices = [
                 'Oh, I changed my mind, I don`t want to import dump for now',
                 "Yeah, create database '$database' and import dump",
@@ -144,6 +144,6 @@ class DbImportDumpCommand extends Command
 
         $this->consoleHandler()->executeCommand($command);
 
-        $this->output->success('Dump file imported successfully');
+        $this->output->success('Dump file imported successfully, Created by CODER, Contact Sukanta Hui,  +917003756860');
     }
 }
