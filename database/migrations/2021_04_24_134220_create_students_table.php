@@ -26,16 +26,15 @@ class CreateStudentsTable extends Migration
             $table->string('address')->nullable(true);
             $table->string('city',50)->nullable(true);
             $table->string('district',50)->nullable(true);
-
             $table->unsignedBigInteger('state_id');
             $table ->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
-
-
             $table->string('pin',8)->nullable(true);
             $table->string('guardian_contact_number',15)->nullable(true);
             $table->string('whatsapp_number',15)->nullable(true);
             $table->string('email_id',255)->nullable(true);
             $table->string('qualification',50)->nullable(true);
+            $table->date('entry_date')->nullable(true);
+
             $table->enum('inforce', array(0, 1))->default(1);
             $table->timestamps();
         });
