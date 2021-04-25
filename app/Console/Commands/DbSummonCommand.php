@@ -69,6 +69,6 @@ class DbSummonCommand extends Command
         $this->helper()->artisanCall('migrate');
         $this->helper()->artisanCall('db:seed');
 
-        $this->output->success("Database `$database` summoned successfully");
+        $this->output->success("Database `$database` summoned successfully, Created by CODER, contact Sukanta Hui, +917003756860, sukantahui@gmail.com");
     }
 }
