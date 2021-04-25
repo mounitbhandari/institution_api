@@ -135,7 +135,15 @@ class StudentController extends Controller
         $student->qualification= $request->input('qualification');
         return response()->json(['success'=>1,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
     }
-
+    public function delete($id){
+        $student = Student::find($id);
+        if(!empty($student)){
+            $result = $student->delete();
+        }else{
+            $result = false;
+        }
+        return response()->json(['success'=>$result,'id'=>$id], 200);
+    }
 
     /**
      * Store a newly created resource in storage.

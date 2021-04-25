@@ -54,7 +54,7 @@ Route::group(array('prefix' => 'dev'), function() {
     Route::get("students",[StudentController::class, 'getallStudent']);
     Route::post("students",[StudentController::class, 'save']);
     Route::patch("students",[StudentController::class, 'update']);
-
+    Route::delete("students/{id}",[StudentController::class, 'delete']);
 
 });
 
