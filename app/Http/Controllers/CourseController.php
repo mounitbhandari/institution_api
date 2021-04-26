@@ -26,22 +26,6 @@ class CourseController extends Controller
         return response()->json(['success'=>1,'data'=> new CourseResource($courses)], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         try{
@@ -51,53 +35,20 @@ class CourseController extends Controller
             $course->full_name=$request->input('fullName');
             $course->course_duration=$request->input('courseDuration');
             $course->description=$request->input('description');
+            $course->save();
         }catch(\Exception $e){
             DB::rollBack();
         return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
         }
-        return response()->json(['success'=>1,'data'=>new StudentResource($course)], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>new CourseResource($course)], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Course  $course
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Course $course)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Course  $course
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Course $course)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Course  $course
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Course $course)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Course  $course
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Course $course)
     {
         //
