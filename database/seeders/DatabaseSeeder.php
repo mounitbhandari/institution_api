@@ -12,7 +12,6 @@ use App\Models\VoucherType;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\UserType;
-use App\Models\Student;
 use App\Models\State;
 
 
