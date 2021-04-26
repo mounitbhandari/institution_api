@@ -5,8 +5,10 @@ namespace Database\Seeders;
 
 
 
+use App\Models\Ledger;
 use App\Models\LedgerGroup;
 use App\Models\TransactionType;
+use App\Models\VoucherType;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\UserType;
@@ -115,10 +117,23 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->command->info('Ledger groups are added');
+        VoucherType::insert([
+            ['voucher_type_name'=>'Sales Voucher'],              //1
+            ['voucher_type_name'=>'Purchase Voucher'],           //2
+            ['voucher_type_name'=>'Payment Voucher'],            //3
+            ['voucher_type_name'=>'Receipt Voucher'],            //4
+            ['voucher_type_name'=>'Contra Voucher'],             //5
+            ['voucher_type_name'=>'Journal Voucher'],            //6
+            ['voucher_type_name'=>'Credit Note Voucher'],        //7
+            ['voucher_type_name'=>'Debit Note Voucher']          //8
+        ]);
+        $this->command->info('Voucher type created');
 
-        Student::create([
+        Ledger::create([
             'episode_id' =>'a1',
-            'student_name' => 'Bimal Paul',
+            'ledger_name' => 'Bimal Paul',
+            'billing_name' => 'Mr. Bimal Paul',
+            'ledger_group_id' => 16,
             'father_name' => 'Atanu Paul',
             'mother_name' => 'Aroti Paul',
             'guardian_name' => 'Atanu Paul',
@@ -135,9 +150,11 @@ class DatabaseSeeder extends Seeder
             'email_id' => 'bimalpaul@gmail.com',
             'qualification' => 'HS'
         ]);
-        Student::create([
+        Ledger::create([
             'episode_id' =>'a2',
-            'student_name' => 'Riya Das',
+            'ledger_name' => 'Ramen Paul',
+            'billing_name' => 'Mr. Ramen Paul',
+            'ledger_group_id' => 16,
             'father_name' => 'Sourav Das',
             'mother_name' => 'Kakali Das',
             'guardian_name' => 'Kakali Das',
@@ -155,66 +172,5 @@ class DatabaseSeeder extends Seeder
             'qualification' => 'HS'
 
         ]);
-        Student::create([
-            'episode_id'=> 'a3',
-            'student_name' => 'Suchismita Das',
-            'father_name' => 'Sujan Das',
-            'mother_name' => 'Kakali Das',
-            'guardian_name' => 'piya Das',
-            'relation_to_guardian' => 'mother',
-            'dob' => '2000-08-09',
-            'sex' => 'F',
-            'address' => '39/b,G.T.Road',
-            'city' => 'Kolkata',
-            'district' => 'Howrah',
-            'state_id' => 22,
-            'pin' => '70010',
-            'guardian_contact_number' => '9835700182',
-            'whatsapp_number' => '9903652417',
-            'email_id' => 'riya99@gmail.com',
-            'qualification' => 'HS'
-
-        ]);
-        Student::create([
-            'episode_id'=> 'a4',
-            'student_name' => 'Raj Ghosh',
-            'father_name' => 'Ratan Ghosh',
-            'mother_name' => 'Mita Ghosh',
-            'guardian_name' => 'Mita Ghosh',
-            'relation_to_guardian' => 'mother',
-            'dob' => '2001-11-21',
-            'sex' => 'M',
-            'address' => '10/b R.Sen Road',
-            'city' => 'Siliguri',
-            'district' => 'Siliguri',
-            'state_id' => 22,
-            'pin' => '734001',
-            'guardian_contact_number' => '9835700182',
-            'whatsapp_number' => '9903652417',
-            'email_id' => 'rajghosh@gmail.com',
-            'qualification' => 'HS'
-        ]);
-        Student::create([
-            'episode_id'=> 'a5',
-            'student_name' => 'Piyali Sen',
-            'father_name' => 'Raju Sen',
-            'mother_name' => 'Putul Sen',
-            'guardian_name' => 'Putul Sen',
-            'relation_to_guardian' => 'mother',
-            'dob' => '2000-08-27',
-            'sex' => 'o',
-            'address' => '13/c,Rabindra Sarani',
-            'city' => 'Kolkata',
-            'district' => 'Kolkata',
-            'state_id' => 22,
-            'pin' => '700008',
-            'guardian_contact_number' => '9805741496',
-            'whatsapp_number' => '9732568412',
-            'email_id' => 'piyali45@gmail.com',
-            'qualification' => 'HS'
-        ]);
-
-
-
     }
 }
