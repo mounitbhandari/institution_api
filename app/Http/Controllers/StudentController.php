@@ -98,7 +98,7 @@ class StudentController extends Controller
             $student->father_name= $request->input('fatherName');
             $student->mother_name= $request->input('motherName');
             $student->guardian_name= $request->input('guardianName');
-            $student->relation_to_guardian= $request->input('relationTgGuardian');
+            $student->relation_to_guardian= $request->input('relationTogGuardian');
             $student->dob= $request->input('dob');
             $student->sex= $request->input('sex');
             $student->address= $request->input('address');
@@ -126,14 +126,16 @@ class StudentController extends Controller
     {
         $ledger_id = $request->input('studentId');
         $validator = Validator::make($request->all(),[
-            'studentName' => 'required|unique:ledgers,studentName,'.$ledger_id,
-            'billingName' => 'required'
+            'studentName' => 'required|max:255|unique:ledgers,ledger_name,'.$ledger_id,
+            'stateId' => 'required|exists:states,id'
         ]);
         if ($validator->fails()) {
             return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
         }
 
         $student = new Student();
+        $student->ledger_group_id = 16;
+        $student->is_student=1;
 
         $student = Student::find($request->input('studentId'));
         $student->episode_id = $request->input('episodeId');
@@ -142,7 +144,7 @@ class StudentController extends Controller
         $student->father_name = $request->input('fatherName');
         $student->mother_name = $request->input('motherName');
         $student->guardian_name = $request->input('guardianName');
-        $student->relation_to_guardian = $request->input('relationTgGuardian');
+        $student->relation_to_guardian = $request->input('relationTogGuardian');
         $student->dob = $request->input('dob');
         $student->sex = $request->input('sex');
         $student->address = $request->input('address');
@@ -154,7 +156,9 @@ class StudentController extends Controller
         $student->whatsapp_number = $request->input('whatsappNumber');
         $student->email_id = $request->input('email');
         $student->qualification= $request->input('qualification');
+        $student->save();
         return response()->json(['success'=>1,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
+
     }
     public function delete($id){
         $student = Student::find($id);
