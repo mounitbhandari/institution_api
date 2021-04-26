@@ -14,8 +14,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses= Cours::get();
-        return response()->json(['success'=>1,'data'=> StudentResource::collection($students)], 200,[],JSON_NUMERIC_CHECK);
+        $courses= Course::get();
+        return response()->json(['success'=>1,'data'=> $courses], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**

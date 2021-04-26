@@ -17,7 +17,7 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getallStudent()
+    public function getAllStudent()
     {
       $students= Student::get();
       return response()->json(['success'=>1,'data'=> StudentResource::collection($students)], 200,[],JSON_NUMERIC_CHECK);

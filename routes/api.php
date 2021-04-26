@@ -52,17 +52,14 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 Route::group(array('prefix' => 'dev'), function() {
     //students
     Route::get("students/{id}",[StudentController::class, 'getStudentByID']);
-    Route::get("students",[StudentController::class, 'getallStudent']);
+    Route::get("students",[StudentController::class, 'getAllStudent']);
     Route::post("students",[StudentController::class, 'save']);
     Route::patch("students",[StudentController::class, 'update']);
-<<<<<<< HEAD
+    Route::delete("students/{id}",[StudentController::class, 'delete']);
 
     //course
-    Route::get("courses",[CourseController::class, 'getallStudent']);
+    Route::get("courses",[CourseController::class, 'index']);
 
-=======
-    Route::delete("students/{id}",[StudentController::class, 'delete']);
->>>>>>> 4f1c1947e00eecf543e4ca0519777f7d20258d2b
 
 });
 
