@@ -13,6 +13,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\UserType;
 use App\Models\State;
+use App\Models\Course;
 
 
 
@@ -83,6 +84,10 @@ class DatabaseSeeder extends Seeder
             ['state_code'=>35,'state_name'=>'Andaman & Nicobar Islands'],
             ['state_code'=>36,'state_name'=>'Telangana']
         ]);
+<<<<<<< HEAD
+        
+        //storing student
+=======
         $this->command->info('All States are added');
         //Transaction types
         TransactionType::create(['transaction_name'=>'Dr.','formal_name'=>'Debit','transaction_type_value'=>1]);
@@ -127,6 +132,7 @@ class DatabaseSeeder extends Seeder
             ['voucher_type_name'=>'Debit Note Voucher']          //8
         ]);
         $this->command->info('Voucher type created');
+>>>>>>> 4f1c1947e00eecf543e4ca0519777f7d20258d2b
 
         Ledger::create([
             'episode_id' =>'a1',
@@ -171,5 +177,109 @@ class DatabaseSeeder extends Seeder
             'qualification' => 'HS'
 
         ]);
+<<<<<<< HEAD
+        Student::create([
+            'episode_id'=> 'a3',
+            'student_name' => 'Suchismita Das',
+            'father_name' => 'Sujan Das',
+            'mother_name' => 'Kakali Das',
+            'guardian_name' => 'piya Das',
+            'relation_to_gurdian' => 'mother',
+            'dob' => '2000-08-09',
+            'sex' => 'F',
+            'address' => '39/b,G.T.Road',
+            'city' => 'Kolkata',
+            'district' => 'Howrah',
+            'state_id' => 22,
+            'pin' => '70010',
+            'gurdian_contact_number' => '9835700182',
+            'whatsapp_number' => '9903652417',
+            'email_id' => 'riya99@gmail.com',
+            'qualification' => 'HS'
+
+        ]);
+        Student::create([
+            'episode_id'=> 'a4',
+            'student_name' => 'Raj Ghosh',
+            'father_name' => 'Ratan Ghosh',
+            'mother_name' => 'Mita Ghosh',
+            'guardian_name' => 'Mita Ghosh',
+            'relation_to_gurdian' => 'mother',
+            'dob' => '2001-11-21',
+            'sex' => 'M',
+            'address' => '10/b R.Sen Road',
+            'city' => 'Siliguri',
+            'district' => 'Siliguri',
+            'state_id' => 22,
+            'pin' => '734001',
+            'gurdian_contact_number' => '9835700182',
+            'whatsapp_number' => '9903652417',
+            'email_id' => 'rajghosh@gmail.com',
+            'qualification' => 'HS'
+        ]);
+        Student::create([
+            'episode_id'=> 'a5',
+            'student_name' => 'Piyali Sen',
+            'father_name' => 'Raju Sen',
+            'mother_name' => 'Putul Sen',
+            'guardian_name' => 'Putul Sen',
+            'relation_to_gurdian' => 'mother',
+            'dob' => '2000-08-27',
+            'sex' => 'o',
+            'address' => '13/c,Rabindra Sarani',
+            'city' => 'Kolkata',
+            'district' => 'Kolkata',
+            'state_id' => 22,
+            'pin' => '700008',
+            'gurdian_contact_number' => '9805741496',
+            'whatsapp_number' => '9732568412',
+            'email_id' => 'piyali45@gmail.com',
+            'qualification' => 'HS'
+        ]);
+
+    //storing course
+        Course::create([
+           'course_code' => 'ab',
+           'short_name' => 'Tally',
+           'full_name' => 'Tally',
+           'course_duration' => '1 year',
+           'subject' => 'Tally'
+        ]); 
+        
+        Course::create([
+            'course_code' => 'az',
+            'short_name' => 'Ms word',
+            'full_name' => 'Micro soft office word',
+            'course_duration' => '4 week ',
+            'subject' => 'Ms word'
+         ]);
+         
+         Course::create([
+            'course_code' => 'bc',
+            'short_name' => 'Excel',
+            'full_name' => 'Micro soft excel',
+            'course_duration' => '1 year',
+            'subject' => 'Ms excel'
+         ]);
+
+         Course::create([
+            'course_code' => 'cd',
+            'short_name' => 'Web Based Software Devolopment',
+            'full_name' => 'Tally',
+            'course_duration' => '2 year',
+            'subject' => 'Software Devolopment'
+         ]);
+
+         Course::create([
+            'course_code' => 'gh',
+            'short_name' => 'Powerpoint',
+            'full_name' => 'Powerpoint',
+            'course_duration' => '1 week',
+            'subject' => 'Powerpoint'
+         ]);
+
+
+=======
+>>>>>>> 4f1c1947e00eecf543e4ca0519777f7d20258d2b
     }
 }

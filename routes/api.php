@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CourseController;
 
 
 
@@ -54,7 +55,14 @@ Route::group(array('prefix' => 'dev'), function() {
     Route::get("students",[StudentController::class, 'getallStudent']);
     Route::post("students",[StudentController::class, 'save']);
     Route::patch("students",[StudentController::class, 'update']);
+<<<<<<< HEAD
+
+    //course
+    Route::get("courses",[CourseController::class, 'getallStudent']);
+
+=======
     Route::delete("students/{id}",[StudentController::class, 'delete']);
+>>>>>>> 4f1c1947e00eecf543e4ca0519777f7d20258d2b
 
 });
 
