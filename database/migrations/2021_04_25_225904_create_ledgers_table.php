@@ -23,7 +23,7 @@ class CreateLedgersTable extends Migration
             $table ->foreign('ledger_group_id')->references('id')->on('ledger_groups')->onDelete('cascade');;
 
             //for students
-            $table->string('is_student')->default(1);
+            $table->string('is_student')->default(0);
             $table->string('father_name')->nullable(true);
             $table->string('mother_name')->nullable(true);
             $table->string('guardian_name')->nullable(true);

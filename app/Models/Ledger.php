@@ -93,4 +93,8 @@ class Ledger extends Model
      * @var mixed
      */
     private $qualification;
+    /**
+     * @var int|mixed
+     */
+    private $is_student;
 }

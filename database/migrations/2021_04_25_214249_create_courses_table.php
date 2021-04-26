@@ -18,8 +18,8 @@ class CreateCoursesTable extends Migration
             $table->string('course_code', 20)->nullable(false)->unique();
             $table->string('short_name', 50)->nullable(false);
             $table->string('full_name', 50)->nullable(false);
-            $table->string('course_duration', 255)->nullable(false);
-            $table->string('subject', 50)->nullable(false);
+            $table->integer('course_duration')->default(0);
+            $table->string('description', 50)->nullable(false);
 
             $table->enum('inforce', array(0, 1))->default(1);
             $table->timestamps();

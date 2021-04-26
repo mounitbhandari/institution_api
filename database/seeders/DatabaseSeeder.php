@@ -136,6 +136,7 @@ class DatabaseSeeder extends Seeder
             'ledger_name' => 'Bimal Paul',
             'billing_name' => 'Mr. Bimal Paul',
             'ledger_group_id' => 16,
+            'is_student' =>1,
             'father_name' => 'Atanu Paul',
             'mother_name' => 'Aroti Paul',
             'guardian_name' => 'Atanu Paul',
@@ -154,6 +155,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Ledger::create([
             'episode_id' =>'a2',
+            'is_student' =>1,
             'ledger_name' => 'Ramen Paul',
             'billing_name' => 'Mr. Ramen Paul',
             'ledger_group_id' => 16,

@@ -90,6 +90,7 @@ class StudentController extends Controller
            //try portion execute the commands and catch execute when error.
             $student= new Student();
             $student->ledger_group_id = 16;
+            $student->is_student=1;
 
             $student ->ledger_name = $request->input('studentName');
             $student ->billing_name = $request->input('billingName');
