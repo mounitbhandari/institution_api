@@ -59,6 +59,8 @@ Route::group(array('prefix' => 'dev'), function() {
 
     //course
     Route::get("courses",[CourseController::class, 'index']);
+    Route::get("courses/{id}",[CourseController::class, 'get_course_by_id']);
+    Route::post("courses",[CourseController::class, 'store']);
 
 
 });

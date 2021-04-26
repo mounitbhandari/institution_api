@@ -182,40 +182,35 @@ class DatabaseSeeder extends Seeder
            'course_code' => 'ab',
            'short_name' => 'Tally',
            'full_name' => 'Tally',
-           'course_duration' => '1 year',
-           'subject' => 'Tally'
+           'course_duration' => 100,
         ]);
 
         Course::create([
             'course_code' => 'az',
             'short_name' => 'Ms word',
             'full_name' => 'Micro soft office word',
-            'course_duration' => '4 week ',
-            'subject' => 'Ms word'
+            'course_duration' => 200,
          ]);
 
          Course::create([
             'course_code' => 'bc',
             'short_name' => 'Excel',
             'full_name' => 'Micro soft excel',
-            'course_duration' => '1 year',
-            'subject' => 'Ms excel'
+            'course_duration' => 300,
          ]);
 
          Course::create([
             'course_code' => 'cd',
             'short_name' => 'Web Based Software Devolopment',
             'full_name' => 'Tally',
-            'course_duration' => '2 year',
-            'subject' => 'Software Devolopment'
+            'course_duration' => 100,
          ]);
 
          Course::create([
             'course_code' => 'gh',
             'short_name' => 'Powerpoint',
             'full_name' => 'Powerpoint',
-            'course_duration' => '1 week',
-            'subject' => 'Powerpoint'
+            'course_duration' => 20,
          ]);
 
     }
