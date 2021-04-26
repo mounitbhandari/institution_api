@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomVoucher;
-use App\Models\Ledger;
+use App\Models\Ledger as Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,12 +19,12 @@ class StudentController extends Controller
      */
     public function getallStudent()
     {
-      $students= Ledger::get();
+      $students= Student::get();
       return response()->json(['success'=>1,'data'=> StudentResource::collection($students)], 200,[],JSON_NUMERIC_CHECK);
     }
     public function getStudentByID($id){
         try {
-            $student = Ledger::findOrFail($id);
+            $student = Student::findOrFail($id);
             return response()->json(['success'=>true,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
         } catch (\Exception $e) {
             return response()->json(['success'=>false,'data'=>null], 404,[],JSON_NUMERIC_CHECK);
@@ -88,7 +88,7 @@ class StudentController extends Controller
 
            // if any record is failed then whole entry will be rolled back
            //try portion execute the commands and catch execute when error.
-            $student= new Ledger();
+            $student= new Student();
             $student->ledger_group_id = 16;
 
             $student ->ledger_name = $request->input('studentName');
