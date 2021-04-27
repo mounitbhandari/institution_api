@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CourseResource;
 use App\Models\State;
 use Illuminate\Http\Request;
+use App\Http\Resources\StateResource;
 
 class StateController extends Controller
 {
@@ -14,25 +16,15 @@ class StateController extends Controller
      */
     public function index()
     {
-        //
+        $states = State::get();
+        return response()->json(['success'=>1,'data'=> StateResource::collection($states)], 200,[],JSON_NUMERIC_CHECK);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function index_by_id($id)
     {
-        //
+        $state = State::findOrFail($id);
+        return response()->json(['success'=>1,'data'=> new StateResource($state)], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
