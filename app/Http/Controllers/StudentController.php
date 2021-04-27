@@ -52,6 +52,7 @@ class StudentController extends Controller
             $entryDate=Carbon::now()->format('Y-m-d');
         }
 //        Carbon::now()->format('Y-m-d-H-i-s');
+        DB::beginTransaction();
 
        try{
            $temp_date = explode("-",$entryDate);

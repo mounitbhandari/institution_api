@@ -6,6 +6,7 @@ use App\Http\Resources\StudentResource;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Resources\CourseResource;
+use Dotenv\Validator;
 use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
@@ -28,6 +29,12 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'courseCode' => 'required|max:25|unique:cources,cource_name',
+            'shortName' => 'required|exists:cources,short_name',
+
+        ]);
+        DB::beginTransaction();
         try{
             $course = new Course();
             $course->course_code=$request->input('courseCode');
@@ -36,6 +43,7 @@ class CourseController extends Controller
             $course->course_duration=$request->input('courseDuration');
             $course->description=$request->input('description');
             $course->save();
+            DB::commit();
         }catch(\Exception $e){
             DB::rollBack();
         return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
