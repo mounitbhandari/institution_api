@@ -24,6 +24,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed whatsapp_number
  * @property mixed email_id
  * @property mixed qualification
+ * @property mixed state
  */
 class StudentResource extends JsonResource
 {
@@ -53,6 +54,7 @@ class StudentResource extends JsonResource
             'district' => $this->district,
             'stateId' => $this->state_id,
             'pin' => $this->pin,
+            'state'=>new StateResource($this->state ),
             'guardianContactNumber' => $this->guardian_contact_number,
             'whatsappNumber' => $this->whatsapp_number,
             'email' => $this->email_id,

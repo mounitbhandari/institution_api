@@ -97,4 +97,21 @@ class Ledger extends Model
      * @var int|mixed
      */
     private $is_student;
+
+    protected $hidden = [
+        "inforce","created_at","updated_at"
+    ];
+
+
+    protected $guarded = ['id'];
+
+    public function ledger_group()
+    {
+        return $this->belongsTo('App\Models\LedgerGroup','ledger_group_id');
+    }
+
+    public function state()
+    {
+        return $this->belongsTo('App\Models\State','state_id');
+    }
 }
