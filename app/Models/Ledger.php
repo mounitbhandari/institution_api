@@ -128,4 +128,7 @@ class Ledger extends Model
     {
         return $this->belongsToMany(Course::class,StudentCourseRegistration::class,'ledger_id','course_id')->wherePivot('is_completed', '=', 0);;
     }
+    public function course_registered() {
+        return $this->hasMany(StudentCourseRegistration::class, 'ledger_id');
+    }
 }

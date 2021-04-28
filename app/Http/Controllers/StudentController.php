@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\CustomVoucher;
 use App\Models\Ledger as Student;
+use App\Models\LedgerGroup;
+use App\Models\StudentCourseRegistration;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +24,11 @@ class StudentController extends Controller
       $students= Student::get();
       return response()->json(['success'=>1,'data'=> StudentResource::collection($students)], 200,[],JSON_NUMERIC_CHECK);
     }
+    public function getAllCourseRegisteredStudents(){
+        $data = Student::has('course_registered')->get();
+        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function getStudentByID($id){
         try {
             $student = Student::findOrFail($id);

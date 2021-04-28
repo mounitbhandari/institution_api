@@ -50,6 +50,7 @@ Route::group(array('prefix' => 'dev'), function() {
     //students
     Route::get("students/{id}",[StudentController::class, 'getStudentByID']);
     Route::get("students",[StudentController::class, 'getAllStudent']);
+    Route::get("studentsx",[StudentController::class, 'getAllCourseRegisteredStudents']);
     Route::post("students",[StudentController::class, 'save']);
     Route::patch("students",[StudentController::class, 'update']);
     Route::delete("students/{id}",[StudentController::class, 'delete']);
