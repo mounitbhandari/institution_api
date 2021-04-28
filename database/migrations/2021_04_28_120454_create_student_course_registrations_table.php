@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateStudentCourseRegistrationsTable extends Migration
@@ -15,8 +16,17 @@ class CreateStudentCourseRegistrationsTable extends Migration
     {
         Schema::create('student_course_registrations', function (Blueprint $table) {
             $table->id();
-            $table->date('joining_date')->default(date("Y-m-d"));
-            $table->date('effective_date')->default(date("Y-m-d"));
+
+            //adding student reference
+            $table->bigInteger('ledger_id')->unsigned();
+            $table ->foreign('ledger_id')->references('id')->on('ledgers')->onDelete('cascade');
+
+            //adding course
+            $table->bigInteger('course_id')->unsigned();
+            $table ->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');;
+
+            $table->date('joining_date')->nullable(true);
+            $table->date('effective_date')->nullable(true);
             $table->timestamps();
         });
     }
