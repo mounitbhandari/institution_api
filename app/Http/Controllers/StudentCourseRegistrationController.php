@@ -2,71 +2,83 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\CustomVoucher;
 use App\Models\StudentCourseRegistration;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentCourseRegistrationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
-    }
+        $courseId = $request->input('courseId');
+        $courseCode = Course::findOrFail($courseId)->course_code;
+        if($request->has('joiningDate')) {
+            $joiningDate = $request->input('joiningDate');
+        }else{
+            $joiningDate=Carbon::now()->format('Y-m-d');
+        }
+        DB::beginTransaction();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\StudentCourseRegistration  $studentCourseRegistration
-     * @return \Illuminate\Http\Response
-     */
-    public function show(StudentCourseRegistration $studentCourseRegistration)
-    {
-        //
-    }
+        try{
+            $temp_date = explode("-",$joiningDate);
+            if($temp_date[1]>3){
+                $x = $temp_date[0]%100;
+                $accounting_year = $x*100 + ($x+1);
+            }else{
+                $x = $temp_date[0]%100;
+                $accounting_year =($x-1)*100+$x;
+            }
+            $voucher="StudentCourseRegistration";
+            $customVoucher=CustomVoucher::where('voucher_name','=',$voucher)->where('accounting_year',"=",$accounting_year)->first();
+            if($customVoucher) {
+                //already exist
+                $customVoucher->last_counter = $customVoucher->last_counter + 1;
+                $customVoucher->save();
+            }else{
+                //fresh entry
+                $customVoucher= new CustomVoucher();
+                $customVoucher->voucher_name=$voucher;
+                $customVoucher->accounting_year= $accounting_year;
+                $customVoucher->last_counter=1;
+                $customVoucher->delimiter='-';
+                $customVoucher->prefix='CODER';
+                $customVoucher->save();
+            }
+            //adding Zeros before number
+            $counter = str_pad($customVoucher->last_counter,3,"0",STR_PAD_LEFT);
+            //creating reference number
+            $reference_number = $courseCode.''.$counter."@".$accounting_year;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\StudentCourseRegistration  $studentCourseRegistration
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(StudentCourseRegistration $studentCourseRegistration)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\StudentCourseRegistration  $studentCourseRegistration
-     * @return \Illuminate\Http\Response
-     */
+            // if any record is failed then whole entry will be rolled back
+            //try portion execute the commands and catch execute when error.
+            $courseRegistration= new StudentCourseRegistration();
+            $courseRegistration->reference_number = $reference_number;
+            $courseRegistration->ledger_id = $request->input('studentId');
+            $courseRegistration->course_id= $request->input('courseId');
+            $courseRegistration->base_fee= $request->input('baseFee');
+            $courseRegistration->discount_allowed= $request->input('discountAllowed');
+            $courseRegistration->joining_date= $joiningDate;
+            $courseRegistration->effective_date= $request->input('effectiveDate');
+            $courseRegistration->is_started= $request->input('isStarted');
+            $courseRegistration->save();
+            DB::commit();
+
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
+        }
+
+        return response()->json(['success'=>1,'data'=> $courseRegistration], 200,[],JSON_NUMERIC_CHECK);
+    }
     public function update(Request $request, StudentCourseRegistration $studentCourseRegistration)
     {
         //

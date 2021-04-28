@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FeesModeTypeController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\StudentCourseRegistrationController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -74,5 +75,9 @@ Route::group(array('prefix' => 'dev'), function() {
 
 
     Route::get("subjects",[SubjectController::class, 'index']);
+
+
+    //CourseRegistration
+    Route::post("studentCourseRegistrations",[StudentCourseRegistrationController::class, 'store']);
 });
 

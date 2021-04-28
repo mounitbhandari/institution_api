@@ -16,7 +16,7 @@ class CreateStudentCourseRegistrationsTable extends Migration
     {
         Schema::create('student_course_registrations', function (Blueprint $table) {
             $table->id();
-
+            $table->string('reference_number')->nullable(false)->unique();
             //adding student reference
             $table->bigInteger('ledger_id')->unsigned();
             $table ->foreign('ledger_id')->references('id')->on('ledgers')->onDelete('cascade');
