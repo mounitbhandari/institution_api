@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FeesModeTypeController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\SubjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -67,7 +68,10 @@ Route::group(array('prefix' => 'dev'), function() {
     Route::get("states",[StateController::class, 'index']);
     Route::get("states/{id}",[StateController::class, 'index_by_id']);
 
+    //Fees Modes
     Route::get("feesModeTypes",[FeesModeTypeController::class, 'index']);
     Route::get("feesModeTypes/{id}",[FeesModeTypeController::class, 'index_by_id']);
+
+    Route::get("subjects",[SubjectController::class, 'index']);
 });
 

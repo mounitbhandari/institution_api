@@ -19,7 +19,7 @@ class CreateSubjectsTable extends Migration
             $table->string('subject_short_name', 50)->nullable(false);
             $table->string('subject_full_name', 50)->nullable(false);
             $table->integer('subject_duration')->default(0);
-            $table->string('subject_description', 255)->nullable(false);
+            $table->string('subject_description', 255)->nullable(true);
             $table->timestamps();
         });
     }

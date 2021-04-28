@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SubjectResource;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        $subjects = Subject::get();
+        return response()->json(['success'=>1,'data'=> SubjectResource::collection($subjects)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**

@@ -101,8 +101,6 @@ class Ledger extends Model
     protected $hidden = [
         "inforce","created_at","updated_at"
     ];
-
-
     protected $guarded = ['id'];
 
     public function ledger_group()

@@ -8,6 +8,7 @@ namespace Database\Seeders;
 use App\Models\FeesModeType;
 use App\Models\Ledger;
 use App\Models\LedgerGroup;
+use App\Models\Subject;
 use App\Models\TransactionType;
 use App\Models\VoucherType;
 use Illuminate\Database\Seeder;
@@ -222,6 +223,11 @@ class DatabaseSeeder extends Seeder
             'full_name' => 'Powerpoint',
             'course_duration' => 20,
          ]);
-
+        Subject::insert([
+            /*1*/    ['subject_code'=>'MSW','subject_short_name'=>'MS-Word','subject_full_name'=>'Microsoft Office','subject_duration'=>5,'subject_description'=>'Microsoft office Word for beginners'],
+            /*2*/    ['subject_code'=>'MSWA','subject_short_name'=>'MS-Word Advance','subject_full_name'=>'Advance Microsoft Office','subject_duration'=>10,'subject_description'=>'Microsoft office word for advance user'],
+            /*3*/    ['subject_code'=>'MSEX','subject_short_name'=>'MS-Excel','subject_full_name'=>'Microsoft Excel','subject_duration'=>10,'subject_description'=>'Microsoft office excel for beginners'],
+            /*4*/    ['subject_code'=>'MSEXA','subject_short_name'=>'MS-Excel Advance','subject_full_name'=>'Advance Microsoft Excel','subject_duration'=>20,'subject_description'=>'Microsoft office excel for advance user'],
+        ]);
     }
 }
