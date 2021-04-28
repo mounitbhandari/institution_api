@@ -8,6 +8,7 @@ use App\Models\StudentCourseRegistration;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class StudentCourseRegistrationController extends Controller
 {
@@ -18,6 +19,18 @@ class StudentCourseRegistrationController extends Controller
 
     public function store(Request $request)
     {
+
+        //validation
+        $validator = Validator::make($request->all(), [
+            'courseId' => 'required|exists:courses,id',
+            'studentId' => 'required|exists:ledgers,id',
+            'baseFee' => 'required|integer|gt:0',
+            'effectiveDate' => 'required|date_format:Y-m-d',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
+        }
+
         $courseId = $request->input('courseId');
         $courseCode = Course::findOrFail($courseId)->course_code;
         if($request->has('joiningDate')) {
