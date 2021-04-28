@@ -19,6 +19,10 @@ class CreateSubjectsTable extends Migration
             $table->string('subject_short_name', 50)->nullable(false);
             $table->string('subject_full_name', 50)->nullable(false);
             $table->integer('subject_duration')->default(0);
+
+            $table->bigInteger('duration_type_id')->unsigned()->default(1);
+            $table->foreign('duration_type_id')->references('id')->on('duration_types')->onDelete('cascade');
+
             $table->string('subject_description', 255)->nullable(true);
             $table->timestamps();
         });

@@ -16,12 +16,7 @@ use App\Models\User;
 use App\Models\UserType;
 use App\Models\State;
 use App\Models\Course;
-
-
-
-
-
-
+use App\Models\DurationType;
 
 class DatabaseSeeder extends Seeder
 {
@@ -223,12 +218,28 @@ class DatabaseSeeder extends Seeder
             'full_name' => 'Powerpoint',
             'course_duration' => 20,
          ]);
-        Subject::insert([
-            /*1*/    ['subject_code'=>'MSW','subject_short_name'=>'MS-Word','subject_full_name'=>'Microsoft Office','subject_duration'=>5,'subject_description'=>'Microsoft office Word for beginners'],
-            /*2*/    ['subject_code'=>'MSWA','subject_short_name'=>'MS-Word Advance','subject_full_name'=>'Advance Microsoft Office','subject_duration'=>10,'subject_description'=>'Microsoft office word for advance user'],
-            /*3*/    ['subject_code'=>'MSEX','subject_short_name'=>'MS-Excel','subject_full_name'=>'Microsoft Excel','subject_duration'=>10,'subject_description'=>'Microsoft office excel for beginners'],
-            /*4*/    ['subject_code'=>'MSEXA','subject_short_name'=>'MS-Excel Advance','subject_full_name'=>'Advance Microsoft Excel','subject_duration'=>20,'subject_description'=>'Microsoft office excel for advance user'],
-            /*5*/    ['subject_code'=>'C','subject_short_name'=>'C','subject_full_name'=>'Programming Language C','subject_duration'=>20,'subject_description'=>'Programming Language For C'],
+
+            /*insert into durationType table*/
+        DurationType::insert([
+            /*1*/    ['duration_name' => 'Year'],
+            /*2*/    ['duration_name' => 'Month'],
+            /*3*/    ['duration_name' => 'Week'],
+            /*4*/    ['duration_name' => 'Hours']
+
         ]);
+
+
+        Subject::insert([
+            /*1*/    ['subject_code'=>'MSW','subject_short_name'=>'MS-Word','subject_full_name'=>'Microsoft Office','subject_duration'=>5,'duration_type_id' => '4','subject_description'=>'Microsoft office Word for beginners'],
+            /*2*/    ['subject_code'=>'MSWA','subject_short_name'=>'MS-Word Advance','subject_full_name'=>'Advance Microsoft Office','subject_duration'=>10,'duration_type_id' => '4','subject_description'=>'Microsoft office word for advance user'],
+            /*3*/    ['subject_code'=>'MSEX','subject_short_name'=>'MS-Excel','subject_full_name'=>'Microsoft Excel','subject_duration'=>10,'duration_type_id' => '4','subject_description'=>'Microsoft office excel for beginners'],
+            /*4*/    ['subject_code'=>'MSEXA','subject_short_name'=>'MS-Excel Advance','subject_full_name'=>'Advance Microsoft Excel','subject_duration'=>20,'duration_type_id' => '4','subject_description'=>'Microsoft office excel for advance user'],
+            /*5*/    ['subject_code'=>'C','subject_short_name'=>'C','subject_full_name'=>'Programming Language C','subject_duration'=>20,'duration_type_id' => '4','subject_description'=>'Programming Language For C'],
+        ]);
+
+
+
     }
+
+
 }

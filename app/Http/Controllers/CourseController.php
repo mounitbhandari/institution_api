@@ -21,7 +21,7 @@ class CourseController extends Controller
         $courses= Course::get();
         return response()->json(['success'=>1,'data'=> CourseResource::collection($courses)], 200,[],JSON_NUMERIC_CHECK);
     }
-    public function index_by_id($id)
+    public function get_course_by_id($id)
     {
         $courses= Course::findOrFail($id);
         return response()->json(['success'=>1,'data'=> new CourseResource($courses)], 200,[],JSON_NUMERIC_CHECK);

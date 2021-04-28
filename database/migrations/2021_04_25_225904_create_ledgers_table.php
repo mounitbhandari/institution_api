@@ -20,7 +20,7 @@ class CreateLedgersTable extends Migration
             $table->string('billing_name')->nullable(false);
 
             $table->bigInteger('ledger_group_id')->unsigned();
-            $table ->foreign('ledger_group_id')->references('id')->on('ledger_groups')->onDelete('cascade');;
+            $table ->foreign('ledger_group_id')->references('id')->on('ledger_groups')->onDelete('cascade');
 
             //for students
             $table->string('is_student')->default(0);

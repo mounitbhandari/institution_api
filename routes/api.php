@@ -8,14 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CourseController;
-
-
-
-
-
-
-
-
+use App\Http\Controllers\DurationTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +64,14 @@ Route::group(array('prefix' => 'dev'), function() {
     //Fees Modes
     Route::get("feesModeTypes",[FeesModeTypeController::class, 'index']);
     Route::get("feesModeTypes/{id}",[FeesModeTypeController::class, 'index_by_id']);
+
+    //DurationTypes
+    Route::get("durationTypes",[DurationTypeController::class, 'index']);
+    Route::get("durationTypes/{id}",[DurationTypeController::class, 'indexById']);
+    Route::post("durationTypes",[DurationTypeController::class, 'store']);
+    Route::patch("durationTypes",[DurationTypeController::class, 'update']);
+    Route::delete("durationTypes/{id}",[DurationTypeController::class, 'destroy']);
+
 
     Route::get("subjects",[SubjectController::class, 'index']);
 });

@@ -161,7 +161,8 @@ class StudentController extends Controller
         return response()->json(['success'=>1,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
 
     }
-    public function delete($id){
+    public function delete($id)
+    {
         $student = Student::find($id);
         if(!empty($student)){
             $result = $student->delete();
