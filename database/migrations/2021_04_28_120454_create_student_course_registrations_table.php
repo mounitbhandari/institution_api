@@ -23,10 +23,22 @@ class CreateStudentCourseRegistrationsTable extends Migration
 
             //adding course
             $table->bigInteger('course_id')->unsigned();
-            $table ->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');;
+            $table ->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
 
-            $table->date('joining_date')->nullable(true);
+            //fees actual
+            $table->integer('base_fee')->default(0);
+
+            //discount allowed
+            $table->integer('discount_allowed')->default(0);
+
+            $table->date('joining_date')->nullable(false);
             $table->date('effective_date')->nullable(true);
+            $table->date('completion_date')->nullable(true);
+
+            $table->boolean('is_started')->default(false);
+            $table->boolean('is_completed')->default(false);
+
+
             $table->timestamps();
         });
     }
