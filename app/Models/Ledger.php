@@ -112,4 +112,20 @@ class Ledger extends Model
     {
         return $this->belongsTo('App\Models\State','state_id');
     }
+    public function registeredCourses()
+    {
+        return $this->hasMany(StudentCourseRegistration::class,'ledger_id');
+    }
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class,StudentCourseRegistration::class,'ledger_id','course_id');;
+    }
+    public function complete_courses()
+    {
+        return $this->belongsToMany(Course::class,StudentCourseRegistration::class,'ledger_id','course_id')->wherePivot('is_completed', '=', 1);;
+    }
+    public function incomplete_courses()
+    {
+        return $this->belongsToMany(Course::class,StudentCourseRegistration::class,'ledger_id','course_id')->wherePivot('is_completed', '=', 0);;
+    }
 }
