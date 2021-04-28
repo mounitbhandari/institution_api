@@ -228,6 +228,7 @@ class DatabaseSeeder extends Seeder
             /*2*/    ['subject_code'=>'MSWA','subject_short_name'=>'MS-Word Advance','subject_full_name'=>'Advance Microsoft Office','subject_duration'=>10,'subject_description'=>'Microsoft office word for advance user'],
             /*3*/    ['subject_code'=>'MSEX','subject_short_name'=>'MS-Excel','subject_full_name'=>'Microsoft Excel','subject_duration'=>10,'subject_description'=>'Microsoft office excel for beginners'],
             /*4*/    ['subject_code'=>'MSEXA','subject_short_name'=>'MS-Excel Advance','subject_full_name'=>'Advance Microsoft Excel','subject_duration'=>20,'subject_description'=>'Microsoft office excel for advance user'],
+            /*5*/    ['subject_code'=>'C','subject_short_name'=>'C','subject_full_name'=>'Programming Language C','subject_duration'=>20,'subject_description'=>'Programming Language For C'],
         ]);
     }
 }
