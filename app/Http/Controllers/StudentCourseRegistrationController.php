@@ -22,10 +22,17 @@ class StudentCourseRegistrationController extends Controller
 
         //validation
         $validator = Validator::make($request->all(), [
-            'courseId' => 'required|exists:courses,id',
-            'studentId' => 'required|exists:ledgers,id',
-            'baseFee' => 'required|integer|gt:0',
-            'effectiveDate' => 'required|date_format:Y-m-d',
+            'courseId' => 'bail|required|exists:courses,id',
+            'studentId' => 'bail|required|exists:ledgers,id',
+            'baseFee' => 'bail|required|integer|gt:0',
+            'discountAllowed'=>'lt:baseFee',
+            'effectiveDate' => 'bail|required|date_format:Y-m-d',
+        ],[
+            'courseId.required'=> 'Course ID is required', // custom message
+            'courseId.exists'=> 'This course ID does not exists', // custom message
+            'studentId.required'=> 'You have to input student ID', // custom message
+            'studentId.exists'=> 'This student does not exists', // custom message
+            'discountAllowed.lt'=> 'Discount should be lower than the Base Price' // custom message
         ]);
         if ($validator->fails()) {
             return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
