@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeesModeTypeController;
 use App\Http\Controllers\StateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -60,10 +61,13 @@ Route::group(array('prefix' => 'dev'), function() {
 
     //course
     Route::get("courses",[CourseController::class, 'index']);
-    Route::get("courses/{id}",[CourseController::class, 'get_course_by_id']);
+    Route::get("courses/{id}",[CourseController::class, 'index_by_id']);
     Route::post("courses",[CourseController::class, 'store']);
 
     Route::get("states",[StateController::class, 'index']);
     Route::get("states/{id}",[StateController::class, 'index_by_id']);
+
+    Route::get("feesModeTypes",[FeesModeTypeController::class, 'index']);
+    Route::get("feesModeTypes/{id}",[FeesModeTypeController::class, 'index_by_id']);
 });
 

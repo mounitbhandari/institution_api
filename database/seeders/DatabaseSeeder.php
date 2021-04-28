@@ -5,6 +5,7 @@ namespace Database\Seeders;
 
 
 
+use App\Models\FeesModeType;
 use App\Models\Ledger;
 use App\Models\LedgerGroup;
 use App\Models\TransactionType;
@@ -176,9 +177,14 @@ class DatabaseSeeder extends Seeder
             'qualification' => 'HS'
 
         ]);
-
+    //Fees Modes
+    FeesModeType::insert([
+        ['fees_mode_type_name'=>'Monthly'],
+        ['fees_mode_type_name'=>'Single']
+    ]);
     //storing course
         Course::create([
+           'fees_mode_type_id'=>1,
            'course_code' => 'ab',
            'short_name' => 'Tally',
            'full_name' => 'Tally',
@@ -186,6 +192,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Course::create([
+            'fees_mode_type_id'=>2,
             'course_code' => 'az',
             'short_name' => 'Ms word',
             'full_name' => 'Micro soft office word',
@@ -193,6 +200,7 @@ class DatabaseSeeder extends Seeder
          ]);
 
          Course::create([
+            'fees_mode_type_id'=>2,
             'course_code' => 'bc',
             'short_name' => 'Excel',
             'full_name' => 'Micro soft excel',
@@ -200,6 +208,7 @@ class DatabaseSeeder extends Seeder
          ]);
 
          Course::create([
+            'fees_mode_type_id'=>1,
             'course_code' => 'cd',
             'short_name' => 'Web Based Software Devolopment',
             'full_name' => 'Tally',
@@ -207,6 +216,7 @@ class DatabaseSeeder extends Seeder
          ]);
 
          Course::create([
+            'fees_mode_type_id'=>1,
             'course_code' => 'gh',
             'short_name' => 'Powerpoint',
             'full_name' => 'Powerpoint',

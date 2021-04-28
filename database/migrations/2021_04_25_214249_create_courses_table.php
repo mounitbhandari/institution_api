@@ -15,6 +15,9 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('fees_mode_type_id')->unsigned();
+            $table ->foreign('fees_mode_type_id')->references('id')->on('fees_mode_types')->onDelete('cascade');;
+
             $table->string('course_code', 20)->nullable(false)->unique();
             $table->string('short_name', 50)->nullable(false);
             $table->string('full_name', 50)->nullable(false);

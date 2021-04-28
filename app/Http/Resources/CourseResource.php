@@ -11,6 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed course_duration
  * @property mixed description
  * @property mixed id
+ * @property mixed fees_mode_type
  */
 class CourseResource extends JsonResource
 {
@@ -29,6 +30,7 @@ class CourseResource extends JsonResource
             "fullName"=>$this->full_name,
             "courseDuration"=>$this->course_duration,
             "description"=>$this->description,
+            "feesModeType"=>new FeesModeTypeResource($this->fees_mode_type)
         ];
     }
 }

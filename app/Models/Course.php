@@ -19,4 +19,14 @@ class Course extends Model
      * @var mixed
      */
     private $course_code;
+
+    protected $hidden = [
+        "inforce","created_at","updated_at"
+    ];
+    protected $guarded = ['id'];
+
+    public function fees_mode_type()
+    {
+        return $this->belongsTo(FeesModeType::class,'fees_mode_type_id');
+    }
 }
