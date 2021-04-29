@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DurationTypeResource;
 use App\Models\DurationType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,13 +18,13 @@ class DurationTypeController extends Controller
     public function index()
     {
         $durationType= DurationType::get();
-        return response()->json(['success'=>1,'data'=> $durationType], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=> DurationTypeResource::collection($durationType)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function indexById($id)
     {
         $durationType= DurationType::findOrFail($id);
-        return response()->json(['success'=>1,'data'=> $durationType], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>new DurationTypeResource($durationType) ], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**

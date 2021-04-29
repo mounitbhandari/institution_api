@@ -48,6 +48,7 @@ class StudentController extends Controller
         $data = Student::whereHas('course_registered', function($q){
             $q->where('is_completed', '=', 0);
         })->where('is_student','=',1)->get();
+        // $data= Student::has('course_registered')->get();
         return response()->json(['success'=>1,'data'=>$data,'sql'=>$query_string], 200,[],JSON_NUMERIC_CHECK);
     }
 
