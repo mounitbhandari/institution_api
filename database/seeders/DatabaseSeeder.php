@@ -17,6 +17,7 @@ use App\Models\UserType;
 use App\Models\State;
 use App\Models\Course;
 use App\Models\DurationType;
+use App\Models\StudentCourseRegistration;
 
 class DatabaseSeeder extends Seeder
 {
@@ -196,6 +197,170 @@ class DatabaseSeeder extends Seeder
             'qualification' => 'HS'
 
         ]);
+        Ledger::create([
+            'episode_id' =>'a4',
+            'is_student' =>1,
+            'ledger_name' => 'Ramesh Chowdhury',
+            'billing_name' => 'Mr. Ramesh Chowdhury',
+            'ledger_group_id' => 16,
+            'father_name' => 'Prakash Chowdhury',
+            'mother_name' => 'Sumita Chowdhury',
+            'guardian_name' => 'Prakash Chowdhury',
+            'relation_to_guardian' => 'father',
+            'dob' => '2000-05-15',
+            'sex' => 'M',
+            'address' => '13/c,R.N.Tagore Road',
+            'city' => 'Kolkata',
+            'district' => 'Kolkata',
+            'state_id' => 22,
+            'pin' => '70010',
+            'guardian_contact_number' => '9835700182',
+            'whatsapp_number' => '9903652417',
+            'email_id' => 'rameshchowdhury@gmail.com',
+            'qualification' => 'HS'
+
+        ]);
+        Ledger::create([
+            'episode_id' =>'a5',
+            'is_student' =>1,
+            'ledger_name' => 'Smita Sen',
+            'billing_name' => 'Miss. Smita Sen',
+            'ledger_group_id' => 16,
+            'father_name' => 'Rohit Sen',
+            'mother_name' => 'Susmita Sen',
+            'guardian_name' => 'Susmita Sen',
+            'relation_to_guardian' => 'Mother',
+            'dob' => '2000-05-15',
+            'sex' => 'F',
+            'address' => '13/c,R.N.Tagore Road',
+            'city' => 'Kolkata',
+            'district' => 'Kolkata',
+            'state_id' => 22,
+            'pin' => '70010',
+            'guardian_contact_number' => '9835700182',
+            'whatsapp_number' => '9903652417',
+            'email_id' => 'sensusmita@gmail.com',
+            'qualification' => 'Graduate'
+
+        ]);
+        Ledger::create([
+            'episode_id' =>'a6',
+            'is_student' =>1,
+            'ledger_name' => 'Joy Paul',
+            'billing_name' => 'Mr. Joy Paul',
+            'ledger_group_id' => 16,
+            'father_name' => 'Raja Paul',
+            'mother_name' => 'Anita Paul',
+            'guardian_name' => 'Raja Paul',
+            'relation_to_guardian' => 'father',
+            'dob' => '2000-05-15',
+            'sex' => 'M',
+            'address' => '13/c,R.N.Tagore Road',
+            'city' => 'Kolkata',
+            'district' => 'Kolkata',
+            'state_id' => 22,
+            'pin' => '70010',
+            'guardian_contact_number' => '9835700182',
+            'whatsapp_number' => '9903652417',
+            'email_id' => 'pauljoy@gmail.com',
+            'qualification' => 'HS'
+
+        ]);
+        Ledger::create([
+            'episode_id' =>'a7',
+            'is_student' =>1,
+            'ledger_name' => 'Dinesh Agarwal',
+            'billing_name' => 'Mr. Dinesh Agarwal',
+            'ledger_group_id' => 16,
+            'father_name' => 'Sitesh Agarwal',
+            'mother_name' => 'Dipti Agarwal',
+            'guardian_name' => 'Dipti Agarwal',
+            'relation_to_guardian' => 'mother',
+            'dob' => '2000-05-15',
+            'sex' => 'M',
+            'address' => '13/c,R.N.Tagore Road',
+            'city' => 'Kolkata',
+            'district' => 'Kolkata',
+            'state_id' => 22,
+            'pin' => '70010',
+            'guardian_contact_number' => '9835700182',
+            'whatsapp_number' => '9903652417',
+            'email_id' => 'dinagarwal@gmail.com',
+            'qualification' => '10th'
+
+        ]);
+        Ledger::create([
+            'episode_id' =>'a8',
+            'is_student' =>1,
+            'ledger_name' => 'Prasen Chowdhury',
+            'billing_name' => 'Mr. Prasen Chowdhury',
+            'ledger_group_id' => 16,
+            'father_name' => 'Susen Chowdhury',
+            'mother_name' => 'Priya Chowdhury',
+            'guardian_name' => 'priya Chowdhury',
+            'relation_to_guardian' => 'mother',
+            'dob' => '2000-05-15',
+            'sex' => 'M',
+            'address' => '13/c,R.N.Tagore Road',
+            'city' => 'Kolkata',
+            'district' => 'Kolkata',
+            'state_id' => 22,
+            'pin' => '70010',
+            'guardian_contact_number' => '9835700182',
+            'whatsapp_number' => '9903652417',
+            'email_id' => 'prasenchowdhury@gmail.com',
+            'qualification' => '12th'
+
+        ]);
+        Ledger::create([
+            'episode_id' =>'a9',
+            'is_student' =>1,
+            'ledger_name' => 'Anandi Das',
+            'billing_name' => 'Miss. Anandi Das',
+            'ledger_group_id' => 16,
+            'father_name' => 'Ananda Das',
+            'mother_name' => 'Smrity Das',
+            'guardian_name' => 'Ananda Das',
+            'relation_to_guardian' => 'father',
+            'dob' => '2000-05-15',
+            'sex' => 'F',
+            'address' => '13/c,R.N.Tagore Road',
+            'city' => 'Kolkata',
+            'district' => 'Kolkata',
+            'state_id' => 22,
+            'pin' => '70010',
+            'guardian_contact_number' => '9835700182',
+            'whatsapp_number' => '9903652417',
+            'email_id' => 'dasanandi001@gmail.com',
+            'qualification' => 'HS'
+
+        ]);
+        Ledger::create([
+            'episode_id' =>'a10',
+            'is_student' =>1,
+            'ledger_name' => 'Priyobrata Chowdhury',
+            'billing_name' => 'Mr. Priyobrata Chowdhury',
+            'ledger_group_id' => 16,
+            'father_name' => 'Surya Chowdhury',
+            'mother_name' => 'Rini Chowdhury',
+            'guardian_name' => 'Rini Chowdhury',
+            'relation_to_guardian' => 'mother',
+            'dob' => '2000-05-15',
+            'sex' => 'M',
+            'address' => '13/c,R.N.Tagore Road',
+            'city' => 'Kolkata',
+            'district' => 'Kolkata',
+            'state_id' => 22,
+            'pin' => '70010',
+            'guardian_contact_number' => '9835700182',
+            'whatsapp_number' => '9903652417',
+            'email_id' => 'priyobratachowdhury@gmail.com',
+            'qualification' => 'HS'
+
+        ]);
+
+
+
     //Fees Modes
     FeesModeType::insert([
         ['fees_mode_type_name'=>'Monthly'],
@@ -208,6 +373,7 @@ class DatabaseSeeder extends Seeder
            'short_name' => 'Tally',
            'full_name' => 'Tally',
            'course_duration' => 100,
+
         ]);
 
         Course::create([
@@ -242,6 +408,95 @@ class DatabaseSeeder extends Seeder
             'course_duration' => 20,
          ]);
 
+
+         Course::create([
+            'fees_mode_type_id'=>1,
+            'course_code' => 'ef',
+            'short_name' => 'Office 10',
+            'full_name' => 'Micosoft Office 10',
+            'course_duration' => 20,
+         ]);
+
+         Course::create([
+            'fees_mode_type_id'=>1,
+            'course_code' => 'ij',
+            'short_name' => 'C',
+            'full_name' => 'Programming Language C',
+            'course_duration' => 20,
+
+         ]);
+
+         Course::create([
+            'fees_mode_type_id'=>1,
+            'course_code' => 'kl',
+            'short_name' => 'CP',
+            'full_name' => 'Programming Language C+',
+            'course_duration' => 20,
+
+         ]);
+
+         Course::create([
+            'fees_mode_type_id'=>1,
+            'course_code' => 'mn',
+            'short_name' => 'CPP',
+            'full_name' => 'Programming Language C++',
+            'course_duration' => 20,
+
+         ]);
+
+         Course::create([
+            'fees_mode_type_id'=>1,
+            'course_code' => 'jv',
+            'short_name' => 'JAVA',
+            'full_name' => 'Programming Language JAVA',
+            'course_duration' => 20,
+
+         ]);
+
+         Course::create([
+            'fees_mode_type_id'=>1,
+            'course_code' => 'ph',
+            'short_name' => 'PYTHON',
+            'full_name' => 'Programming Language PYTHON',
+            'course_duration' => 20,
+
+         ]);
+
+         Course::create([
+            'fees_mode_type_id'=>1,
+            'course_code' => 'html',
+            'short_name' => 'HTML',
+            'full_name' => 'Hyper Text Markup Language',
+            'course_duration' => 20,
+
+         ]);
+
+         Course::create([
+            'fees_mode_type_id'=>1,
+            'course_code' => 'js',
+            'short_name' => 'JavaScript',
+            'full_name' => 'Programming Language JavaScript',
+            'course_duration' => 20,
+
+         ]);
+
+
+
+         Course::create([
+            'fees_mode_type_id'=>1,
+            'course_code' => 'sql',
+            'short_name' => 'SQL',
+            'full_name' => 'Structured Query Language',
+            'course_duration' => 20,
+
+         ]);
+
+
+
+
+
+
+
             /*insert into durationType table*/
         DurationType::insert([
             /*1*/    ['duration_name' => 'Year'],
@@ -259,6 +514,14 @@ class DatabaseSeeder extends Seeder
             /*4*/    ['subject_code'=>'MSEXA','subject_short_name'=>'MS-Excel Advance','subject_full_name'=>'Advance Microsoft Excel','subject_duration'=>20,'duration_type_id' => '4','subject_description'=>'Microsoft office excel for advance user'],
             /*5*/    ['subject_code'=>'C','subject_short_name'=>'C','subject_full_name'=>'Programming Language C','subject_duration'=>20,'duration_type_id' => '4','subject_description'=>'Programming Language For C'],
         ]);
+
+
+        StudentCourseRegistration::create(['ledger_id'=>1,'course_id'=>1,'reference_number'=>1,'base_fee'=>3000,'discount_allowed'=>1200,'joining_date'=>'2019-01-08','effective_date'=>'2019-02-01','completion_date'=>'2019-11-05','is_completed'=>true]);
+        StudentCourseRegistration::create(['ledger_id'=>1,'course_id'=>2,'reference_number'=>2,'base_fee'=>6900,'discount_allowed'=>3200,'joining_date'=>'2019-11-28','effective_date'=>'2019-12-01','completion_date'=>'2020-11-05','is_completed'=>true]);
+        StudentCourseRegistration::create(['ledger_id'=>1,'course_id'=>3,'reference_number'=>3,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2020-12-28','effective_date'=>'2020-12-29','completion_date'=>'2021-04-05','is_completed'=>true]);
+        StudentCourseRegistration::create(['ledger_id'=>1,'course_id'=>4,'reference_number'=>4,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-04-02','effective_date'=>'2021-04-05','is_started'=>true]);
+        StudentCourseRegistration::create(['ledger_id'=>2,'course_id'=>4,'reference_number'=>5,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2020-02-28','effective_date'=>'2020-03-05','completion_date'=>'2020-11-05','is_completed'=>true]);
+        StudentCourseRegistration::create(['ledger_id'=>2,'course_id'=>4,'reference_number'=>5,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','effective_date'=>'2021-03-01','is_started'=>true]);
 
 
 
