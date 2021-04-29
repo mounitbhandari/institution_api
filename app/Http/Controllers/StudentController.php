@@ -43,7 +43,7 @@ class StudentController extends Controller
         $query = Student::whereHas('course_registered', function($q){
             $q->where('is_completed', '=', 0);
         })->where('is_student','=',1);
-        $query_string=$this->getSqlWithBindings($query);
+        $query_string=get_sql_with_bindings($query);
 
         $data = Student::whereHas('course_registered', function($q){
             $q->where('is_completed', '=', 0);
@@ -206,10 +206,5 @@ class StudentController extends Controller
         //
     }
 
-    public static function getSqlWithBindings($query)
-    {
-        return vsprintf(str_replace('?', '%s', $query->toSql()), collect($query->getBindings())->map(function ($binding) {
-            return is_numeric($binding) ? $binding : "'{$binding}'";
-        })->toArray());
-    }
+
 }
