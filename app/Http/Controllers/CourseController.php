@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $courses= Course::get();
@@ -30,9 +26,10 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'courseCode' => 'required|max:25|unique:cources,cource_name',
-            'shortName' => 'required|exists:cources,short_name',
-
+            'courseCode' => 'required|max:25|unique:course,course_name',
+            'shortName' => 'required|unique:course,shor_name',
+            'courseDurationTypeId' => 'required|exists:course_duration_types,id',
+            'description' => 'max:255',
         ]);
         DB::beginTransaction();
         try{
