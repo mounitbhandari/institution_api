@@ -19,7 +19,7 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function get_all_students()
+    public function index()
     {
       $students= Student::where('is_student','=',1)->get();
       return response()->json(['success'=>1,'data'=> StudentResource::collection($students)], 200,[],JSON_NUMERIC_CHECK);
@@ -52,12 +52,7 @@ class StudentController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function save(Request $request)
+    public function store(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
@@ -72,7 +67,6 @@ class StudentController extends Controller
         }else{
             $entryDate=Carbon::now()->format('Y-m-d');
         }
-//        Carbon::now()->format('Y-m-d-H-i-s');
         DB::beginTransaction();
 
        try{
@@ -193,53 +187,11 @@ class StudentController extends Controller
         return response()->json(['success'=>$result,'id'=>$id], 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
     public function show(Student $student)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    //
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Student $student)
     {
         //

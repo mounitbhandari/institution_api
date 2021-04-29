@@ -50,7 +50,7 @@ Route::group(array('prefix' => 'dev'), function() {
     // student related API address placed in a group for better readability
     Route::group(array('prefix' => 'students'), function() {
         // এখানে সকলকেই দেখাবে, যাদের কোর্স দেওয়া হয়েছে ও যাদের দেওয়া হয়নি সবাইকেই
-        Route::get("/", [StudentController::class, 'get_all_students']);
+        Route::get("/", [StudentController::class, 'index']);
         Route::get("/studentId/{id}", [StudentController::class, 'get_student_by_id']);
         //যে সব স্টুডেন্টদের কোর্স দেওয়া হয়েছে তাদের পাওয়ার জন্য, যাদের শেষ হয়ে গেছে তাদেরকেও দেখানো হবে।
         Route::get("/registered/yes", [StudentController::class, 'get_all_course_registered_students']);
@@ -59,7 +59,7 @@ Route::group(array('prefix' => 'dev'), function() {
         //যে সব স্টুডেন্টের কোর্স বর্তমানে চলছে তাদের দেখার জন্য আমি এটা ব্যবহার করেছি। যাদের শেষ হয়ে গেছে তাদেরকেও দেখানো হবে না।
         Route::get("/registered/current", [StudentController::class, 'get_all_current_course_registered_students']);
 
-        Route::post("/",[StudentController::class, 'save']);
+        Route::post("/",[StudentController::class, 'store']);
         Route::patch("/",[StudentController::class, 'update']);
         Route::delete("/{id}",[StudentController::class, 'delete']);
     });
