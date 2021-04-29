@@ -44,7 +44,8 @@ class StudentController extends Controller
 
     public function get_student_by_id($id){
         try {
-            $student = Student::findOrFail($id);
+//            $student = Student::findOrFail($id);
+            $student = Student::where('id', $id)->where('is_student','=',1)->firstOrFail();
             return response()->json(['success'=>true,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
         } catch (\Exception $e) {
             return response()->json(['success'=>false,'data'=>null], 404,[],JSON_NUMERIC_CHECK);
