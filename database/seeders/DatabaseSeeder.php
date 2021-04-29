@@ -531,6 +531,9 @@ class DatabaseSeeder extends Seeder
         StudentCourseRegistration::create(['ledger_id'=>2,'course_id'=>4,'reference_number'=>5,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2020-02-28','effective_date'=>'2020-03-05','completion_date'=>'2020-11-05','is_completed'=>true]);
         StudentCourseRegistration::create(['ledger_id'=>2,'course_id'=>4,'reference_number'=>6,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','effective_date'=>'2021-03-01','is_started'=>true]);
 
+        StudentCourseRegistration::create(['ledger_id'=>2,'course_id'=>4,'reference_number'=>7,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','effective_date'=>'2021-03-01','is_started'=>true]);
+        StudentCourseRegistration::create(['ledger_id'=>3,'course_id'=>4,'reference_number'=>8,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2']);
+
 
 
     }
