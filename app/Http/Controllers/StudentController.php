@@ -36,10 +36,18 @@ class StudentController extends Controller
      * যে সব স্টুডেন্টের কোর্স বর্তমানে চলছে তাদের দেখার জন্য আমি এটা ব্যবহার করেছি। course_registered এই কি ওয়ার্ডটি আমি Ledger Model এ বানিয়ে এসেছি।
     */
     public function get_all_current_course_registered_students(){
+        /*
+         * আমরা যে eloquent query করি তা অনেক সময় আমরা বুঝতে পারি না তা SQL এ কিভাবে দেখতে হয়, তা বোঝার জন্য আমার
+         * কোড কে এক্সিকিউট না করে তার query কে পেতে পারি, যদিও কাজের ক্ষেত্রে এর কোন প্রয়োজন নেই।
+         * */
+        $query = Student::whereHas('course_registered', function($q){
+            $q->where('is_completed', '=', 0);
+        })->where('is_student','=',1)->toSql();
+
         $data = Student::whereHas('course_registered', function($q){
             $q->where('is_completed', '=', 0);
         })->where('is_student','=',1)->get();
-        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>$data,'sql'=>$query], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function get_student_by_id($id){
