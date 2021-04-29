@@ -197,7 +197,7 @@ class DatabaseSeeder extends Seeder
             'qualification' => 'HS'
 
         ]);
-<<<<<<< HEAD
+
         Ledger::create([
             'episode_id' =>'a4',
             'is_student' =>1,
@@ -359,10 +359,6 @@ class DatabaseSeeder extends Seeder
             'qualification' => 'HS'
 
         ]);
-
-
-
-=======
     /*insert into durationType table*/
     DurationType::insert([
         /*1*/    ['duration_name' => 'Not Applicable'],
@@ -372,7 +368,7 @@ class DatabaseSeeder extends Seeder
         /*5*/    ['duration_name' => 'Hours']
 
    ]);
->>>>>>> 57c3617e54357cf271f3bfc01b9b21fa3ddc59ad
+
     //Fees Modes
     FeesModeType::insert([
         ['fees_mode_type_name'=>'Monthly'],
@@ -385,11 +381,7 @@ class DatabaseSeeder extends Seeder
            'short_name' => 'Tally',
            'full_name' => 'Tally',
            'course_duration' => 100,
-<<<<<<< HEAD
-
-=======
            'duration_type_id' => '4'
->>>>>>> 57c3617e54357cf271f3bfc01b9b21fa3ddc59ad
         ]);
 
         Course::create([
@@ -427,15 +419,13 @@ class DatabaseSeeder extends Seeder
             'course_duration' => 20,
             'duration_type_id' => '4'
          ]);
-
-<<<<<<< HEAD
-
          Course::create([
             'fees_mode_type_id'=>1,
             'course_code' => 'ef',
             'short_name' => 'Office 10',
             'full_name' => 'Micosoft Office 10',
             'course_duration' => 20,
+            'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -444,6 +434,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'C',
             'full_name' => 'Programming Language C',
             'course_duration' => 20,
+            'duration_type_id' => '4'
 
          ]);
 
@@ -453,7 +444,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'CP',
             'full_name' => 'Programming Language C+',
             'course_duration' => 20,
-
+             'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -462,7 +453,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'CPP',
             'full_name' => 'Programming Language C++',
             'course_duration' => 20,
-
+            'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -471,7 +462,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'JAVA',
             'full_name' => 'Programming Language JAVA',
             'course_duration' => 20,
-
+             'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -480,7 +471,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'PYTHON',
             'full_name' => 'Programming Language PYTHON',
             'course_duration' => 20,
-
+             'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -489,7 +480,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'HTML',
             'full_name' => 'Hyper Text Markup Language',
             'course_duration' => 20,
-
+             'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -498,7 +489,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'JavaScript',
             'full_name' => 'Programming Language JavaScript',
             'course_duration' => 20,
-
+             'duration_type_id' => '4'
          ]);
 
 
@@ -509,23 +500,11 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'SQL',
             'full_name' => 'Structured Query Language',
             'course_duration' => 20,
-
+             'duration_type_id' => '4'
          ]);
 
 
 
-
-
-
-
-            /*insert into durationType table*/
-        DurationType::insert([
-            /*1*/    ['duration_name' => 'Year'],
-            /*2*/    ['duration_name' => 'Month'],
-            /*3*/    ['duration_name' => 'Week'],
-            /*4*/    ['duration_name' => 'Hours']
-=======
->>>>>>> 57c3617e54357cf271f3bfc01b9b21fa3ddc59ad
 
 
 
@@ -550,7 +529,7 @@ class DatabaseSeeder extends Seeder
         StudentCourseRegistration::create(['ledger_id'=>1,'course_id'=>3,'reference_number'=>3,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2020-12-28','effective_date'=>'2020-12-29','completion_date'=>'2021-04-05','is_completed'=>true]);
         StudentCourseRegistration::create(['ledger_id'=>1,'course_id'=>4,'reference_number'=>4,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-04-02','effective_date'=>'2021-04-05','is_started'=>true]);
         StudentCourseRegistration::create(['ledger_id'=>2,'course_id'=>4,'reference_number'=>5,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2020-02-28','effective_date'=>'2020-03-05','completion_date'=>'2020-11-05','is_completed'=>true]);
-        StudentCourseRegistration::create(['ledger_id'=>2,'course_id'=>4,'reference_number'=>5,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','effective_date'=>'2021-03-01','is_started'=>true]);
+        StudentCourseRegistration::create(['ledger_id'=>2,'course_id'=>4,'reference_number'=>6,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','effective_date'=>'2021-03-01','is_started'=>true]);
 
 
 
