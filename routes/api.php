@@ -48,9 +48,16 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
 Route::group(array('prefix' => 'dev'), function() {
     //students
-    Route::get("students/{id}",[StudentController::class, 'getStudentByID']);
-    Route::get("students",[StudentController::class, 'getAllStudent']);
-    Route::get("studentsx",[StudentController::class, 'getAllCourseRegisteredStudents']);
+    // এখানে সকলকেই দেখাবে, যাদের কোর্স দেওয়া হয়েছে ও যাদের দেওয়া হয়নি সবাইকেই
+    Route::get("students",[StudentController::class, 'get_all_students']);
+    Route::get("students/studentId/{id}",[StudentController::class, 'get_student_by_id']);
+    //যে সব স্টুডেন্টদের কোর্স দেওয়া হয়েছে তাদের পাওয়ার জন্য, যাদের শেষ হয়ে গেছে তাদেরকেও দেখানো হবে।
+    Route::get("students/registered/yes",[StudentController::class, 'get_all_course_registered_students']);
+    //যে সব স্টুডেন্টের নাম নথিভুক্ত হওয়ার পরেও তাদের কোন কোর্স দেওয়া হয়নি তাদের পাওয়ার জন্য
+    Route::get("students/registered/no",[StudentController::class, 'get_all_non_course_registered_students']);
+    //যে সব স্টুডেন্টের কোর্স বর্তমানে চলছে তাদের দেখার জন্য আমি এটা ব্যবহার করেছি। যাদের শেষ হয়ে গেছে তাদেরকেও দেখানো হবে না।
+    Route::get("students/registered/current",[StudentController::class, 'get_all_current_course_registered_students']);
+
     Route::post("students",[StudentController::class, 'save']);
     Route::patch("students",[StudentController::class, 'update']);
     Route::delete("students/{id}",[StudentController::class, 'delete']);

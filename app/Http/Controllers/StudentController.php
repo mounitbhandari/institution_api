@@ -19,17 +19,30 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAllStudent()
+    public function get_all_students()
     {
-      $students= Student::get();
+      $students= Student::where('is_student','=',1)->get();
       return response()->json(['success'=>1,'data'=> StudentResource::collection($students)], 200,[],JSON_NUMERIC_CHECK);
     }
-    public function getAllCourseRegisteredStudents(){
-        $data = Student::has('course_registered')->get();
+    public function get_all_course_registered_students(){
+        $data = Student::has('course_registered')->where('is_student','=',1)->get();
+        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+    }
+    public function get_all_non_course_registered_students(){
+        $data = Student::doesnthave('course_registered')->where('is_student','=',1)->get();
+        return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
+    }
+    /*
+     * যে সব স্টুডেন্টের কোর্স বর্তমানে চলছে তাদের দেখার জন্য আমি এটা ব্যবহার করেছি। course_registered এই কি ওয়ার্ডটি আমি Ledger Model এ বানিয়ে এসেছি।
+    */
+    public function get_all_current_course_registered_students(){
+        $data = Student::whereHas('course_registered', function($q){
+            $q->where('is_completed', '=', 0);
+        })->where('is_student','=',1)->get();
         return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function getStudentByID($id){
+    public function get_student_by_id($id){
         try {
             $student = Student::findOrFail($id);
             return response()->json(['success'=>true,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);

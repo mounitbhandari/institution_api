@@ -173,6 +173,29 @@ class DatabaseSeeder extends Seeder
             'qualification' => 'HS'
 
         ]);
+        Ledger::create([
+            'episode_id' =>'a3',
+            'is_student' =>1,
+            'ledger_name' => 'XRamen Paul',
+            'billing_name' => 'Mr. Ramen Paul',
+            'ledger_group_id' => 16,
+            'father_name' => 'Sourav Das',
+            'mother_name' => 'Kakali Das',
+            'guardian_name' => 'Kakali Das',
+            'relation_to_guardian' => 'mother',
+            'dob' => '2000-05-15',
+            'sex' => 'F',
+            'address' => '13/c,R.N.Tagore Road',
+            'city' => 'Kolkata',
+            'district' => 'Kolkata',
+            'state_id' => 22,
+            'pin' => '70010',
+            'guardian_contact_number' => '9835700182',
+            'whatsapp_number' => '9903652417',
+            'email_id' => 'riya99@gmail.com',
+            'qualification' => 'HS'
+
+        ]);
     //Fees Modes
     FeesModeType::insert([
         ['fees_mode_type_name'=>'Monthly'],
