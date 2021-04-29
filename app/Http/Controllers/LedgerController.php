@@ -82,4 +82,16 @@ class LedgerController extends Controller
     {
         //
     }
+
+    public function is_deletable_student($id){
+        $total_integrity_count = 0;
+        $student=Ledger::find($id);
+        $course_registered_count=$student->course_registered->count();
+        $total_integrity_count = $total_integrity_count + $course_registered_count;
+        if($total_integrity_count == 0){
+            return true;
+        }else{
+            return  false;
+        }
+    }
 }
