@@ -24,6 +24,10 @@ class Course extends Model
         "inforce","created_at","updated_at"
     ];
     protected $guarded = ['id'];
+    /**
+     * @var mixed
+     */
+    private $course_duration_type_id;
 
     public function fees_mode_type()
     {

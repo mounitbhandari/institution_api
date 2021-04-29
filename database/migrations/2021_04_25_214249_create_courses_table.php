@@ -22,7 +22,12 @@ class CreateCoursesTable extends Migration
             $table->string('short_name', 50)->nullable(false);
             $table->string('full_name', 50)->nullable(false);
             $table->integer('course_duration')->default(0);
+
             $table->string('description', 50)->nullable(true);
+
+            $table->bigInteger('duration_type_id')->unsigned();
+            $table ->foreign('duration_type_id')->references('id')->on('duration_types')->onDelete('cascade');
+
 
             $table->enum('inforce', array(0, 1))->default(1);
             $table->timestamps();

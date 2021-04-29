@@ -41,6 +41,7 @@ class CourseController extends Controller
             $course->short_name=$request->input('shortName');
             $course->full_name=$request->input('fullName');
             $course->course_duration=$request->input('courseDuration');
+            $course->course_duration_type_id=$request->input('courseDurationTypeId');
             $course->description=$request->input('description');
             $course->save();
             DB::commit();

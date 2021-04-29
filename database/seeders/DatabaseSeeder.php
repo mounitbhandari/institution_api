@@ -196,6 +196,14 @@ class DatabaseSeeder extends Seeder
             'qualification' => 'HS'
 
         ]);
+    /*insert into durationType table*/
+    DurationType::insert([
+        /*1*/    ['duration_name' => 'Year'],
+        /*2*/    ['duration_name' => 'Month'],
+        /*3*/    ['duration_name' => 'Week'],
+        /*4*/    ['duration_name' => 'Hours']
+
+   ]);
     //Fees Modes
     FeesModeType::insert([
         ['fees_mode_type_name'=>'Monthly'],
@@ -208,6 +216,7 @@ class DatabaseSeeder extends Seeder
            'short_name' => 'Tally',
            'full_name' => 'Tally',
            'course_duration' => 100,
+           'duration_type_id' => '4'
         ]);
 
         Course::create([
@@ -216,6 +225,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'Ms word',
             'full_name' => 'Micro soft office word',
             'course_duration' => 200,
+            'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -224,6 +234,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'Excel',
             'full_name' => 'Micro soft excel',
             'course_duration' => 300,
+            'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -232,6 +243,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'Web Based Software Devolopment',
             'full_name' => 'Tally',
             'course_duration' => 100,
+            'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -240,16 +252,10 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'Powerpoint',
             'full_name' => 'Powerpoint',
             'course_duration' => 20,
+            'duration_type_id' => '4'
          ]);
 
-            /*insert into durationType table*/
-        DurationType::insert([
-            /*1*/    ['duration_name' => 'Year'],
-            /*2*/    ['duration_name' => 'Month'],
-            /*3*/    ['duration_name' => 'Week'],
-            /*4*/    ['duration_name' => 'Hours']
 
-        ]);
 
 
         Subject::insert([
