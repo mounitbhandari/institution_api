@@ -33,4 +33,8 @@ class Course extends Model
     {
         return $this->belongsTo(FeesModeType::class,'fees_mode_type_id');
     }
+    public function duration_type()
+    {
+        return $this->belongsTo(DurationType::class,'duration_type_id');
+    }
 }
