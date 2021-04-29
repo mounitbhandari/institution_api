@@ -197,6 +197,7 @@ class DatabaseSeeder extends Seeder
             'qualification' => 'HS'
 
         ]);
+<<<<<<< HEAD
         Ledger::create([
             'episode_id' =>'a4',
             'is_student' =>1,
@@ -361,6 +362,17 @@ class DatabaseSeeder extends Seeder
 
 
 
+=======
+    /*insert into durationType table*/
+    DurationType::insert([
+        /*1*/    ['duration_name' => 'Not Applicable'],
+        /*2*/    ['duration_name' => 'Year'],
+        /*3*/    ['duration_name' => 'Month'],
+        /*4*/    ['duration_name' => 'Week'],
+        /*5*/    ['duration_name' => 'Hours']
+
+   ]);
+>>>>>>> 57c3617e54357cf271f3bfc01b9b21fa3ddc59ad
     //Fees Modes
     FeesModeType::insert([
         ['fees_mode_type_name'=>'Monthly'],
@@ -373,7 +385,11 @@ class DatabaseSeeder extends Seeder
            'short_name' => 'Tally',
            'full_name' => 'Tally',
            'course_duration' => 100,
+<<<<<<< HEAD
 
+=======
+           'duration_type_id' => '4'
+>>>>>>> 57c3617e54357cf271f3bfc01b9b21fa3ddc59ad
         ]);
 
         Course::create([
@@ -382,6 +398,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'Ms word',
             'full_name' => 'Micro soft office word',
             'course_duration' => 200,
+            'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -390,6 +407,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'Excel',
             'full_name' => 'Micro soft excel',
             'course_duration' => 300,
+            'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -398,6 +416,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'Web Based Software Devolopment',
             'full_name' => 'Tally',
             'course_duration' => 100,
+            'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -406,8 +425,10 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'Powerpoint',
             'full_name' => 'Powerpoint',
             'course_duration' => 20,
+            'duration_type_id' => '4'
          ]);
 
+<<<<<<< HEAD
 
          Course::create([
             'fees_mode_type_id'=>1,
@@ -503,8 +524,9 @@ class DatabaseSeeder extends Seeder
             /*2*/    ['duration_name' => 'Month'],
             /*3*/    ['duration_name' => 'Week'],
             /*4*/    ['duration_name' => 'Hours']
+=======
+>>>>>>> 57c3617e54357cf271f3bfc01b9b21fa3ddc59ad
 
-        ]);
 
 
         Subject::insert([
@@ -512,7 +534,14 @@ class DatabaseSeeder extends Seeder
             /*2*/    ['subject_code'=>'MSWA','subject_short_name'=>'MS-Word Advance','subject_full_name'=>'Advance Microsoft Office','subject_duration'=>10,'duration_type_id' => '4','subject_description'=>'Microsoft office word for advance user'],
             /*3*/    ['subject_code'=>'MSEX','subject_short_name'=>'MS-Excel','subject_full_name'=>'Microsoft Excel','subject_duration'=>10,'duration_type_id' => '4','subject_description'=>'Microsoft office excel for beginners'],
             /*4*/    ['subject_code'=>'MSEXA','subject_short_name'=>'MS-Excel Advance','subject_full_name'=>'Advance Microsoft Excel','subject_duration'=>20,'duration_type_id' => '4','subject_description'=>'Microsoft office excel for advance user'],
-            /*5*/    ['subject_code'=>'C','subject_short_name'=>'C','subject_full_name'=>'Programming Language C','subject_duration'=>20,'duration_type_id' => '4','subject_description'=>'Programming Language For C'],
+            /*4*/    ['subject_code'=>'MSPPT','subject_short_name'=>'MS-PowerPoint','subject_full_name'=>'Microsoft Power Point','subject_duration'=>20,'duration_type_id' => '4','subject_description'=>'Microsoft office Power Point'],
+
+            /*5*/    ['subject_code'=>'EXCAXI-III','subject_short_name'=>'Computer Application','subject_full_name'=>'Computer Application for Class I to III','subject_duration'=>0,'duration_type_id' => '1','subject_description'=>'Computer Application for ClassI to III'],
+            /*6*/    ['subject_code'=>'EXCAXIV-V','subject_short_name'=>'Computer Application','subject_full_name'=>'Computer Application for Class IV to V','subject_duration'=>0,'duration_type_id' => '1','subject_description'=>'Computer Application for Class IV to V'],
+
+
+
+            /**/    ['subject_code'=>'C','subject_short_name'=>'C','subject_full_name'=>'Programming Language C','subject_duration'=>20,'duration_type_id' => '4','subject_description'=>'Programming Language For C'],
         ]);
 
 
