@@ -42,12 +42,13 @@ class StudentController extends Controller
          * */
         $query = Student::whereHas('course_registered', function($q){
             $q->where('is_completed', '=', 0);
-        })->where('is_student','=',1)->toSql();
+        })->where('is_student','=',1);
+        $query_string=$this->getSqlWithBindings($query);
 
         $data = Student::whereHas('course_registered', function($q){
             $q->where('is_completed', '=', 0);
         })->where('is_student','=',1)->get();
-        return response()->json(['success'=>1,'data'=>$data,'sql'=>$query], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>$data,'sql'=>$query_string], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function get_student_by_id($id){
@@ -203,5 +204,12 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+    }
+
+    public static function getSqlWithBindings($query)
+    {
+        return vsprintf(str_replace('?', '%s', $query->toSql()), collect($query->getBindings())->map(function ($binding) {
+            return is_numeric($binding) ? $binding : "'{$binding}'";
+        })->toArray());
     }
 }
