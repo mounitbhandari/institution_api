@@ -15,6 +15,18 @@ class CreateSubjecToCoursesTable extends Migration
     {
         Schema::create('subjec_to_courses', function (Blueprint $table) {
             $table->id();
+
+            //adding courses reference
+            $table->bigInteger('course_id')->unsigned();
+            $table ->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+
+            //adding subjects reference
+            $table->bigInteger('subject_id')->unsigned();
+            $table ->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+
+            $table->unique(["course_id", "subject_id"], 'course_subject_unique');
+
+            $table->tinyInteger('inforce')->default('1');
             $table->timestamps();
         });
     }
