@@ -190,11 +190,14 @@ class StudentController extends Controller
     {
         $student = Student::find($id);
         if(!empty($student)){
-            $result = $student->delete();
+            if($this->is_deletable_student($id)){
+                $result = $student->delete();
+            }
+            return response()->json(['success'=>0,'id'=>null,'message'=>'This student is not deletable'], 200);
         }else{
             $result = false;
         }
-        return response()->json(['success'=>$result,'id'=>$id], 200);
+        return response()->json(['success'=>$result,'id'=>$id,'message'=>'Deleted'], 200);
     }
 
     public function show(Student $student)
@@ -206,6 +209,16 @@ class StudentController extends Controller
     {
         //
     }
-
+    public function is_deletable_student($id){
+        $total_integrity_count = 0;
+        $student=Student::findOrFail($id);
+        $course_count=$student->course_registered->count();
+        $total_integrity_count = $total_integrity_count + $course_count;
+        if($total_integrity_count == 0){
+            return 1;
+        }else{
+            return  0;
+        }
+    }
 
 }

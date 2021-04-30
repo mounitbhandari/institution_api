@@ -58,6 +58,7 @@ Route::group(array('prefix' => 'dev'), function() {
         Route::get("/registered/no", [StudentController::class, 'get_all_non_course_registered_students']);
         //যে সব স্টুডেন্টের কোর্স বর্তমানে চলছে তাদের দেখার জন্য আমি এটা ব্যবহার করেছি। যাদের শেষ হয়ে গেছে তাদেরকেও দেখানো হবে না।
         Route::get("/registered/current", [StudentController::class, 'get_all_current_course_registered_students']);
+        Route::get("/isDeletable/{id}", [StudentController::class, 'is_deletable_student']);
 
         Route::post("/",[StudentController::class, 'store']);
         Route::patch("/",[StudentController::class, 'update']);
