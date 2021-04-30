@@ -24,3 +24,7 @@ php artisan mysql:createdb schema_name
 php artisan db:create <[database_name]>
 
 
+
+https://techsemicolon.github.io/blog/2019/05/30/laravel-validation-required-if-with-unless-all-and-custom-if/
+
+

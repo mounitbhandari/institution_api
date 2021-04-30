@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\RequiredIf;
 
 class StudentCourseRegistrationController extends Controller
 {
@@ -21,12 +22,28 @@ class StudentCourseRegistrationController extends Controller
     {
 
         //validation
+
+        /*
+         * public function rules()
+            {
+                return [
+                    'sale_price' => [
+                        new RequiredIf($this->list_type == 'For Sale'),
+                        'string',
+                        ...
+                    ]
+                ];
+            }
+         * */
+
+
         $validator = Validator::make($request->all(), [
             'courseId' => 'bail|required|exists:courses,id',
             'studentId' => 'bail|required|exists:ledgers,id',
             'baseFee' => 'bail|required|integer|gt:0',
             'discountAllowed'=>'lt:baseFee',
             'effectiveDate' => 'bail|required|date_format:Y-m-d',
+//            'durationTypeId'=> [new RequiredIf('actualCourseDuration= 0')]
         ],[
             'courseId.required'=> 'Course ID is required', // custom message
             'courseId.exists'=> 'This course ID does not exists', // custom message

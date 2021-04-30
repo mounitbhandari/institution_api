@@ -31,6 +31,10 @@ class CreateStudentCourseRegistrationsTable extends Migration
             $table->date('effective_date')->nullable(true);
             $table->date('completion_date')->nullable(true);
 
+            //actual duration
+            $table->integer('actual_course_duration')->default(0);
+            $table->foreignId('duration_type_id')->default(1)->references('id')->on('duration_types')->onDelete('cascade');
+
             $table->boolean('is_started')->default(false);
             $table->boolean('is_completed')->default(false);
 
