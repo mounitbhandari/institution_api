@@ -18,6 +18,7 @@ use App\Models\State;
 use App\Models\Course;
 use App\Models\DurationType;
 use App\Models\StudentCourseRegistration;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -128,6 +129,16 @@ class DatabaseSeeder extends Seeder
             ['voucher_type_name'=>'Debit Note Voucher']          //8
         ]);
         $this->command->info('Voucher type created');
+
+        //Ledgers to be created other than Student
+        Ledger::insert([
+            /*1*/ ['episode_id' =>Str::random(20),'ledger_name'=>'Cash in Hand','billing_name'=>'Cash in Hand','ledger_group_id'=>13,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
+            /*2*/ ['episode_id' =>Str::random(20),'ledger_name'=>'Bank Account','billing_name'=>'Bank Account','ledger_group_id'=>7,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
+            /*3*/ ['episode_id' =>Str::random(20),'ledger_name'=>'Bank Account 1','billing_name'=>'Bank Account 1','ledger_group_id'=>7,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
+            /*4*/ ['episode_id' =>Str::random(20),'ledger_name'=>'Bank Account 2','billing_name'=>'Bank Account 2','ledger_group_id'=>7,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
+            /*5*/ ['episode_id' =>Str::random(20),'ledger_name'=>'Purchase','billing_name'=>'Purchase','ledger_group_id'=>22,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
+            /*6*/ ['episode_id' =>Str::random(20),'ledger_name'=>'Sale','billing_name'=>'Sale','ledger_group_id'=>19,'state_id'=>1,'transaction_type_id'=>2,'opening_balance'=>0,'is_student'=>0],
+        ]);
 
         Ledger::create([
             'episode_id' =>'a1',
@@ -366,7 +377,6 @@ class DatabaseSeeder extends Seeder
         /*3*/    ['duration_name' => 'Month'],
         /*4*/    ['duration_name' => 'Week'],
         /*5*/    ['duration_name' => 'Hours']
-
    ]);
 
     //Fees Modes
@@ -444,7 +454,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'CP',
             'full_name' => 'Programming Language C+',
             'course_duration' => 20,
-             'duration_type_id' => '4'
+            'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -462,7 +472,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'JAVA',
             'full_name' => 'Programming Language JAVA',
             'course_duration' => 20,
-             'duration_type_id' => '4'
+            'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -471,7 +481,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'PYTHON',
             'full_name' => 'Programming Language PYTHON',
             'course_duration' => 20,
-             'duration_type_id' => '4'
+            'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -480,7 +490,7 @@ class DatabaseSeeder extends Seeder
             'short_name' => 'HTML',
             'full_name' => 'Hyper Text Markup Language',
             'course_duration' => 20,
-             'duration_type_id' => '4'
+            'duration_type_id' => '4'
          ]);
 
          Course::create([
@@ -491,8 +501,6 @@ class DatabaseSeeder extends Seeder
             'course_duration' => 20,
              'duration_type_id' => '4'
          ]);
-
-
 
          Course::create([
             'fees_mode_type_id'=>1,
@@ -519,7 +527,6 @@ class DatabaseSeeder extends Seeder
             /*6*/    ['subject_code'=>'EXCAXIV-V','subject_short_name'=>'Computer Application','subject_full_name'=>'Computer Application for Class IV to V','subject_duration'=>0,'duration_type_id' => '1','subject_description'=>'Computer Application for Class IV to V'],
 
 
-
             /**/    ['subject_code'=>'C','subject_short_name'=>'C','subject_full_name'=>'Programming Language C','subject_duration'=>20,'duration_type_id' => '4','subject_description'=>'Programming Language For C'],
         ]);
 
@@ -533,10 +540,5 @@ class DatabaseSeeder extends Seeder
 
         StudentCourseRegistration::create(['ledger_id'=>2,'course_id'=>4,'reference_number'=>7,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','effective_date'=>'2021-03-01','is_started'=>true]);
         StudentCourseRegistration::create(['ledger_id'=>3,'course_id'=>4,'reference_number'=>8,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2']);
-
-
-
     }
-
-
 }
