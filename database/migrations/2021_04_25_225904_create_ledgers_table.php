@@ -18,18 +18,7 @@ class CreateLedgersTable extends Migration
             $table->string('episode_id', 20)->nullable(false)->unique();
             $table->string('ledger_name')->unique()->nullable(false);
             $table->string('billing_name')->nullable(false);
-
-            $table
-                ->foreignId('ledger_group_id')
-                ->nullable(false) // here
-                ->references('id')
-                ->on('ledger_groups')
-                ->onDelete('cascade');
-
-
-//            $table->bigInteger('ledger_group_id')->unsigned();
-//            $table ->foreign('ledger_group_id')->references('id')->on('ledger_groups')->onDelete('cascade');
-
+            $table->foreignId('ledger_group_id')->nullable(false)->references('id')->on('ledger_groups')->onDelete('cascade');
             //for students
             $table->string('is_student')->default(0);
             $table->string('father_name')->nullable(true);
@@ -56,8 +45,7 @@ class CreateLedgersTable extends Migration
             $table->String('ifsc', 20)->nullable(true);
 
             //for opening balance
-            $table->bigInteger('transaction_type_id')->unsigned()->default(1);
-            $table ->foreign('transaction_type_id')->references('id')->on('transaction_types');
+            $table->foreignId('transaction_type_id')->default(1)->references('id')->on('transaction_types')->onDelete('cascade');
             $table->decimal('opening_balance')->default(0);
 
             $table->tinyInteger('inforce')->default('1');

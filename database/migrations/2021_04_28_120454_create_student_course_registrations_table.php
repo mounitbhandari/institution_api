@@ -18,13 +18,9 @@ class CreateStudentCourseRegistrationsTable extends Migration
             $table->id();
             $table->string('reference_number')->nullable(false)->unique();
             //adding student reference
-            $table->bigInteger('ledger_id')->unsigned();
-            $table ->foreign('ledger_id')->references('id')->on('ledgers')->onDelete('cascade');
-
+            $table->foreignId('ledger_id')->nullable(false)->references('id')->on('ledgers')->onDelete('cascade');
             //adding course
-            $table->bigInteger('course_id')->unsigned();
-            $table ->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
-
+            $table->foreignId('course_id')->nullable(false)->references('id')->on('courses')->onDelete('cascade');
             //fees actual
             $table->integer('base_fee')->default(0);
 
