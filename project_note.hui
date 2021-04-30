@@ -26,5 +26,6 @@ php artisan db:create <[database_name]>
 
 
 https://techsemicolon.github.io/blog/2019/05/30/laravel-validation-required-if-with-unless-all-and-custom-if/
+https://www.csrhymes.com/2019/06/22/using-the-unique-validation-rule-in-laravel-form-request.html
 
 
