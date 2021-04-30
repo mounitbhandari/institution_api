@@ -132,12 +132,16 @@ class DatabaseSeeder extends Seeder
 
         //Ledgers to be created other than Student
         Ledger::insert([
-            /*1*/ ['episode_id' =>Str::random(20),'ledger_name'=>'Cash in Hand','billing_name'=>'Cash in Hand','ledger_group_id'=>13,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
-            /*2*/ ['episode_id' =>Str::random(20),'ledger_name'=>'Bank Account','billing_name'=>'Bank Account','ledger_group_id'=>7,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
-            /*3*/ ['episode_id' =>Str::random(20),'ledger_name'=>'Bank Account 1','billing_name'=>'Bank Account 1','ledger_group_id'=>7,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
-            /*4*/ ['episode_id' =>Str::random(20),'ledger_name'=>'Bank Account 2','billing_name'=>'Bank Account 2','ledger_group_id'=>7,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
-            /*5*/ ['episode_id' =>Str::random(20),'ledger_name'=>'Purchase','billing_name'=>'Purchase','ledger_group_id'=>22,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
-            /*6*/ ['episode_id' =>Str::random(20),'ledger_name'=>'Sale','billing_name'=>'Sale','ledger_group_id'=>19,'state_id'=>1,'transaction_type_id'=>2,'opening_balance'=>0,'is_student'=>0],
+            /*1 Cash In Hand*/      ['episode_id' =>Str::random(20),'ledger_name'=>'Cash in Hand','billing_name'=>'Cash in Hand','ledger_group_id'=>13,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
+            /*2 Bank Account*/      ['episode_id' =>Str::random(20),'ledger_name'=>'Bank Account','billing_name'=>'Bank Account','ledger_group_id'=>7,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
+            /*3 Back Account 1*/    ['episode_id' =>Str::random(20),'ledger_name'=>'Bank Account 1','billing_name'=>'Bank Account 1','ledger_group_id'=>7,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
+            /*4 Bank Account 2*/    ['episode_id' =>Str::random(20),'ledger_name'=>'Bank Account 2','billing_name'=>'Bank Account 2','ledger_group_id'=>7,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
+            /*5 Purchase*/          ['episode_id' =>Str::random(20),'ledger_name'=>'Purchase','billing_name'=>'Purchase','ledger_group_id'=>22,'state_id'=>1,'transaction_type_id'=>1,'opening_balance'=>0,'is_student'=>0],
+            /*6 Sale*/              ['episode_id' =>Str::random(20),'ledger_name'=>'Sale','billing_name'=>'Sale','ledger_group_id'=>19,'state_id'=>1,'transaction_type_id'=>2,'opening_balance'=>0,'is_student'=>0],
+            /*7 Admission Fees*/    ['episode_id' =>Str::random(20),'ledger_name'=>'Admission Fees','billing_name'=>'Admission Fees','ledger_group_id'=>6,'state_id'=>1,'transaction_type_id'=>2,'opening_balance'=>0,'is_student'=>0],
+            /*8 Admission Fees*/    ['episode_id' =>Str::random(20),'ledger_name'=>'Course Fees','billing_name'=>'Course Fees','ledger_group_id'=>6,'state_id'=>1,'transaction_type_id'=>2,'opening_balance'=>0,'is_student'=>0],
+            /*9 Monthly Fees*/      ['episode_id' =>Str::random(20),'ledger_name'=>'Monthly Fees','billing_name'=>'Monthly Fees','ledger_group_id'=>6,'state_id'=>1,'transaction_type_id'=>2,'opening_balance'=>0,'is_student'=>0],
+            /*9 Other Fees*/        ['episode_id' =>Str::random(20),'ledger_name'=>'Other Fees','billing_name'=>'Other Fees','ledger_group_id'=>6,'state_id'=>1,'transaction_type_id'=>2,'opening_balance'=>0,'is_student'=>0],
         ]);
 
         Ledger::create([
