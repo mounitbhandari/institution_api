@@ -152,8 +152,8 @@ class StudentController extends Controller
     {
         $ledger_id = $request->input('studentId');
         $validator = Validator::make($request->all(),[
-            'studentName' => 'required|max:255|unique:ledgers,ledger_name,'.$ledger_id,
-            'stateId' => 'required|exists:states,id'
+            'studentName' => "required|max:255|unique:ledgers,ledger_name,{$ledger_id}",
+            'stateId' => "required|exists:states,id"
         ]);
         if ($validator->fails()) {
             return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);

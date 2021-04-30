@@ -27,7 +27,7 @@ class CourseController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'courseCode' => 'required|max:25|unique:course,course_name',
-            'shortName' => 'required|unique:course,shor_name',
+            'shortName' => 'required|unique:course,short_name',
             'courseDurationTypeId' => 'required|exists:course_duration_types,id',
             'description' => 'max:255',
         ]);

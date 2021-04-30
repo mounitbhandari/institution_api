@@ -19,6 +19,8 @@ class Course extends Model
      * @var mixed
      */
     private $course_code;
+    private $course_duration_type_id;
+
 
     protected $hidden = [
         "inforce","created_at","updated_at"
@@ -27,7 +29,7 @@ class Course extends Model
     /**
      * @var mixed
      */
-    private $course_duration_type_id;
+
 
     public function fees_mode_type()
     {
