@@ -19,6 +19,26 @@ if (! function_exists('get_age')) {
     }
 }
 
+if (! function_exists('get_accounting_year')) {
+    function get_accounting_year($entry_date) {
+        $temp_date = explode("-",$entry_date);
+        if($temp_date[1]>3){
+            $x = $temp_date[0]%100;
+            $accounting_year = $x*100 + ($x+1);
+        }else{
+            $x = $temp_date[0]%100;
+            $accounting_year =($x-1)*100+$x;
+        }
+        return $accounting_year;
+    }
+}
+
+
+
+
+
+//$accounting_year=2021;
+
 
 
 

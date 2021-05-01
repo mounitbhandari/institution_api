@@ -132,3 +132,29 @@ class Ledger extends Model
         return $this->hasMany(StudentCourseRegistration::class, 'ledger_id');
     }
 }
+
+
+/*
+    Sample Student Data
+    "studentId": 35,
+    "episodeId": "CODER-00215-2122",
+    "studentName": "9098 23",
+    "billingName": "Mr. dBimale Paul",
+    "fatherName": "Atanu Paul",
+    "motherName": "Aroti Paul",
+    "guardianName": null,
+    "relationToGuardian": null,
+    "dob": "1977-08-14",
+    "sex": "M",
+    "address": "56\/7,Rabindrapally",
+    "city": "Barrackpore",
+    "district": "North 24 Parganas",
+    "stateId": 22,
+    "pin": 700122,
+    "stateId": 22,
+    "guardianContactNumber": 9832700122,
+    "whatsappNumber": 7985241065,
+    "email": "bimalpaul@gmail.com",
+    "qualification": "HS"
+ *
+ * */

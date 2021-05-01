@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @property mixed episode_id
- * @property mixed relation_to_guardiane
+ * @property mixed relation_to_guardian
  * @property mixed ledger_name
  * @property mixed billing_name
  * @property mixed father_name
@@ -28,6 +28,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class StudentResource extends JsonResource
 {
+    /**
+     * @var mixed
+     */
 
 
     /**
@@ -46,7 +49,7 @@ class StudentResource extends JsonResource
             'fatherName' => $this->father_name,
             'motherName' => $this->mother_name,
             'guardianName' => $this->guardian_name,
-            'relationToGuardian' => $this->relation_to_guardiane,
+            'relationToGuardian' => $this->relation_to_guardian,
             'dob' => $this->dob,
             'sex' => $this->sex,
             'address' => $this->address,

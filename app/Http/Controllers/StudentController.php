@@ -67,6 +67,7 @@ class StudentController extends Controller
         $validator = Validator::make($request->all(), [
             'studentName' => 'required|max:255|unique:ledgers,ledger_name',
             'stateId' => 'required|exists:states,id',
+            'dob'=>"required|date_format:Y-m-d",
             'guardianName'=>['max:255',Rule::requiredIf(function() use($request){
                                 return  get_age($request->input('dob'))<18;
                             })],
@@ -129,7 +130,7 @@ class StudentController extends Controller
             $student->father_name= $request->input('fatherName');
             $student->mother_name= $request->input('motherName');
             $student->guardian_name= $request->input('guardianName');
-            $student->relation_to_guardian= $request->input('relationTogGuardian');
+            $student->relation_to_guardian= $request->input('relationToGuardian');
             $student->dob= $request->input('dob');
             $student->sex= $request->input('sex');
             $student->address= $request->input('address');
