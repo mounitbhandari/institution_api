@@ -37,6 +37,9 @@ class StudentCourseRegistrationController extends Controller
          * */
 
 
+
+
+
         $validator = Validator::make($request->all(), [
             'courseId' => 'bail|required|exists:courses,id',
             'studentId' => 'bail|required|exists:ledgers,id',

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\StudentResource;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class StudentController extends Controller
 {
@@ -67,7 +68,11 @@ class StudentController extends Controller
 
         $validator = Validator::make($request->all(), [
             'studentName' => 'required|max:255|unique:ledgers,ledger_name',
-            'stateId' => 'required|exists:states,id'
+            'stateId' => 'required|exists:states,id',
+            'guardianName'=>'sometimes|max:255',
+            'relationToGuardian'=>'required_with:guardianName',
+            'fatherName'=>"required_without:motherName",
+            'motherName'=>"required_without:fatherName"
         ]);
         if ($validator->fails()) {
             return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
@@ -152,7 +157,7 @@ class StudentController extends Controller
     {
         $ledger_id = $request->input('studentId');
         $validator = Validator::make($request->all(),[
-            'studentName' => "required|max:255|unique:ledgers,ledger_name,{$ledger_id}",
+            'studentName' => ['required',Rule::unique('ledgers', 'ledger_name')->ignore($ledger_id), "max:12"],
             'stateId' => "required|exists:states,id"
         ]);
         if ($validator->fails()) {
