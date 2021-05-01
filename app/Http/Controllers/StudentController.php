@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\CustomVoucher;
 use App\Models\Ledger as Student;
-use App\Models\LedgerGroup;
-use App\Models\StudentCourseRegistration;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -69,7 +67,9 @@ class StudentController extends Controller
         $validator = Validator::make($request->all(), [
             'studentName' => 'required|max:255|unique:ledgers,ledger_name',
             'stateId' => 'required|exists:states,id',
-            'guardianName'=>'sometimes|max:255',
+            'guardianName'=>['max:255',Rule::requiredIf(function() use($request){
+                                return  $request->input('age')<18;
+                            })],
             'relationToGuardian'=>'required_with:guardianName',
             'fatherName'=>"required_without:motherName",
             'motherName'=>"required_without:fatherName"
