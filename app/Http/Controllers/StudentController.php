@@ -68,7 +68,7 @@ class StudentController extends Controller
             'studentName' => 'required|max:255|unique:ledgers,ledger_name',
             'stateId' => 'required|exists:states,id',
             'guardianName'=>['max:255',Rule::requiredIf(function() use($request){
-                                return  $request->input('age')<18;
+                                return  get_age($request->input('dob'))<18;
                             })],
             'relationToGuardian'=>'required_with:guardianName',
             'fatherName'=>"required_without:motherName",
