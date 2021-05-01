@@ -67,13 +67,18 @@ class StudentController extends Controller
         $validator = Validator::make($request->all(), [
             'studentName' => 'required|max:255|unique:ledgers,ledger_name',
             'stateId' => 'required|exists:states,id',
-            'dob'=>"required|date_format:Y-m-d",
+            'dob'=>["required","date_format:Y-m-d",function($attribute, $value, $fail){
+                if(get_age($value)<4){
+                    $fail($attribute.' in valid, age should more than 4 but input age is '.get_age($value));
+                }
+            }],
             'guardianName'=>['max:255',Rule::requiredIf(function() use($request){
-                                return  get_age($request->input('dob'))<18;
+                                return  $request->input('relationToGuardian') || get_age($request->input('dob'))<18;
                             })],
             'relationToGuardian'=>'required_with:guardianName',
             'fatherName'=>"required_without:motherName",
-            'motherName'=>"required_without:fatherName"
+            'motherName'=>"required_without:fatherName",
+            'email'=>'email'
         ]);
         if ($validator->fails()) {
             return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
