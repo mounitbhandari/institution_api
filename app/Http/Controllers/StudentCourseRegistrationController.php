@@ -43,7 +43,7 @@ class StudentCourseRegistrationController extends Controller
                             function($attribute, $value, $fail){
                                 $student=Student::where('id', $value)->where('is_student','=',1)->first();
                                 if(!$student){
-                                    $fail($attribute.' is not a valid student');
+                                    $fail($value.' is not a valid student id');
                                 }
                             }],
         );

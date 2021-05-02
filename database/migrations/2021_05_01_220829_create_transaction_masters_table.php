@@ -22,9 +22,6 @@ class CreateTransactionMastersTable extends Migration
             //transaction_master_reference
             $table->foreignId('reference_transaction_master_id')->nullable(true)->references('id')->on('transaction_masters')->onDelete('cascade');
 
-            $table->foreignId('user_id')->nullable(false)->references('id')->on('ledgers')->onDelete('cascade');
-
-            $table->foreignId('voucher_type_id')->nullable(false)->references('id')->on('voucher_types')->onDelete('cascade');
 
             $table->date('transaction_date')->nullable(false);
             $table->string('comment',255)->nullable(true);

@@ -4,6 +4,7 @@ use App\Http\Controllers\FeesModeTypeController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\StudentCourseRegistrationController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -99,5 +100,10 @@ Route::group(array('prefix' => 'dev'), function() {
 
     //CourseRegistration
     Route::post("studentCourseRegistrations",[StudentCourseRegistrationController::class, 'store']);
+
+    //transactions
+    Route::group(array('prefix' => 'transactions'), function() {
+        Route::post("/feeCredit",[TransactionController::class, 'save_fees']);
+    });
 });
 
