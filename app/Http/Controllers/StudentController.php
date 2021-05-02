@@ -91,7 +91,7 @@ class StudentController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
+        $rules = array(
             'studentName' => 'required|max:255|unique:ledgers,ledger_name',
             'stateId' => 'required|exists:states,id',
             'dob'=>["required","date_format:Y-m-d",function($attribute, $value, $fail){
@@ -100,16 +100,20 @@ class StudentController extends Controller
                 }
             }],
             'guardianName'=>['max:255',Rule::requiredIf(function() use($request){
-                                return  $request->input('relationToGuardian') || get_age($request->input('dob'))<18;
-                            })],
+                return  $request->input('relationToGuardian') || get_age($request->input('dob'))<18;
+            })],
             'relationToGuardian'=>'required_with:guardianName',
             'fatherName'=>"required_without:motherName",
             'motherName'=>"required_without:fatherName",
             'email'=>'email',
             'sex'=>'required|in:M,F,O'
-        ],[
+        );
+        $messsages = array(
             'sex.in'=>"Please use M or F"
-        ]);
+        );
+
+        $validator = Validator::make($request->all(),$rules,$messsages );
+
         if ($validator->fails()) {
             return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
         }

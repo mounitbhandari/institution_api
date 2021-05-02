@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\CustomVoucher;
+use App\Models\Ledger as Student;
 use App\Models\StudentCourseRegistration;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\RequiredIf;
 
 class StudentCourseRegistrationController extends Controller
@@ -20,40 +22,41 @@ class StudentCourseRegistrationController extends Controller
 
     public function store(Request $request)
     {
-
-        //validation
-
         /*
-         * public function rules()
             {
-                return [
-                    'sale_price' => [
-                        new RequiredIf($this->list_type == 'For Sale'),
-                        'string',
-                        ...
-                    ]
-                ];
+                "courseId": 1,
+                "studentId": 13,
+                "effectiveDate": "2021-04-05",
+                "baseFee": 1250,
+                "discountAllowed": 10,
+                "isStarted": 1
             }
          * */
 
 
-
-
-
-        $validator = Validator::make($request->all(), [
+        $rules = array(
             'courseId' => 'bail|required|exists:courses,id',
-            'studentId' => 'bail|required|exists:ledgers,id',
             'baseFee' => 'bail|required|integer|gt:0',
             'discountAllowed'=>'lt:baseFee',
             'effectiveDate' => 'bail|required|date_format:Y-m-d',
-//            'durationTypeId'=> [new RequiredIf('actualCourseDuration= 0')]
-        ],[
+            'studentId' => ['bail','required','exists:ledgers,id',
+                            function($attribute, $value, $fail){
+                                $student=Student::where('id', $value)->where('is_student','=',1)->first();
+                                if(!$student){
+                                    $fail($attribute.' is not a valid student');
+                                }
+                            }],
+        );
+        $messages = array(
             'courseId.required'=> 'Course ID is required', // custom message
             'courseId.exists'=> 'This course ID does not exists', // custom message
             'studentId.required'=> 'You have to input student ID', // custom message
             'studentId.exists'=> 'This student does not exists', // custom message
             'discountAllowed.lt'=> 'Discount should be lower than the Base Price' // custom message
-        ]);
+        );
+
+        $validator = Validator::make($request->all(),$rules,$messages );
+
         if ($validator->fails()) {
             return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
         }
