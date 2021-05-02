@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CourseResource;
 use App\Models\CustomVoucher;
 use App\Models\Ledger as Student;
 use Carbon\Carbon;
@@ -57,6 +58,15 @@ class StudentController extends Controller
             $student = Student::where('id', $id)->where('is_student','=',1)->firstOrFail();
             return response()->json(['success'=>true,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
         } catch (\Exception $e) {
+            return response()->json(['success'=>false,'data'=>null], 404,[],JSON_NUMERIC_CHECK);
+        }
+    }
+
+    public function get_courses_by_id($id){
+        try {
+            $courses = Student::where('id', $id)->where('is_student','=',1)->firstOrFail()->courses;
+            return response()->json(['success'=>true,'data'=>CourseResource::collection($courses)], 200,[],JSON_NUMERIC_CHECK);
+        }catch (\Exception $e) {
             return response()->json(['success'=>false,'data'=>null], 404,[],JSON_NUMERIC_CHECK);
         }
     }

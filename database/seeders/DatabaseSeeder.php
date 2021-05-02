@@ -535,14 +535,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        StudentCourseRegistration::create(['ledger_id'=>1,'course_id'=>1,'reference_number'=>1,'base_fee'=>3000,'discount_allowed'=>1200,'joining_date'=>'2019-01-08','effective_date'=>'2019-02-01','completion_date'=>'2019-11-05','is_completed'=>true]);
-        StudentCourseRegistration::create(['ledger_id'=>1,'course_id'=>2,'reference_number'=>2,'base_fee'=>6900,'discount_allowed'=>3200,'joining_date'=>'2019-11-28','effective_date'=>'2019-12-01','completion_date'=>'2020-11-05','is_completed'=>true]);
-        StudentCourseRegistration::create(['ledger_id'=>1,'course_id'=>3,'reference_number'=>3,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2020-12-28','effective_date'=>'2020-12-29','completion_date'=>'2021-04-05','is_completed'=>true]);
-        StudentCourseRegistration::create(['ledger_id'=>1,'course_id'=>4,'reference_number'=>4,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-04-02','effective_date'=>'2021-04-05','is_started'=>true]);
-        StudentCourseRegistration::create(['ledger_id'=>2,'course_id'=>4,'reference_number'=>5,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2020-02-28','effective_date'=>'2020-03-05','completion_date'=>'2020-11-05','is_completed'=>true]);
-        StudentCourseRegistration::create(['ledger_id'=>2,'course_id'=>4,'reference_number'=>6,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','effective_date'=>'2021-03-01','is_started'=>true]);
+        StudentCourseRegistration::create(['ledger_id'=>11,'course_id'=>1,'reference_number'=>1,'base_fee'=>3000,'discount_allowed'=>1200,'joining_date'=>'2019-01-08','effective_date'=>'2019-02-01','completion_date'=>'2019-11-05','is_completed'=>0]);
+        StudentCourseRegistration::create(['ledger_id'=>11,'course_id'=>2,'reference_number'=>2,'base_fee'=>6900,'discount_allowed'=>3200,'joining_date'=>'2019-11-28','effective_date'=>'2019-12-01','completion_date'=>'2020-11-05','is_completed'=>0]);
+        StudentCourseRegistration::create(['ledger_id'=>11,'course_id'=>3,'reference_number'=>3,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2020-12-28','effective_date'=>'2020-12-29','completion_date'=>'2021-04-05','is_completed'=>0]);
+        StudentCourseRegistration::create(['ledger_id'=>11,'course_id'=>4,'reference_number'=>4,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-04-02','effective_date'=>'2021-04-05','is_started'=>0]);
+        StudentCourseRegistration::create(['ledger_id'=>12,'course_id'=>4,'reference_number'=>5,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2020-02-28','effective_date'=>'2020-03-05','completion_date'=>'2020-11-05','is_completed'=>0]);
+        StudentCourseRegistration::create(['ledger_id'=>12,'course_id'=>4,'reference_number'=>6,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','effective_date'=>'2021-03-01','is_started'=>0]);
 
-        StudentCourseRegistration::create(['ledger_id'=>2,'course_id'=>4,'reference_number'=>7,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','effective_date'=>'2021-03-01','is_started'=>true]);
-        StudentCourseRegistration::create(['ledger_id'=>3,'course_id'=>4,'reference_number'=>8,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2']);
+        StudentCourseRegistration::create(['ledger_id'=>12,'course_id'=>4,'reference_number'=>7,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','effective_date'=>'2021-03-01','is_started'=>0]);
+        StudentCourseRegistration::create(['ledger_id'=>13,'course_id'=>4,'reference_number'=>8,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2']);
     }
 }
