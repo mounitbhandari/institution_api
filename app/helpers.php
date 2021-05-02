@@ -37,8 +37,3 @@ if (! function_exists('get_accounting_year')) {
 
 
 
-//$accounting_year=2021;
-
-
-
-

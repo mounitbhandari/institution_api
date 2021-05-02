@@ -71,6 +71,23 @@ class StudentController extends Controller
         }
     }
 
+    public function get_completed_courses_by_id($id){
+        try {
+            $courses = Student::where('id', $id)->where('is_student','=',1)->firstOrFail()->complete_courses;
+            return response()->json(['success'=>true,'data'=>CourseResource::collection($courses)], 200,[],JSON_NUMERIC_CHECK);
+        }catch (\Exception $e) {
+            return response()->json(['success'=>false,'data'=>null], 404,[],JSON_NUMERIC_CHECK);
+        }
+    }
+    public function get_incomplete_courses_by_id($id){
+        try {
+            $courses = Student::where('id', $id)->where('is_student','=',1)->firstOrFail()->incomplete_courses;
+            return response()->json(['success'=>true,'data'=>CourseResource::collection($courses)], 200,[],JSON_NUMERIC_CHECK);
+        }catch (\Exception $e) {
+            return response()->json(['success'=>false,'data'=>null], 404,[],JSON_NUMERIC_CHECK);
+        }
+    }
+
     public function store(Request $request)
     {
 
@@ -101,16 +118,7 @@ class StudentController extends Controller
         DB::beginTransaction();
 
        try{
-           $temp_date = explode("-",$entryDate);
-           $accounting_year="";
-           if($temp_date[1]>3){
-               $x = $temp_date[0]%100;
-               $accounting_year = $x*100 + ($x+1);
-           }else{
-               $x = $temp_date[0]%100;
-               $accounting_year =($x-1)*100+$x;
-           }
-           //$accounting_year=2021;
+           $accounting_year = get_accounting_year($entryDate);
            $voucher="student";
            $customVoucher=CustomVoucher::where('voucher_name','=',$voucher)->where('accounting_year',"=",$accounting_year)->first();
            if($customVoucher) {

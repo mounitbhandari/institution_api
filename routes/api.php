@@ -52,7 +52,13 @@ Route::group(array('prefix' => 'dev'), function() {
         // এখানে সকলকেই দেখাবে, যাদের কোর্স দেওয়া হয়েছে ও যাদের দেওয়া হয়নি সবাইকেই
         Route::get("/", [StudentController::class, 'index']);
         Route::get("/studentId/{id}", [StudentController::class, 'get_student_by_id']);
+
+        // কোন একজন student এর কি কি কোর্স আছে তা দেখার জন্য, যে গুলো চলছে বা শেষ হয়ে গেছে সবই
         Route::get("/studentId/{id}/courses", [StudentController::class, 'get_courses_by_id']);
+        // কোন একজন student এর কি কি কোর্স শেষ হয়ে গেছে।
+        Route::get("/studentId/{id}/completedCourses", [StudentController::class, 'get_completed_courses_by_id']);
+        // কোন একজন student এর কি কি কোর্স চলছে।
+        Route::get("/studentId/{id}/incompleteCourses", [StudentController::class, 'get_incomplete_courses_by_id']);
 
         //যে সব স্টুডেন্টদের কোর্স দেওয়া হয়েছে তাদের পাওয়ার জন্য, যাদের শেষ হয়ে গেছে তাদেরকেও দেখানো হবে।
         Route::get("/registered/yes", [StudentController::class, 'get_all_course_registered_students']);

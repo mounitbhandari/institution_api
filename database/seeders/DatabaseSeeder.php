@@ -540,9 +540,9 @@ class DatabaseSeeder extends Seeder
         StudentCourseRegistration::create(['ledger_id'=>11,'course_id'=>3,'reference_number'=>3,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2020-12-28','effective_date'=>'2020-12-29','completion_date'=>'2021-04-05','is_completed'=>0]);
         StudentCourseRegistration::create(['ledger_id'=>11,'course_id'=>4,'reference_number'=>4,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-04-02','effective_date'=>'2021-04-05','is_started'=>0]);
         StudentCourseRegistration::create(['ledger_id'=>12,'course_id'=>4,'reference_number'=>5,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2020-02-28','effective_date'=>'2020-03-05','completion_date'=>'2020-11-05','is_completed'=>0]);
-        StudentCourseRegistration::create(['ledger_id'=>12,'course_id'=>4,'reference_number'=>6,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','effective_date'=>'2021-03-01','is_started'=>0]);
+        StudentCourseRegistration::create(['ledger_id'=>13,'course_id'=>4,'reference_number'=>6,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','effective_date'=>'2021-03-01','is_started'=>0,'is_completed'=>1]);
 
-        StudentCourseRegistration::create(['ledger_id'=>12,'course_id'=>4,'reference_number'=>7,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','effective_date'=>'2021-03-01','is_started'=>0]);
-        StudentCourseRegistration::create(['ledger_id'=>13,'course_id'=>4,'reference_number'=>8,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2']);
+        StudentCourseRegistration::create(['ledger_id'=>13,'course_id'=>4,'reference_number'=>7,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','effective_date'=>'2021-03-01','is_started'=>0,'is_completed'=>0]);
+        StudentCourseRegistration::create(['ledger_id'=>13,'course_id'=>4,'reference_number'=>8,'base_fee'=>6900,'discount_allowed'=>5200,'joining_date'=>'2021-02-2','is_completed'=>0]);
     }
 }
