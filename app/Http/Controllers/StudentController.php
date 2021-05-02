@@ -105,7 +105,10 @@ class StudentController extends Controller
             'relationToGuardian'=>'required_with:guardianName',
             'fatherName'=>"required_without:motherName",
             'motherName'=>"required_without:fatherName",
-            'email'=>'email'
+            'email'=>'email',
+            'sex'=>'required|in:M,F,O'
+        ],[
+            'sex.in'=>"Please use M or F"
         ]);
         if ($validator->fails()) {
             return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);

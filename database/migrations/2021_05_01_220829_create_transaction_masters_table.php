@@ -20,10 +20,8 @@ class CreateTransactionMastersTable extends Migration
             $table->foreignId('student_course_registration_id')->nullable(true)->references('id')->on('student_course_registrations')->onDelete('cascade');
 
             //transaction_master_reference
-            $table->foreignId('transaction_master_id')->nullable(true)->references('id')->on('transaction_masters')->onDelete('cascade');
+            $table->foreignId('reference_transaction_master_id')->nullable(true)->references('id')->on('transaction_masters')->onDelete('cascade');
 
-
-            $table->unsignedBigInteger('reference_transaction_master_id')->nullable(true);
             $table->foreignId('user_id')->nullable(false)->references('id')->on('ledgers')->onDelete('cascade');
 
             $table->foreignId('voucher_type_id')->nullable(false)->references('id')->on('voucher_types')->onDelete('cascade');
