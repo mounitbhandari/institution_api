@@ -16,6 +16,11 @@ class CreateTransactionMastersTable extends Migration
         Schema::create('transaction_masters', function (Blueprint $table) {
             $table->id();
             $table->string('transaction_number',20)->unique()->nullable(false);
+
+            //Voucher Type
+            $table->foreignId('voucher_type_id')->nullable(false)->references('id')->on('voucher_types')->onDelete('cascade');
+
+
             //StudentCourseRegistration reference
             $table->foreignId('student_course_registration_id')->nullable(true)->references('id')->on('student_course_registrations')->onDelete('cascade');
 
@@ -25,6 +30,10 @@ class CreateTransactionMastersTable extends Migration
 
             $table->date('transaction_date')->nullable(false);
             $table->string('comment',255)->nullable(true);
+
+            //user id
+            $table->foreignId('user_id')->nullable(true)->references('id')->on('users')->onDelete('cascade');
+
 
             $table->tinyInteger('inforce')->default('1');
             $table->timestamps();

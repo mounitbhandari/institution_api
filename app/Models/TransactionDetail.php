@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class TransactionDetail extends Model
 {
     use HasFactory;
+
+    /**
+     * @var mixed
+     */
+    private $purchase_master_id;
 }

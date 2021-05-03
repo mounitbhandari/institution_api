@@ -103,7 +103,7 @@ Route::group(array('prefix' => 'dev'), function() {
 
     //transactions
     Route::group(array('prefix' => 'transactions'), function() {
-        Route::post("/feeCredit",[TransactionController::class, 'save_fees']);
+        Route::post("/feesCharged",[TransactionController::class, 'save_fees']);
     });
 });
 

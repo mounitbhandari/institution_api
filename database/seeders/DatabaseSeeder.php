@@ -126,7 +126,8 @@ class DatabaseSeeder extends Seeder
             ['voucher_type_name'=>'Contra Voucher'],             //5
             ['voucher_type_name'=>'Journal Voucher'],            //6
             ['voucher_type_name'=>'Credit Note Voucher'],        //7
-            ['voucher_type_name'=>'Debit Note Voucher']          //8
+            ['voucher_type_name'=>'Debit Note Voucher'],         //8
+            ['voucher_type_name'=>'Fees Charged Journal Voucher']//9
         ]);
         $this->command->info('Voucher type created');
 
