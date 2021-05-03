@@ -100,6 +100,8 @@ Route::group(array('prefix' => 'dev'), function() {
 
     //CourseRegistration
     Route::post("studentCourseRegistrations",[StudentCourseRegistrationController::class, 'store']);
+    Route::get("studentCourseRegistrations",[StudentCourseRegistrationController::class, 'index']);
+
 
     //transactions
     Route::group(array('prefix' => 'transactions'), function() {

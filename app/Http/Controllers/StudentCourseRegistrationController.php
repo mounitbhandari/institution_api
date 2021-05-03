@@ -17,7 +17,8 @@ class StudentCourseRegistrationController extends Controller
 {
     public function index()
     {
-        //
+        $courseRegistration= StudentCourseRegistration::get();
+        return response()->json(['success'=>1,'data'=> $courseRegistration], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function store(Request $request)
