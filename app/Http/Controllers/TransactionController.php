@@ -55,7 +55,7 @@ class TransactionController extends Controller
         DB::beginTransaction();
         try{
             $result_array=array();
-            $accounting_year = get_accounting_year($request->input('transactionDate'));
+            $accounting_year = get_accounting_year($input_transaction_master->transactionDate);
             $voucher="Fees Charged";
             $customVoucher=CustomVoucher::where('voucher_name','=',$voucher)->where('accounting_year',"=",$accounting_year)->first();
             if($customVoucher) {
@@ -83,8 +83,8 @@ class TransactionController extends Controller
             $transaction_master= new TransactionMaster();
             $transaction_master->voucher_type_id = 8; // 8 is the voucher_type_id in voucher_types table for Fees Charged Journal Voucher
             $transaction_master->transaction_number = $transaction_number;
-            $transaction_master->transaction_date = $request->input('transactionDate');
-            $transaction_master->comment = $request->input('comment');
+            $transaction_master->transaction_date = $input_transaction_master->transactionDate;
+            $transaction_master->comment = $input_transaction_master->comment;
             $transaction_master->save();
             $result_array['transaction_master']=$transaction_master;
 //            foreach($transaction_details as $transaction_detail){
