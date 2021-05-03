@@ -18,7 +18,9 @@ class TransactionController extends Controller
 
         $validator = Validator::make($input,[
             'transactionMaster' => 'required',
-            'transactionDetails' => 'required',
+            'transactionDetails' => ['required',function($attribute, $value, $fail){
+                $fail('testing'.$value[0]);
+            }],
         ]);
         if($validator->fails()){
             return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 200,[],JSON_NUMERIC_CHECK);
@@ -27,7 +29,7 @@ class TransactionController extends Controller
         $input=($request->json()->all());
         $input_transaction_master=(object)($input['transactionMaster']);
         $input_transaction_details=($input['transactionDetails']);
-//        return response()->json(['success'=>0,'data'=>$input], 200,[],JSON_NUMERIC_CHECK);
+
         //validation
         $rules = array(
             'userId'=>'required|exists:users,id',
