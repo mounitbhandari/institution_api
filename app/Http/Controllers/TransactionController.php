@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TransactionMasterResource;
 use App\Models\CustomVoucher;
 use App\Models\StudentCourseRegistration;
 use App\Models\TransactionDetail;
@@ -126,7 +127,7 @@ class TransactionController extends Controller
                 $detail = (object)$transaction_detail;
                 $td = new TransactionDetail();
                 $td->transaction_master_id = $transaction_master->id;
-                $td->ledger_id = $detail->studentId;
+                $td->ledger_id = $detail->ledgerId;
                 $td->transaction_type_id = $detail->transactionTypeId;
                 $td->amount = $detail->amount;
                 $td->save();
@@ -140,6 +141,6 @@ class TransactionController extends Controller
             return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
         }
 
-        return response()->json(['success'=>2,'data'=>null,'data'=>$result_array], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>2,'data'=>new TransactionMasterResource($result_array['transaction_master'])], 200,[],JSON_NUMERIC_CHECK);
     }
 }

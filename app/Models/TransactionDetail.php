@@ -29,4 +29,14 @@ class TransactionDetail extends Model
      * @var mixed
      */
     private $amount;
+
+
+    public function ledger()
+    {
+        return $this->belongsTo(Ledger::class,'ledger_id');
+    }
+    public function transaction_type()
+    {
+        return $this->belongsTo(TransactionType::class,'transaction_type_id');
+    }
 }

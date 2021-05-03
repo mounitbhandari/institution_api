@@ -29,4 +29,13 @@ class TransactionMaster extends Model
      * @var mixed
      */
     private $comment;
+
+
+    public function voucher_type()
+    {
+        return $this->belongsTo(VoucherType::class,'voucher_type_id');
+    }
+    public function transaction_details() {
+        return $this->hasMany(TransactionDetail::class, 'transaction_master_id');
+    }
 }
