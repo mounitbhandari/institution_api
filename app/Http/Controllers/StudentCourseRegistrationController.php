@@ -123,9 +123,26 @@ class StudentCourseRegistrationController extends Controller
 
         return response()->json(['success'=>1,'data'=> $courseRegistration], 200,[],JSON_NUMERIC_CHECK);
     }
-    public function update(Request $request, StudentCourseRegistration $studentCourseRegistration)
+    public function update(Request $request)
     {
-        //
+        $studentCourseRegistrations= new StudentCourseRegistration();
+        $studentCourseRegistrations= StudentCourseRegistration::find($request->input('id'));
+        $studentCourseRegistrations->reference_number=$request->input('reference_number');
+        $studentCourseRegistrations->ledger_id=$request->input('ledger_id');
+        $studentCourseRegistrations->course_id=$request->input('course_id');
+        $studentCourseRegistrations->base_fee=$request->input('base_fee');
+        $studentCourseRegistrations->discount_allowed=$request->input('discount_allowed');
+        $studentCourseRegistrations->joining_date=$request->input('joining_date');
+        $studentCourseRegistrations->effective_date=$request->input('effective_date');
+        $studentCourseRegistrations->completion_date=$request->input('completion_date');
+        $studentCourseRegistrations->actual_course_duration=$request->input('actual_course_duration');
+        $studentCourseRegistrations->duration_type_id=$request->input('duration_type_id');
+        $studentCourseRegistrations->is_started=$request->input('is_started');
+        $studentCourseRegistrations->is_started=$request->input('is_started');
+        $studentCourseRegistrations->save();
+
+        return response()->json(['success'=>1,'data'=> $studentCourseRegistrations], 200,[],JSON_NUMERIC_CHECK);
+
     }
 
     /**
@@ -134,8 +151,14 @@ class StudentCourseRegistrationController extends Controller
      * @param  \App\Models\StudentCourseRegistration  $studentCourseRegistration
      * @return \Illuminate\Http\Response
      */
-    public function destroy(StudentCourseRegistration $studentCourseRegistration)
+    public function destroy($id)
     {
-        //
+        $studentCourseRegistrations= StudentCourseRegistration::find($id);
+        if(!empty($studentCourseRegistrations)){
+            $result = $studentCourseRegistrations->delete();
+        }else{
+            $result = false;
+        }
+        return response()->json(['success'=>$result,'id'=>$id], 200);
     }
 }
