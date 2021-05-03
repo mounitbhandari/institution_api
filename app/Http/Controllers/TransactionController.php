@@ -87,11 +87,18 @@ class TransactionController extends Controller
             $transaction_master->comment = $input_transaction_master->comment;
             $transaction_master->save();
             $result_array['transaction_master']=$transaction_master;
-//            foreach($transaction_details as $transaction_detail){
-//                $td = new TransactionDetail();
-//                $td->purchase_master_id = $purchaseMaster->id;
-//                $td->save();
-//            }
+            $transaction_details=array();
+            foreach($input_transaction_details as $transaction_detail){
+                $detail = (object)$transaction_detail;
+                $td = new TransactionDetail();
+                $td->transaction_master_id = $transaction_master->id;
+                $td->ledger_id = $detail->studentId;
+                $td->transaction_type_id = $detail->transactionTypeId;
+                $td->amount = $detail->amount;
+                $td->save();
+                $transaction_details[]=$td;
+            }
+            $result_array['transaction_details']=$transaction_details;
             DB::commit();
 
         }catch(\Exception $e){
