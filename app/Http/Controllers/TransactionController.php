@@ -19,7 +19,20 @@ class TransactionController extends Controller
         $validator = Validator::make($input,[
             'transactionMaster' => 'required',
             'transactionDetails' => ['required',function($attribute, $value, $fail){
-                $fail('testing'.$value[0]);
+                $dr=0;
+                $cr=0;
+                foreach ($value as $v ){
+                    if($v['transactionTypeId']==1){
+                        $dr=$dr+$v['amount'];
+                    }
+                    if($v['transactionTypeId']==2){
+                        $cr=$cr+$v['amount'];
+                    }
+                }
+                if($dr!=$cr){
+                    $fail("As per accounting rule Debit({$dr})  and Credit({$cr}) should be same");
+                }
+
             }],
         ]);
         if($validator->fails()){
