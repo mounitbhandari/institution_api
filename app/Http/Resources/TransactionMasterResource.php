@@ -12,6 +12,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed id
  * @property mixed voucher_type
  * @property mixed transaction_details
+ * @property mixed reference_transaction_master_id
  */
 class TransactionMasterResource extends JsonResource
 {
@@ -26,6 +27,7 @@ class TransactionMasterResource extends JsonResource
         return [
            "transactionNumber" =>$this->transaction_number,
            "transactionDate"=>$this->transaction_date,
+            "referenceTransactionMasterId"=>$this->reference_transaction_master_id,
            "comment"=>$this->comment,
            "transactionMasterId"=>$this->id,
            "voucherType"=> new VoucherTypeResource($this->voucher_type),

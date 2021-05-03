@@ -29,12 +29,6 @@ class LedgerResource extends JsonResource
             'ledgerId'=>$this->id,
             'ledgerName'=>$this->ledger_name,
             'billingName'=>$this->billing_name,
-            'address' => $this->address,
-            'city' => $this->city,
-            'district' => $this->district,
-            'stateId' => $this->state_id,
-            'pin' => $this->pin,
-            'state'=>new StateResource($this->state ),
         ];
     }
 }
