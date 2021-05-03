@@ -67,6 +67,15 @@ class TransactionController extends Controller
             return response()->json(['position'=>1,'success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
         }
 
+        //details verification
+        //validation
+        $rules = array(
+            "*.transactionTypeId"=>'required|in:1,2'
+        );
+        $validator = Validator::make($input['transactionDetails'],$rules,$messages );
+        if ($validator->fails()) {
+            return response()->json(['position'=>1,'success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
+        }
         DB::beginTransaction();
         try{
             $result_array=array();
