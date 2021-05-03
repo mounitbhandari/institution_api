@@ -21,7 +21,13 @@ class TransactionController extends Controller
             'transactionDetails' => ['required',function($attribute, $value, $fail){
                 $dr=0;
                 $cr=0;
+                $is_transaction_type_mismatch=false;
                 foreach ($value as $v ){
+                    //if transaction type id is incorrect
+
+                    if(!($v['transactionTypeId']==1 || $v['transactionTypeId']==2)){
+                        $is_transaction_type_mismatch=true;
+                    }
                     if($v['transactionTypeId']==1){
                         $dr=$dr+$v['amount'];
                     }
@@ -29,9 +35,13 @@ class TransactionController extends Controller
                         $cr=$cr+$v['amount'];
                     }
                 }
+                if($is_transaction_type_mismatch){
+                    return $fail("Transaction type id is incorrect");
+                }
                 if($dr!=$cr){
                     $fail("As per accounting rule Debit({$dr})  and Credit({$cr}) should be same");
                 }
+
 
             }],
         ]);
