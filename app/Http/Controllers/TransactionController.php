@@ -25,6 +25,12 @@ class TransactionController extends Controller
         return response()->json(['success'=>0,'data'=>TransactionMasterResource::collection($transactions)], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function get_total_dues_by_student_id($id){
+        $debit = TransactionDetail::where('ledger_id',$id)->where('transaction_type_id',1)->sum('amount');
+        $credit = TransactionDetail::where('ledger_id',$id)->where('transaction_type_id',2)->sum('amount');
+        return response()->json(['success'=>0,'data'=>$debit-$credit], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     //saving fees charging to student
     public function save_fees_charge(Request $request)
     {
@@ -156,6 +162,7 @@ class TransactionController extends Controller
             $transaction_master->voucher_type_id = 9; // 9 is the voucher_type_id in voucher_types table for Fees Charged Journal Voucher
             $transaction_master->transaction_number = $transaction_number;
             $transaction_master->transaction_date = $input_transaction_master->transactionDate;
+            $transaction_master->student_course_registration_id = $input_transaction_master->studentCourseRegistrationId;
             $transaction_master->comment = $input_transaction_master->comment;
             $transaction_master->save();
             $result_array['transaction_master']=$transaction_master;
@@ -293,6 +300,7 @@ class TransactionController extends Controller
             $transaction_master->voucher_type_id = 4; // 4 is the voucher_type_id in voucher_types table for Receipt voucher
             $transaction_master->transaction_number = $transaction_number;
             $transaction_master->transaction_date = $input_transaction_master->transactionDate;
+            $transaction_master->student_course_registration_id = $input_transaction_master->studentCourseRegistrationId;
             $transaction_master->reference_transaction_master_id = $input_transaction_master->referenceTransactionMasterId;
             $transaction_master->comment = $input_transaction_master->comment;
             $transaction_master->save();
