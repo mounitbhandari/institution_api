@@ -109,6 +109,10 @@ Route::group(array('prefix' => 'dev'), function() {
 
     //transactions
     Route::group(array('prefix' => 'transactions'), function() {
+        Route::get("/all",[TransactionController::class, 'get_all_transactions']);
+        Route::get("/feesCharged",[TransactionController::class, 'get_all_fees_charged_transactions']);
+
+        //saving fees charged
         Route::post("/feesCharged",[TransactionController::class, 'save_fees_charge']);
     });
 });

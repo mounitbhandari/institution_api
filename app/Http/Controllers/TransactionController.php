@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Validator;
 
 class TransactionController extends Controller
 {
+
+    public function get_all_transactions(){
+        $transactions = TransactionMaster::get();
+        return response()->json(['success'=>0,'data'=>TransactionMasterResource::collection($transactions)], 200,[],JSON_NUMERIC_CHECK);
+    }
+    //get fees charged transactions
+    public function get_all_fees_charged_transactions(){
+        $transactions = TransactionMaster::where('voucher_type_id',8)->get();
+        return response()->json(['success'=>0,'data'=>TransactionMasterResource::collection($transactions)], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     //saving fees charging to student
     public function save_fees_charge(Request $request)
     {
@@ -181,10 +192,12 @@ class TransactionController extends Controller
                 $cr=0;
                 foreach ($value as $v ){
                     //if transaction type id is incorrect
-
                     if(!($v['transactionTypeId']==1 || $v['transactionTypeId']==2)){
                         return $fail("Transaction type id is incorrect");
                     }
+
+
+
                     if($v['transactionTypeId']==1){
                         $dr=$dr+$v['amount'];
                     }
