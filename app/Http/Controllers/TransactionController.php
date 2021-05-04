@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\TransactionMasterResource;
 use App\Models\CustomVoucher;
+use App\Models\Ledger;
 use App\Models\StudentCourseRegistration;
 use App\Models\TransactionDetail;
 use App\Models\TransactionMaster;
@@ -23,8 +24,35 @@ class TransactionController extends Controller
             'transactionDetails' => ['required',function($attribute, $value, $fail){
                 $dr=0;
                 $cr=0;
+
                 foreach ($value as $v ){
-                    //if transaction type id is incorrect
+
+                    /*
+                     * This is a fees charging transaction, hence only a student can be debited
+                     * */
+                    if($v['transactionTypeId']==1){
+                        $student = Ledger::find($v['ledgerId']);
+                        if(!$student){
+                            return $fail($v['ledgerId']." this ledger does not exist");
+                        }
+                        if($student->is_student==0){
+                            return $fail("Only student can be Debited");
+                        }
+                    }
+                    /*
+                     * This is a fees charging transaction, hence only fees ca be credited
+                     * */
+
+                    if($v['transactionTypeId']==2){
+                        $ledger = Ledger::find($v['ledgerId']);
+                        if(!$ledger){
+                            return $fail($v['ledgerId']." this ledger does not exist");
+                        }
+                        if($ledger->ledger_group_id!=6){
+                            return $fail("This is not belongs to income ledger like fees");
+                        }
+                    }
+
 
                     if(!($v['transactionTypeId']==1 || $v['transactionTypeId']==2)){
                         return $fail("Transaction type id is incorrect");
