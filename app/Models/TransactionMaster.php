@@ -29,6 +29,10 @@ class TransactionMaster extends Model
      * @var mixed
      */
     private $comment;
+    /**
+     * @var mixed
+     */
+    private $reference_transaction_master_id;
 
 
     public function voucher_type()

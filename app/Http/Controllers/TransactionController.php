@@ -153,7 +153,7 @@ class TransactionController extends Controller
 
             //saving transaction master
             $transaction_master= new TransactionMaster();
-            $transaction_master->voucher_type_id = 8; // 8 is the voucher_type_id in voucher_types table for Fees Charged Journal Voucher
+            $transaction_master->voucher_type_id = 9; // 9 is the voucher_type_id in voucher_types table for Fees Charged Journal Voucher
             $transaction_master->transaction_number = $transaction_number;
             $transaction_master->transaction_date = $input_transaction_master->transactionDate;
             $transaction_master->comment = $input_transaction_master->comment;
@@ -196,8 +196,7 @@ class TransactionController extends Controller
                         return $fail("Transaction type id is incorrect");
                     }
 
-
-
+                    //checking debit and credit equality
                     if($v['transactionTypeId']==1){
                         $dr=$dr+$v['amount'];
                     }
@@ -205,12 +204,10 @@ class TransactionController extends Controller
                         $cr=$cr+$v['amount'];
                     }
                 }
-
+                //if debit and credit are not equal will through error
                 if($dr!=$cr){
                     $fail("As per accounting rule Debit({$dr})  and Credit({$cr}) should be same");
                 }
-
-
             }],
         ]);
         if($validator->fails()){
@@ -221,10 +218,11 @@ class TransactionController extends Controller
         $input_transaction_master=(object)($input['transactionMaster']);
         $input_transaction_details=($input['transactionDetails']);
 
-        //validation
+        //validation for transaction master
         $rules = array(
             'userId'=>'required|exists:users,id',
             'transactionDate' => 'bail|required|date_format:Y-m-d',
+            'referenceTransactionMasterId'=>['required'],
             'studentCourseRegistrationId' => ['bail','required',
                 function($attribute, $value, $fail){
                     $StudentCourseRegistration=StudentCourseRegistration::where('id', $value)->where('is_completed','=',0)->first();
@@ -271,7 +269,7 @@ class TransactionController extends Controller
                 $customVoucher->accounting_year= $accounting_year;
                 $customVoucher->last_counter=1;
                 $customVoucher->delimiter='-';
-                $customVoucher->prefix='FEES';
+                $customVoucher->prefix='RPT';
                 $customVoucher->save();
             }
             //adding Zeros before number
@@ -283,9 +281,10 @@ class TransactionController extends Controller
 
             //saving transaction master
             $transaction_master= new TransactionMaster();
-            $transaction_master->voucher_type_id = 5; // 5 is the voucher_type_id in voucher_types table for Receipt voucher
+            $transaction_master->voucher_type_id = 4; // 4 is the voucher_type_id in voucher_types table for Receipt voucher
             $transaction_master->transaction_number = $transaction_number;
             $transaction_master->transaction_date = $input_transaction_master->transactionDate;
+            $transaction_master->reference_transaction_master_id = $input_transaction_master->referenceTransactionMasterId;
             $transaction_master->comment = $input_transaction_master->comment;
             $transaction_master->save();
             $result_array['transaction_master']=$transaction_master;
