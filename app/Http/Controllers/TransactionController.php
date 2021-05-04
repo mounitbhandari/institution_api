@@ -222,7 +222,16 @@ class TransactionController extends Controller
         $rules = array(
             'userId'=>'required|exists:users,id',
             'transactionDate' => 'bail|required|date_format:Y-m-d',
-            'referenceTransactionMasterId'=>['required'],
+            'referenceTransactionMasterId'=>['required','exists:transaction_masters,id',
+                function($attribute, $value, $fail){
+                    $TM = TransactionMaster::find($value);
+                    if(!$TM){
+                        return $fail($value.' no such transactions exists');
+                    }
+                    if($TM->voucher_type_id!=9){
+                        return $fail($value.' this is not a Fees Entry');
+                    }
+                }],
             'studentCourseRegistrationId' => ['bail','required',
                 function($attribute, $value, $fail){
                     $StudentCourseRegistration=StudentCourseRegistration::where('id', $value)->where('is_completed','=',0)->first();
