@@ -42,4 +42,10 @@ class TransactionMaster extends Model
     public function transaction_details() {
         return $this->hasMany(TransactionDetail::class, 'transaction_master_id');
     }
+    public function reference_transaction() {
+        return $this->hasMany(TransactionMaster::class, 'reference_transaction_master_id');
+    }
+    public function parent_transaction() {
+        return $this->belongsTo(TransactionMaster::class, 'reference_transaction_master_id');
+    }
 }
