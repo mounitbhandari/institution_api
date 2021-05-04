@@ -112,6 +112,9 @@ Route::group(array('prefix' => 'dev'), function() {
         Route::get("/all",[TransactionController::class, 'get_all_transactions']);
         Route::get("/feesCharged",[TransactionController::class, 'get_all_fees_charged_transactions']);
 
+        Route::get("/dues/studentId/{id}",[TransactionController::class, 'get_total_dues_by_student_id']);
+
+
         //saving fees charged
         Route::post("/feesCharged",[TransactionController::class, 'save_fees_charge']);
         Route::post("/feesCharged",[TransactionController::class, 'save_fees_charge']);
