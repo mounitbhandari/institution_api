@@ -114,6 +114,8 @@ Route::group(array('prefix' => 'dev'), function() {
 
         Route::get("/dues/studentId/{id}",[TransactionController::class, 'get_total_dues_by_student_id']);
 
+        Route::get("/dues/byCourse/studentId/{id}",[TransactionController::class, 'get_student_due_by_student_course_registration_id']);
+
 
         //saving fees charged
         Route::post("/feesCharged",[TransactionController::class, 'save_fees_charge']);

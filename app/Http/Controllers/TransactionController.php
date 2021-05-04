@@ -30,6 +30,13 @@ class TransactionController extends Controller
         $credit = TransactionDetail::where('ledger_id',$id)->where('transaction_type_id',2)->sum('amount');
         return response()->json(['success'=>0,'data'=>$debit-$credit], 200,[],JSON_NUMERIC_CHECK);
     }
+    public function get_student_due_by_student_course_registration_id($id){
+        $studentCourseRegistrationId = StudentCourseRegistration::where('ledger_id',$id)->first()->id;
+        $transaction_master_ids = TransactionMaster::where('student_course_registration_id',$studentCourseRegistrationId)->pluck('id');
+        $result = TransactionDetail::whereIn('transaction_master_id',$transaction_master_ids)->where('transaction_type_id',1)->sum('amount');
+
+        return response()->json(['success'=>0,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
+    }
 
     //saving fees charging to student
     public function save_fees_charge(Request $request)
