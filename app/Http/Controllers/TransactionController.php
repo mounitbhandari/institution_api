@@ -21,7 +21,7 @@ class TransactionController extends Controller
     }
     //get fees charged transactions
     public function get_all_fees_charged_transactions(){
-        $transactions = TransactionMaster::where('voucher_type_id',8)->get();
+        $transactions = TransactionMaster::where('voucher_type_id',9)->get();
         return response()->json(['success'=>0,'data'=>TransactionMasterResource::collection($transactions)], 200,[],JSON_NUMERIC_CHECK);
     }
 
