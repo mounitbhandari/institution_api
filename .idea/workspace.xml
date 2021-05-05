@@ -20,9 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd399ebc-6022-4046-a8f8-ea2662f73b75" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/laravel-tinker-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel-tinker-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TransactionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +206,7 @@
       <workItem from="1620154580613" duration="5861000" />
       <workItem from="1620190323359" duration="2849000" />
       <workItem from="1620198617551" duration="8000" />
-      <workItem from="1620230905408" duration="4125000" />
+      <workItem from="1620230905408" duration="4811000" />
     </task>
     <servers />
   </component>
