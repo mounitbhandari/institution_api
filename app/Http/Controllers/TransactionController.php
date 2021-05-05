@@ -249,14 +249,7 @@ class TransactionController extends Controller
                     if($TM->voucher_type_id!=9){
                         return $fail($value.' this is not a Fees Entry');
                     }
-                }],
-            'studentCourseRegistrationId' => ['bail','required',
-                function($attribute, $value, $fail){
-                    $StudentCourseRegistration=StudentCourseRegistration::where('id', $value)->where('is_completed','=',0)->first();
-                    if(!$StudentCourseRegistration){
-                        $fail($value.' is not a valid Course Registration Number');
-                    }
-                }],
+                }]
         );
         $messages = array(
             'transactionDate.required'=>'Transaction Date is required',
@@ -311,7 +304,7 @@ class TransactionController extends Controller
             $transaction_master->voucher_type_id = 4; // 4 is the voucher_type_id in voucher_types table for Receipt voucher
             $transaction_master->transaction_number = $transaction_number;
             $transaction_master->transaction_date = $input_transaction_master->transactionDate;
-            $transaction_master->student_course_registration_id = $input_transaction_master->studentCourseRegistrationId;
+
             $transaction_master->reference_transaction_master_id = $input_transaction_master->referenceTransactionMasterId;
             $transaction_master->comment = $input_transaction_master->comment;
             $transaction_master->save();
