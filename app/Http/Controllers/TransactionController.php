@@ -31,10 +31,14 @@ class TransactionController extends Controller
         return response()->json(['success'=>0,'data'=>$debit-$credit], 200,[],JSON_NUMERIC_CHECK);
     }
     public function get_student_due_by_student_course_registration_id($id){
+        //getting student course registration id
         $studentCourseRegistrationId = StudentCourseRegistration::where('ledger_id',$id)->first()->id;
+        //transaction masters ids related to course registration
         $transaction_master_ids = TransactionMaster::where('student_course_registration_id',$studentCourseRegistrationId)->pluck('id');
-        $result = TransactionDetail::whereIn('transaction_master_id',$transaction_master_ids)->where('transaction_type_id',1)->sum('amount');
 
+        $debit = TransactionDetail::whereIn('transaction_master_id',$transaction_master_ids)->where('transaction_type_id',1)->where('ledger_id',$id)->sum('amount');
+        $credit = TransactionDetail::whereIn('transaction_master_id',$transaction_master_ids)->where('transaction_type_id',2)->where('ledger_id',$id)->sum('amount');
+        $result = $debit - $credit;
         return response()->json(['success'=>0,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
     }
 
