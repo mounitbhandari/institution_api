@@ -196,7 +196,7 @@ class TransactionController extends Controller
             return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
         }
 
-        return response()->json(['success'=>2,'data'=>new TransactionMasterResource($result_array['transaction_master'])], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>new TransactionMasterResource($result_array['transaction_master'])], 200,[],JSON_NUMERIC_CHECK);
     }
     //fees received
     public function save_fees_received(Request $request)
@@ -329,5 +329,20 @@ class TransactionController extends Controller
         }
 
         return response()->json(['success'=>2,'data'=>new TransactionMasterResource($result_array['transaction_master'])], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    public function get_bill_details_by_id($id){
+        $tm = TransactionMaster::find($id);
+        $feesChargedTM = TransactionMaster::find($tm->reference_transaction_master_id);
+        $feesCharged = TransactionDetail::where('transaction_master_id',$feesChargedTM->id)->where('transaction_type_id',2)->sum('amount');
+        $feesPaid = TransactionDetail::where('transaction_master_id',$id)->where('transaction_type_id',2)->first();
+
+        $feesPaidIds = TransactionMaster::where('reference_transaction_master_id',$tm->reference_transaction_master_id)->get()->pluck('id');
+        $totalFeesPaid = TransactionDetail::whereIn('transaction_master_id',$feesPaidIds)->where('transaction_type_id',2)->sum('amount');
+
+        $currentDues = $feesCharged - $totalFeesPaid;
+        $studentDetails = Ledger::find($feesPaid->ledger_id);
+        return response()->json(['success'=>1,
+            'fessPaid'=>$totalFeesPaid,'due'=>$currentDues,'student'=>$studentDetails], 200,[],JSON_NUMERIC_CHECK);
     }
 }

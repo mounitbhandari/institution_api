@@ -121,6 +121,8 @@ Route::group(array('prefix' => 'dev'), function() {
         Route::post("/feesCharged",[TransactionController::class, 'save_fees_charge']);
         //saving fees received
         Route::post("/feesReceived",[TransactionController::class, 'save_fees_received']);
+
+        Route::get("/billDetails/id/{id}",[TransactionController::class, 'get_bill_details_by_id']);
     });
 });
 

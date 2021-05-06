@@ -19,13 +19,21 @@ class Course extends Model
      * @var mixed
      */
     private $course_code;
-    private $course_duration_type_id;
 
 
     protected $hidden = [
         "inforce","created_at","updated_at"
     ];
     protected $guarded = ['id'];
+    /**
+     * @var mixed
+     */
+    private $duration_type_id;
+    /**
+     * @var mixed
+     */
+    private $fees_mode_type_id;
+
     /**
      * @var mixed
      */
