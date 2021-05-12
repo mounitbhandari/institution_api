@@ -70,6 +70,7 @@ Route::group(array('prefix' => 'dev'), function() {
         Route::get("/isDeletable/{id}", [StudentController::class, 'is_deletable_student']);
 
         Route::post("/",[StudentController::class, 'store']);
+        Route::post("/store_multiple",[StudentController::class, 'store_multiple']);
         Route::patch("/",[StudentController::class, 'update']);
         Route::delete("/{id}",[StudentController::class, 'delete']);
     });
