@@ -14,6 +14,10 @@ class StudentCourseRegistrationResource extends JsonResource
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
+        return [
+            'stateId'=>$this->id,
+            'stateName'=>$this->state_name,
+            'stateCode'=>$this->state_code
+        ];
     }
 }

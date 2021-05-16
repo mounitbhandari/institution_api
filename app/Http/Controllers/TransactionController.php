@@ -32,14 +32,14 @@ class TransactionController extends Controller
     }
     public function get_student_due_by_student_course_registration_id($id){
         //getting student course registration id
-        $studentCourseRegistrationId = StudentCourseRegistration::where('ledger_id',$id)->first()->id;
-        //transaction masters ids related to course registration
-        $transaction_master_ids = TransactionMaster::where('student_course_registration_id',$studentCourseRegistrationId)->pluck('id');
+        $id =TransactionMaster::where('student_course_registration_id',2)->first()->id;
+        $credit = TransactionDetail::where('transaction_master_id',1)->where('transaction_type_id',2)->sum('amount');
 
-        $debit = TransactionDetail::whereIn('transaction_master_id',$transaction_master_ids)->where('transaction_type_id',1)->where('ledger_id',$id)->sum('amount');
-        $credit = TransactionDetail::whereIn('transaction_master_id',$transaction_master_ids)->where('transaction_type_id',2)->where('ledger_id',$id)->sum('amount');
-        $result = $debit - $credit;
-        return response()->json(['success'=>0,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
+        $tm_ids=TransactionMaster::where('reference_transaction_master_id',$id)->get()->pluck('id');
+
+        $debit=TransactionDetail::whereIn('transaction_master_id',$tm_ids)->where('transaction_type_id',1)->sum('amount');
+        $total_due = $credit - $debit;
+        return response()->json(['success'=>0,'data'=>$total_due], 200,[],JSON_NUMERIC_CHECK);
     }
 
     //saving fees charging to student
@@ -196,7 +196,7 @@ class TransactionController extends Controller
             return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
         }
 
-        return response()->json(['success'=>2,'data'=>new TransactionMasterResource($result_array['transaction_master'])], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>new TransactionMasterResource($result_array['transaction_master'])], 200,[],JSON_NUMERIC_CHECK);
     }
     //fees received
     public function save_fees_received(Request $request)
@@ -249,14 +249,7 @@ class TransactionController extends Controller
                     if($TM->voucher_type_id!=9){
                         return $fail($value.' this is not a Fees Entry');
                     }
-                }],
-            'studentCourseRegistrationId' => ['bail','required',
-                function($attribute, $value, $fail){
-                    $StudentCourseRegistration=StudentCourseRegistration::where('id', $value)->where('is_completed','=',0)->first();
-                    if(!$StudentCourseRegistration){
-                        $fail($value.' is not a valid Course Registration Number');
-                    }
-                }],
+                }]
         );
         $messages = array(
             'transactionDate.required'=>'Transaction Date is required',
@@ -311,7 +304,7 @@ class TransactionController extends Controller
             $transaction_master->voucher_type_id = 4; // 4 is the voucher_type_id in voucher_types table for Receipt voucher
             $transaction_master->transaction_number = $transaction_number;
             $transaction_master->transaction_date = $input_transaction_master->transactionDate;
-            $transaction_master->student_course_registration_id = $input_transaction_master->studentCourseRegistrationId;
+
             $transaction_master->reference_transaction_master_id = $input_transaction_master->referenceTransactionMasterId;
             $transaction_master->comment = $input_transaction_master->comment;
             $transaction_master->save();
@@ -336,5 +329,20 @@ class TransactionController extends Controller
         }
 
         return response()->json(['success'=>2,'data'=>new TransactionMasterResource($result_array['transaction_master'])], 200,[],JSON_NUMERIC_CHECK);
+    }
+
+    public function get_bill_details_by_id($id){
+        $tm = TransactionMaster::find($id);
+        $feesChargedTM = TransactionMaster::find($tm->reference_transaction_master_id);
+        $feesCharged = TransactionDetail::where('transaction_master_id',$feesChargedTM->id)->where('transaction_type_id',2)->sum('amount');
+        $feesPaid = TransactionDetail::where('transaction_master_id',$id)->where('transaction_type_id',2)->first();
+
+        $feesPaidIds = TransactionMaster::where('reference_transaction_master_id',$tm->reference_transaction_master_id)->get()->pluck('id');
+        $totalFeesPaid = TransactionDetail::whereIn('transaction_master_id',$feesPaidIds)->where('transaction_type_id',2)->sum('amount');
+
+        $currentDues = $feesCharged - $totalFeesPaid;
+        $studentDetails = Ledger::find($feesPaid->ledger_id);
+        return response()->json(['success'=>1,
+            'fessPaid'=>$totalFeesPaid,'due'=>$currentDues,'student'=>$studentDetails], 200,[],JSON_NUMERIC_CHECK);
     }
 }

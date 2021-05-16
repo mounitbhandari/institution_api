@@ -6,7 +6,7 @@ use App\Http\Resources\StudentResource;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Resources\CourseResource;
-use Dotenv\Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
@@ -34,11 +34,12 @@ class CourseController extends Controller
         DB::beginTransaction();
         try{
             $course = new Course();
+            $course->fees_mode_type_id=$request->input('feesModeTypeId');
             $course->course_code=$request->input('courseCode');
             $course->short_name=$request->input('shortName');
             $course->full_name=$request->input('fullName');
             $course->course_duration=$request->input('courseDuration');
-            $course->course_duration_type_id=$request->input('courseDurationTypeId');
+            $course->duration_type_id=$request->input('durationTypeId');
             $course->description=$request->input('description');
             $course->save();
             DB::commit();

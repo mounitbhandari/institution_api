@@ -70,6 +70,7 @@ Route::group(array('prefix' => 'dev'), function() {
         Route::get("/isDeletable/{id}", [StudentController::class, 'is_deletable_student']);
 
         Route::post("/",[StudentController::class, 'store']);
+        Route::post("/store_multiple",[StudentController::class, 'store_multiple']);
         Route::patch("/",[StudentController::class, 'update']);
         Route::delete("/{id}",[StudentController::class, 'delete']);
     });
@@ -114,13 +115,15 @@ Route::group(array('prefix' => 'dev'), function() {
 
         Route::get("/dues/studentId/{id}",[TransactionController::class, 'get_total_dues_by_student_id']);
 
-        Route::get("/dues/byCourse/studentId/{id}",[TransactionController::class, 'get_student_due_by_student_course_registration_id']);
+        Route::get("/dues/byCourse/courseId/{id}",[TransactionController::class, 'get_student_due_by_student_course_registration_id']);
 
 
         //saving fees charged
         Route::post("/feesCharged",[TransactionController::class, 'save_fees_charge']);
         //saving fees received
         Route::post("/feesReceived",[TransactionController::class, 'save_fees_received']);
+
+        Route::get("/billDetails/id/{id}",[TransactionController::class, 'get_bill_details_by_id']);
     });
 });
 

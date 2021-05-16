@@ -184,6 +184,33 @@ class StudentController extends Controller
         return response()->json(['success'=>1,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function store_multiple(Request $request){
+        $return_array=array();
+        $input=($request->json()->all());
+        DB::beginTransaction();
+        try{
+            foreach($input as $v){
+                $detail = (object)$v;
+                if(isset($detail->entryDate)) {
+                    // $entryDate = $request->input('entryDate');
+                    $return_array[]=$detail->entryDate;
+                }else{
+                    $entryDate=Carbon::now()->format('Y-m-d');
+                    $return_array[]=$entryDate;
+                }
+                
+
+            }
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
+        }
+        return response()->json(['success'=>1,'data'=>$return_array], 200,[],JSON_NUMERIC_CHECK);
+
+
+    }
+
     public function update(Request $request)
     {
         $ledger_id = $request->input('studentId');
